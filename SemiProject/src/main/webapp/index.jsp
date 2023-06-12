@@ -8,10 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	
 	<h1>title</h1>
+	
 
 	<h1>nav</h1>
+
 
 	<h1>contentPage</h1>
 
