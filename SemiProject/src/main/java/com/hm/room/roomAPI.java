@@ -19,7 +19,8 @@ public class roomAPI {
 //	https://api.openweathermap.org/data/2.5/weather?q=seoul&appid=e7b1a57cd2158c8d195bfb24b7597bad
 //	https://api.openweathermap.org/data/2.5/weather?q=seoul&unists=metric&appid=e7b1a57cd2158c8d195bfb24b7597bad	
 	
-	String url = "http://api.visitjeju.net/vsjApi/contents/searchlist?apiKey=x8uwubc8s4qzunfb&locale=kr";
+	String url = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=x8uwubc8s4qzunfb&locale=kr&category=c3&page=2&cid=CNTS_000000000020574";
+	// 일레인 호텔
 	
 	try {
 			URL u = new URL(url);
@@ -38,7 +39,7 @@ public class roomAPI {
 
 			// 만든 객체로 isr(받은 데이터) 넣어서 파싱 준비
 			JSONObject item = (JSONObject) jp.parse(isr);
-			System.out.println(weatherData);
+			System.out.println(item);
 
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -47,8 +48,7 @@ public class roomAPI {
 		
 		//원하는 데이터만
 		
-		//날씨 설명
-		JSONArray items = (JSONArray) .get("items");
+		JSONArray items = (JSONArray) item.get("items");
 		JSONArray wo = (JSONArray) items.get(0);
 		System.out.println("날씨 : "+ wo); 
 		

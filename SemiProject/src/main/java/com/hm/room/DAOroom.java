@@ -11,14 +11,10 @@ import com.hm.main.DBManager;
 public class DAOroom {
 
 	public static void getallroom(HttpServletRequest request) {
-			
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
 		try {
-				con = DBManager.connect();
-				
+
+			
+			
 			
 			
 			
@@ -26,9 +22,9 @@ public class DAOroom {
 			
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
-		
+
 	}
 
 }
