@@ -9,15 +9,18 @@
 <link rel="stylesheet" href="css/hm.css">
 </head>
 <body>
-	
-	<h1>title</h1>
-	
 
-	<h1>nav</h1>
+	<table>
+		<tr>
+				<td> <a href="roomAllsearchC">숙박</a> </td>
+		</tr>
+	</table>
 
-
-	<h1>contentPage</h1>
-
+	<table id="site">
+		<tr>
+			<td><jsp:include page="${contentPage }"></jsp:include>
+		</tr>
+	</table>
 
 </body>
 </html>

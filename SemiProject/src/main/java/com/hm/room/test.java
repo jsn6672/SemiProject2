@@ -3,30 +3,28 @@ package com.hm.room;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.net.ssl.HttpsURLConnection;
-import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.hm.main.DBManager;
+public class test {
 
-public class DAOroom {
-
-	public static void getallroom(HttpServletRequest request) {
+	public static void main(String[] args) {
 
 		try {
-			String url = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=x8uwubc8s4qzunfb&locale=kr&category=c3";
+			Scanner k = new Scanner(System.in);
+			String search = k.nextLine();
+
+			String url = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=x8uwubc8s4qzunfb&locale=kr&category=c3&title="
+					+ search;
 
 			URL u = new URL(url);
 			HttpsURLConnection huc = (HttpsURLConnection) u.openConnection();
-
 			InputStream is = huc.getInputStream();
 			InputStreamReader isr = new InputStreamReader(is, "utf-8");
 
@@ -39,6 +37,7 @@ public class DAOroom {
 
 			// 만든 객체로 isr(받은 데이터) 넣어서 파싱 준비
 			JSONObject room = (JSONObject) jp.parse(isr);
+			;
 
 			JSONArray items = (JSONArray) room.get("items");
 			ArrayList<Hotel> hotels = new ArrayList<Hotel>();
@@ -53,6 +52,8 @@ public class DAOroom {
 				System.out.println(roomObj.get("longitude"));
 				System.out.println(roomObj.get("phoneno"));
 				System.out.println(roomObj.get("tag"));
+				System.out.println("-------------------------------------");
+				System.out.println();
 
 				String title = (String) roomObj.get("title");
 				String address = (String) roomObj.get("address");
@@ -67,17 +68,9 @@ public class DAOroom {
 						introduction, phoneno, tag));
 
 			}
-			request.setAttribute("hotels", hotels);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
-
-	public static void searchroom(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
