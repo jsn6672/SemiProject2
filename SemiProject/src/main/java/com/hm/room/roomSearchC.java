@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/roomSearchC")
 public class roomSearchC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DAOroom.searchroom(request);
 		
+		DAOroom.searchroom(request);
+		request.setAttribute("contentPage", "jsp/hotelmain.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

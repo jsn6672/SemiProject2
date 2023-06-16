@@ -7,13 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/roomAllsearchC")
-public class roomAllsearchC extends HttpServlet {
-       
+@WebServlet("/roomClickC")
+public class roomClickC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DAOroom.getallroom(request);
-		request.setAttribute("contentPage", "jsp/hotelmain.jsp");
+		DAOroom.clickroom(request);
+		request.setAttribute("contentPage", "jsp/hoteldetail.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
