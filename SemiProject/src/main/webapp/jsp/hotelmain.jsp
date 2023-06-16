@@ -20,7 +20,7 @@
 
 	<div class="container_hm">
 		<c:forEach items="${hotels }" var="h">
-			<div class="hotel_list">
+			<div class="hotel_list" >
 				<div class="hotel_img">
 					<img alt="" src="${h.r_imgpath }">
 				</div>
@@ -30,13 +30,17 @@
 					<div>
 						<p>${h.r_roadaddress }</p>
 					</div>
+					<button name="clickhotel">위치 찾기</button>
+					
 				</div>
 			</div>
+						
 		</c:forEach>
 
 		<hr>
 
 		<div id="hm_map"></div>
+	</div>
 		<script>
 			var mapContainer = document.getElementById('hm_map'); //지도에 표기할 dv
 			var mapOptions = {
@@ -55,8 +59,7 @@
 			map.setMaxLevel(9);
 			map.setMinLevel(3);
 		</script>
-
-
-	</div>
+	
+	
 </body>
 </html>

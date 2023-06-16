@@ -53,11 +53,8 @@ public class roomAPI_test {
 				JSONObject roomeObj = (JSONObject) items.get(i);
 				
 				System.out.println(roomeObj.get("title")); 
-				System.out.println(roomeObj.get("phoneno")); 
 				System.out.println(roomeObj.get("latitude")); 
 				System.out.println(roomeObj.get("longitude")); 
-				System.out.println(roomeObj.get("address")); 
-				System.out.println(roomeObj.get("roadaddress")); 
 				System.out.println("-----------------------");
 			}
 			
