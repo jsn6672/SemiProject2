@@ -19,9 +19,9 @@
 
 	<table id="site">
 		<tr>
-			<td><jsp:include page="${contentPage }"></jsp:include>
+			<td><jsp:include page="${contentPage }"></jsp:include></td>
 		</tr>
 	</table>
 
 </body>
-</html>
+</html>	

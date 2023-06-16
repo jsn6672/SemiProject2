@@ -1,9 +1,17 @@
 @charset "UTF-8";
 
-.hotel_list {
-	border: 1px solid black;
-	width: 700px; height : 170px;
+.container_hm{
 	display: flex;
+	
+}
+.hotel_list{
+	display: content;
+}
+
+.hotel_content {
+	display: flex;
+	border: 1px solid black;
+	width: 700px; 
 	height: 170px;
 }
 
