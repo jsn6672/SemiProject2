@@ -10,15 +10,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="roomSearchC" >
-	<input name="hotelsearch" type="text"> 
-	<button> 검색</button>
+	<form action="roomSearchC">
+		<input name="hotelsearch" type="text">
+		<button>검색</button>
 	</form>
-	
-	<c:forEach items="${hotels }" var="h">
-		<div class="room_title"> ${h.r_title }</div>
-		<div> <button> 자세히 보기</button> </div>
-	</c:forEach>
 
+	<br>
+	<div class="contianer_hm">
+		<c:forEach items="${hotels }" var="h">
+			<div class="hotel_list">
+				<div class="hotel_img">
+					<img alt="" src="">
+				</div>
+				<div class="hotel_tag">
+					<div class="room_title">${h.r_title }</div>
+					<div>
+						<button>자세히 보기</button>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
 </body>
 </html>

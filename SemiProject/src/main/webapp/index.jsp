@@ -7,12 +7,13 @@
 <meta charset="utf-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/hm.css">
+
 </head>
 <body>
 
 	<table>
 		<tr>
-				<td> <a href="roomAllsearchC">숙박</a> </td>
+			<td> <a href="roomAllsearchC">숙박</a> </td>
 		</tr>
 	</table>
 
