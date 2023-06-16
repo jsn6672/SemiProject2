@@ -8,7 +8,7 @@ public class Hotel {
 		private double r_latitude;
 		private double r_longitude;
 		private String r_phoneno;
-		private String r_img;
+		private String r_imgpath;
 		private String r_thumnailpath;
 		private String r_tag;
 		
@@ -17,7 +17,7 @@ public class Hotel {
 		}
 
 		public Hotel(String r_title, String r_address, String r_roadaddress, String r_introduction, double r_latitude,
-				double r_longitude, String r_phoneno, String r_img, String r_thumnailpath, String r_tag) {
+				double r_longitude, String r_phoneno, String r_imgpath, String r_thumnailpath, String r_tag) {
 			super();
 			this.r_title = r_title;
 			this.r_address = r_address;
@@ -26,7 +26,7 @@ public class Hotel {
 			this.r_latitude = r_latitude;
 			this.r_longitude = r_longitude;
 			this.r_phoneno = r_phoneno;
-			this.r_img = r_img;
+			this.r_imgpath = r_imgpath;
 			this.r_thumnailpath = r_thumnailpath;
 			this.r_tag = r_tag;
 		}
@@ -87,12 +87,12 @@ public class Hotel {
 			this.r_phoneno = r_phoneno;
 		}
 
-		public String getR_img() {
-			return r_img;
+		public String getR_imgpath() {
+			return r_imgpath;
 		}
 
-		public void setR_img(String r_img) {
-			this.r_img = r_img;
+		public void setR_imgpath(String r_imgpath) {
+			this.r_imgpath = r_imgpath;
 		}
 
 		public String getR_thumnailpath() {
@@ -110,8 +110,7 @@ public class Hotel {
 		public void setR_tag(String r_tag) {
 			this.r_tag = r_tag;
 		}
-		
-		
+
 		
 		
 }

@@ -48,6 +48,9 @@ public class DAOroom {
 				JSONObject roomObj = (JSONObject) items.get(i);
 
 				System.out.println(roomObj.get("title"));
+				JSONObject a = (JSONObject)roomObj.get("repPhoto");
+				JSONObject b = (JSONObject)a.get("photoid");
+
 //				System.out.println(roomObj.get("address"));
 //				System.out.println(roomObj.get("roadaddress"));
 //				System.out.println(roomObj.get("introduction"));
@@ -63,12 +66,12 @@ public class DAOroom {
 				double latitude = (double) roomObj.get("latitude");
 				double longitude = (double) roomObj.get("longitude");
 				String phoneno = (String) roomObj.get("phoneno");
-				String img = (String)roomObj.get("img");
-				String thumnailpath = (String)roomObj.get("thumnailpath");
+				String imgpath = (String)b.get("imgpath");
+				String thumnailpath = (String)b.get("thumnailpath");
 				String tag = (String) roomObj.get("tag");
 
 				hotels.add
-				(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, img, thumnailpath, tag));
+				(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, imgpath, thumnailpath, tag));
 
 
 			}
@@ -136,8 +139,6 @@ public class DAOroom {
 
 	public static void clickroom(HttpServletRequest request) {
 		
-		String click = request.getParameter("");
-		String url = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=x8uwubc8s4qzunfb&locale=kr&category=c3&title=";
 		
 	}
 }

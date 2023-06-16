@@ -16,20 +16,24 @@
 	</form>
 
 	<br>
-	<div class="contianer_hm">
-		<c:forEach items="${hotels }" var="h">
-			<div class="hotel_list">
-				<div class="hotel_img">
-					<img alt="" src="">
-				</div>
-				<div class="hotel_tag">
-					<div class="room_title">${h.r_title }</div>
-					<div>
-						<button>자세히 보기</button>
+	<div class="container_hm" >
+			<c:forEach items="${hotels }" var="h">
+				<div class="hotel_list">
+					<div class="hotel_img">
+						<img alt="" src="${h.r_imgpath }">
+					</div>
+					<div class="hotel_info">
+						<div class="room_title">${h.r_title }</div>
+						<div>
+							<p>${h.r_roadaddress }</p>
+						</div>
+						<div>
+							<button>자세히 보기</button>
+						</div>
 					</div>
 				</div>
-			</div>
-		</c:forEach>
-	</div>
+			</c:forEach>
+
+		</div>
 </body>
 </html>
