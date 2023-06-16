@@ -112,6 +112,8 @@ public class DAOroom {
 			ArrayList<Hotel> hotels = new ArrayList<Hotel>();
 			for (int i = 0; i < items.size(); i++) {
 				JSONObject roomObj = (JSONObject) items.get(i);
+				JSONObject a = (JSONObject)roomObj.get("repPhoto");
+				JSONObject b = (JSONObject)a.get("photoid");
 
 				System.out.println(roomObj.get("title"));
 
@@ -122,12 +124,12 @@ public class DAOroom {
 				double latitude = (double) roomObj.get("latitude");
 				double longitude = (double) roomObj.get("longitude");
 				String phoneno = (String) roomObj.get("phoneno");
-				String img = (String)roomObj.get("img");
-				String thumnailpath = (String)roomObj.get("thumnailpath");
+				String imgpath = (String)b.get("imgpath");
+				String thumnailpath = (String)b.get("thumnailpath");
 				String tag = (String) roomObj.get("tag");
 
 				hotels.add
-				(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, img, thumnailpath, tag));
+				(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, imgpath, thumnailpath, tag));
 
 			}
 			request.setAttribute("hotels", hotels);

@@ -2,19 +2,23 @@
 
 .hotel_list {
 	border: 1px solid black;
-	width: 500px;
-	height: 170px;
+	width: 700px; height : 170px;
 	display: flex;
+	height: 170px;
 }
 
 .hotel_img {
-	border: 1px solid black;	
-	width: 220px;
+	border: 1px solid black;
+	width: 250px;
 	height: 170px;
-	display: inline-block;
 }
 
-.hotel_img img{
+.hotel_img img {
 	width: 100%;
 	height: 100%;
+}
+
+#hm_map {
+	width: 80%;
+	height: 800px
 }

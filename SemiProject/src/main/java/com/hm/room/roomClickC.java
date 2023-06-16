@@ -13,7 +13,6 @@ public class roomClickC extends HttpServlet {
 		DAOroom.clickroom(request);
 		request.setAttribute("contentPage", "jsp/hoteldetail.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
