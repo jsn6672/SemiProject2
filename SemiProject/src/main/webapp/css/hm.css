@@ -11,7 +11,7 @@
 .hotel_content {
 	display: flex;
 	border: 1px solid black;
-	width: 700px; 
+	width: 600px; 
 	height: 170px;
 }
 
@@ -30,7 +30,7 @@
 
 .hotel_info{
 	margin : 15pt;
-	width: 450px;
+	width: 350px;
 	}
 
 #hm_map {

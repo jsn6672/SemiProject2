@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/roomClickC")
 public class roomClickC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DAOroom.markingMap(request);
+		DAOroom.getAllRoom(request);
 		request.setAttribute("contentPage", "jsp/hotelmain.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}

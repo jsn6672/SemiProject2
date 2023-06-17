@@ -9,8 +9,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f6d7d797f4c680fd25e3195c23d98ca"></script>
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f6d7d797f4c680fd25e3195c23d98ca&libraries=services"></script>
 </head>
+
 <body>
 
 	<form action="roomSearchC">
@@ -34,7 +35,7 @@
 						<div class="hotel_roadaddress">
 							<p>주소 : ${h.r_roadaddress }</p>
 						</div>
-						<button name="clickhotel" onclick="roomClickC">위치 찾기</button>
+						<button name="clickhotel" onclick="location.href='roomClickC?place=${h.r_roadaddress }'">위치 찾기</button>
 					</div>
 
 				</div>
@@ -42,34 +43,12 @@
 			</c:forEach>
 		</div>
 		<hr>
+		<input type="hidden" id="place" value="${param.place }">
 		<div id="hm_map"></div>
 	</div>
 
-	<script>
-		function initMap(longitude, longitude) {
-
-			var mapContainer = document.getElementById('hm_map'); //지도에 표기할 dv
-			var mapOptions = {
-				center : new kakao.maps.LatLng(33.3617, 126.5292), //지도 중심 좌표
-				level : 9
-			};
-
-			var map = new kakao.maps.Map(mapContainer, mapOptions); //객체 생성
-
-			// 마커 생성
-			var markerPosition = new kakao.maps.LatLng(longitude, longitude);
-			var marker = new kakao.maps.Marker({
-				position : markerPosition
-			});
-			// 마커 표시
-			marker.setMap(map);
-		}
-
-		map.setMaxLevel(9);
-		map.setMinLevel(3);
-		}
+	<script type="text/javascript" src="js/mapmarking.js">
 	</script>
-
 
 </body>
 </html>

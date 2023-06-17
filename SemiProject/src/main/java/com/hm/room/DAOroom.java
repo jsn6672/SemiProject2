@@ -22,7 +22,7 @@ import com.hm.main.DBManager;
 
 public class DAOroom {
 
-	public static void getallroom(HttpServletRequest request) {
+	public static void getAllRoom(HttpServletRequest request) {
 
 		try {
 			String url = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=x8uwubc8s4qzunfb&locale=kr&category=c3";
@@ -143,9 +143,11 @@ public class DAOroom {
 		
 		try {
 			String search = request.getParameter("clickhotel");
-			String encodedsearch = URLEncoder.encode(search, "UTF-8");
+			String encodedsearch = null;
+			if(search != null)
+				encodedsearch = URLEncoder.encode(search, "UTF-8");
 			System.out.println(encodedsearch);
-			String url = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=x8uwubc8s4qzunfb&locale=kr&category=c3&title="
+			String url = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=x8uwubc8s4qzunfb&locale=kr&category=c3&roadaddress="
 					+ encodedsearch;
 
 			URL u = new URL(url);
@@ -173,15 +175,25 @@ public class DAOroom {
 				System.out.println(roomObj.get("title"));
 
 				String title = (String) roomObj.get("title");
+				System.out.println(title);
 				String address = (String) roomObj.get("address");
+				System.out.println(address);
 				String roadaddress = (String) roomObj.get("roadaddress");
+				System.out.println(roadaddress);
 				String introduction = (String) roomObj.get("introduction");
+				System.out.println(introduction);
 				double latitude = (double) roomObj.get("latitude");
+				System.out.println(latitude);
 				double longitude = (double) roomObj.get("longitude");
+				System.out.println(longitude);
 				String phoneno = (String) roomObj.get("phoneno");
+				System.out.println(phoneno);
 				String imgpath = (String)b.get("imgpath");
+				System.out.println(imgpath);
 				String thumnailpath = (String)b.get("thumnailpath");
+				System.out.println(thumnailpath);
 				String tag = (String) roomObj.get("tag");
+				System.out.println(tag);
 
 				hotels.add
 				(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, imgpath, thumnailpath, tag));
