@@ -15,10 +15,12 @@
 	height: 170px;
 }
 
+
 .hotel_img {
 	border: 1px solid black;
 	width: 250px;
 	height: 170px;
+	
 }
 
 .hotel_img img {
@@ -26,7 +28,13 @@
 	height: 100%;
 }
 
+.hotel_info{
+	margin : 15pt;
+	width: 450px;
+	}
+
 #hm_map {
-	width: 80%;
-	height: 800px
+	margin-left: 20pt;
+	width: 1300px;
+	height: 900px;
 }
