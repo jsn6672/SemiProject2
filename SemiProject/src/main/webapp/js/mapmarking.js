@@ -1,4 +1,3 @@
-
 let place = document.getElementById('place')?.value;
 
 var mapContainer = document.getElementById('hm_map'), // 지도를 표시할 div 

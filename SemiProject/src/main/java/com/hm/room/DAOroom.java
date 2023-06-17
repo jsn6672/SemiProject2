@@ -210,7 +210,32 @@ public class DAOroom {
 	
 		}
 
+	public static void roomPaging(HttpServletRequest request) {
+		
+		request.setAttribute("curPageNo", page);
+
+		int cnt = 5; // 한페이지당 보여줄 개수
+		int total = movies.size(); // 총 데이터 개수
+		int pageCount = (int) Math.ceil((double) total / cnt); // 총페이지수
+
+		request.setAttribute("pageCount", pageCount);
+		int start = total - (cnt * (page - 1));
+		int end = (page == pageCount) ? -1 : start - (cnt + 1);
+		
+		ArrayList<Movie> items = new ArrayList<Movie>();
+		for (int i = start - 1; i > end; i--) {
+			items.add(movies.get(i));
+		}
+			request.setAttribute("movies", items);
+			
+			
+			
+		}
+		
+		
 	}
+
+	
 
 	
 
