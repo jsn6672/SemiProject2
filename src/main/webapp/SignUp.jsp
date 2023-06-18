@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,91 +8,120 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container-reg">
-		<form action="SignUpC" method="post" enctype="multipart/form-data">
+		<div class="container-reg">
 			<div class="signup-window">
+	<form action="SignUpC" method="post" enctype="multipart/form-data">
 				<h1>Sign Up</h1>
-				<br>
-				<div class="items-reg">
-					<div class="item1-reg">Name</div>
-					<div class="item2-reg">
-						<input name="name" placeholder="ÇÊ¼ö" class="textInput-reg"
-							autocomplete="off" required>
-					</div>
-				</div>
 				<div class="items-reg">
 					<div class="item1-reg">ID</div>
 					<div class="item2-reg">
-						<input name="id" placeholder="¿µ,¼ýÀÚ Æ÷ÇÔ 5±ÛÀÚ ÀÌ»ó"
+						<input name="id" placeholder="ì˜,ìˆ«ìž í¬í•¨ 5ê¸€ìž ì´ìƒ"
 							class="textInput-reg" autocomplete="off" required>
 					</div>
 				</div>
 				<div class="items-reg">
 					<div class="item1-reg">PW</div>
 					<div class="item2-reg">
-						<input type="password" name="pw" placeholder="¿µ,¼ýÀÚ,Æ¯¹® Æ÷ÇÔ 8±ÛÀÚ ÀÌ»ó"
+						<input type="password" name="pw" placeholder="ì˜,ìˆ«ìž,íŠ¹ë¬¸ í¬í•¨ 8ê¸€ìž ì´ìƒ"
 							class="textInput-reg" autocomplete="off" required>
 					</div>
 				</div>
 				<div class="items-reg">
 					<div class="item1-reg">PW confirm</div>
 					<div class="item2-reg">
-						<input type="password" name="pw" placeholder="ºñ¹Ð¹øÈ£ ÀçÈ®ÀÎ"
+						<input type="password" name="pw" placeholder="ë¹„ë°€ë²ˆí˜¸ ìž¬í™•ì¸"
 							class="textInput-reg" autocomplete="off" required>
 					</div>
 				</div>
 				<div class="items-reg">
+					<div class="item1-reg">Name</div>
+					<div class="item2-reg">
+						<input name="name" placeholder="ë³¸ëª… or ë‹‰ë„¤ìž„" class="textInput-reg"
+							autocomplete="off" required>
+					</div>
+				</div>
+				<div class="items-reg">
 					<div class="item1-reg">Gender</div>
-					<div class="item2-reg gender">
-						<label><input type="radio" name="gender" value="³²"
-							checked="checked"> ³²ÀÚ</label> <label><input type="radio"
-							name="gender" value="¿©"> ¿©ÀÚ</label>
+					<div class="item2-reg-gender">
+						<label><input class="gender" type="radio" name="gender"
+							value="ë‚¨" checked="checked"> ë‚¨ìž</label><label><input
+							type="radio" name="gender" value="ì—¬"> ì—¬ìž</label>
+					</div>
+					<div class="items-reg">
+						<div class="item1-reg">Birth</div>
+						<div class="item2-reg-birth birth_box">
+							<select name="year">
+								<option value="1900">1900</option>
+								<option value="1901">1901</option>
+								<option value="1902">1902</option>
+							</select><a>ë…„</a> <select name="month">
+								<option value="12">12</option>
+								<option value="11">11</option>
+								<option value="10">10</option>
+								<option value="09">09</option>
+								<option value="08">08</option>
+								<option value="07">07</option>
+								<option value="06">06</option>
+								<option value="05">05</option>
+								<option value="04">04</option>
+								<option value="03">03</option>
+								<option value="02">02</option>
+								<option value="01">01</option>
+							</select><a>ì›”</a> <select name="day">
+								<option value="31">31</option>
+								<option value="30">30</option>
+								<option value="29">29</option>
+								<option value="28">28</option>
+							</select><a>ì¼</a>
+						</div>
 					</div>
 				</div>
 				<div class="items-reg">
 					<div class="item1-reg">Address</div>
-					<div class="item2-reg">
-						<select name="addr">
-							<option value="seoul">¼­¿ï</option>
-							<option value="deajeon">´ëÀü</option>
-							<option value="deagu">´ë±¸</option>
-							<option value="busan">ºÎ»ê</option>
-							<option value="gwangju">±¤ÁÖ</option>
-							<option value="ulsan">¿ï»ê</option>
-							<option value="incheon">ÀÎÃµ</option>
-							<option value="kyeonggi">°æ±âµµ</option>
-							<option value="gangwon">°­¿øµµ</option>
-							<option value="Nchungcheong">ÃæÃ»ºÏµµ</option>
-							<option value="Schungcheong">ÃæÃ»³²µµ</option>
-							<option value="Njeonla">Àü¶óºÏµµ</option>
-							<option value="Sjeonla">Àü¶ó³²µµ</option>
-							<option value="Ngyeongsang">°æ»óºÏµµ</option>
-							<option value="Sgyeongsang">°æ»ó³²µµ</option>
-							<option value="jeju">Á¦ÁÖµµ</option>
-							<option value="foreign">ÇØ¿Ü°ÅÁÖ</option>
+					<div class="item2-reg-addr addr_box">
+						<select name="address">
+							<option value="seoul">ì„œìš¸</option>
+							<option value="deajeon">ëŒ€ì „</option>
+							<option value="deagu">ëŒ€êµ¬</option>
+							<option value="busan">ë¶€ì‚°</option>
+							<option value="gwangju">ê´‘ì£¼</option>
+							<option value="ulsan">ìš¸ì‚°</option>
+							<option value="incheon">ì¸ì²œ</option>
+							<option value="kyeonggi">ê²½ê¸°ë„</option>
+							<option value="gangwon">ê°•ì›ë„</option>
+							<option value="Nchungcheong">ì¶©ì²­ë¶ë„</option>
+							<option value="Schungcheong">ì¶©ì²­ë‚¨ë„</option>
+							<option value="Njeonla">ì „ë¼ë¶ë„</option>
+							<option value="Sjeonla">ì „ë¼ë‚¨ë„</option>
+							<option value="Ngyeongsang">ê²½ìƒë¶ë„</option>
+							<option value="Sgyeongsang">ê²½ìƒë‚¨ë„</option>
+							<option value="jeju">ì œì£¼ë„</option>
+							<option value="foreign">í•´ì™¸ê±°ì£¼</option>
 						</select>
+					</div>
+				</div>
+				<div class="items-reg-question">
+					<div class="item1-reg-question">Question</div>
+					<br>
+					<div class="item2-reg" id="question">
+						<select id="question_selectbox" name="question">
+							<option value="QnA1">ë‹¹ì‹ ì´ ê°€ìž¥ ì¢‹ì•„í•˜ëŠ” ìƒ‰ê¹”ì€?</option>
+							<option value="QnA2">ë‹¹ì‹ ì˜ ë³´ë¬¼ 1í˜¸ëŠ”?</option>
+						</select>
+						<div class="answer">
+							<input class="textInput-reg" type="text" name="answer"
+								id="answer" autocomplete="off" placeholder="ì§ˆë¬¸ì— ëŒ€í•œ ë‹µë³€" required>
+						</div>
 					</div>
 				</div>
 				<div class="items-reg">
-					<div class="item1-reg">Question</div>
-					<div class="item2-reg">
-						<select name="question">
-							<option value="QnA1">´ç½ÅÀÌ °¡Àå ÁÁ¾ÆÇÏ´Â »ö±òÀº?</option>
-							<option value="QnA2">´ç½ÅÀÇ º¸¹° 1È£´Â?</option>
-						</select>
-						<input type="text" name="answer" id="answer" autocomplete="off" required>
-					</div>
+					<button class="signup_btn" type="submit">Sign up</button>
 				</div>
-				<div class="items-reg item3-reg">
-					<div class="button-reg">
-						<br>
-						<button class="signup_btn" type="submit">Sign up</button>
-						<br>
-						<button class="signupCancel_btn" type="submit">Cancel</button>
-					</div>
-				</div>
-			</div>
-	</div>
 	</form>
+	<form action="Main_HC">
+		<button class="signupCancel_btn" type="submit">Cancel</button>
+	</form>
+	</div>
+	</div>
 </body>
 </html>

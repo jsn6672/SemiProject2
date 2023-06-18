@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
@@ -42,17 +42,18 @@
 							id="pw" autocomplete="off" required>
 					</div>
 					<div class="btn-area">
-						<button class="login_btn" type="submit" id="btn">LOGIN</button>
+						<button href="SignUpC" class="login_btn" type="submit" id="btn">LOGIN</button>
 					</div>
 				</form>
 				<div class="caption">
-					<a href="">Forgot Password?</a><br> <a href="SignUpC">Join to us</a>
+					<a href="SignUpC">Forgot Password?</a><br> <a
+						href="SignUp.jsp">Join to us</a>
 				</div>
 			</div>
 		</div>
 		<!-- 로그인창 끝 -->
 
-	<div id="dim"></div>
+		<div id="dim"></div>
 
 
 		<!-- 퀵메뉴 -->
@@ -68,11 +69,11 @@
 					</div>
 					<div class="quick_icon">
 						<img src="css/img/gyul.png"> &nbsp;&nbsp; <img
-							src="css/img/udo.png">
+							src="css/img/beach.png">
 					</div>
 					<div class="quick_icon">
 						<img src="css/img/sul.png"> &nbsp;&nbsp; <img
-							src="css/img/gyul2.png">
+							src="css/img/grandfa.png">
 					</div>
 				</div>
 			</form>
@@ -100,51 +101,33 @@
 		<div class="infobox_main">
 			<div class="box_setup1">
 				<div class="infobox1 infobox_hover">
-					<div class="infobox_header">
-						<img class="info_icon" src="css/img/rentcar.png" /><a>렌터카</a>
-						<div class="infobox_header_back"></div>
-					</div>
+					<h1>CarRent</h1>
 				</div>
 				<div class="infobox2 infobox_hover">
-					<div class="infobox_header">
-						<img class="info_icon" src="css/img/hostel.png" /><a>숙소</a>
-						<div class="infobox_header_back"></div>
-					</div>
+					<h2>Accommodation</h2>
 				</div>
 			</div>
 			<div class="box_setup2">
 				<div class="infobox3 infobox_hover">
-					<div class="infobox_header">
-						<img class="info_icon" src="css/img/gyul.png" /><a>식당</a>
-						<div class="infobox_header_back"></div>
-					</div>
+					<h2>Must to go</h2>
 				</div>
 				<div class="infobox4 infobox_hover">
-					<div class="infobox_header">
-						<img class="info_icon" src="css/img/udo.png" /><a>관광지</a>
-						<div class="infobox_header_back"></div>
-					</div>
+					<h1>Food</h1>
 				</div>
 			</div>
 			<div class="box_setup3">
 				<div class="infobox5 infobox_hover">
-					<div class="infobox_header">
-						<img class="info_icon" src="css/img/sul.png" /><a>전통주</a>
-						<div class="infobox_header_back"></div>
-					</div>
+					<h1>Liquor</h1>
 				</div>
 				<div class="infobox6 infobox_hover">
-					<div class="infobox_header">
-						<img class="info_icon" src="css/img/gyul2.png" /><a>기타</a>
-						<div class="infobox_header_back"></div>
-					</div>
+					<h2>idk yet</h2>
 				</div>
 			</div>
 		</div>
-		<div class="arrow_control">
-			<input type="image" id='button2' src="css/img/arrow_up.png" />
-			<!-- 페이지 이동 화살표 -->
-		</div>
+	<div class="arrow_control">
+		<input type="image" id='button2' src="css/img/arrow_up.png" />
+		<!-- 페이지 이동 화살표 -->
+	</div>
 	</div>
 </body>
 
