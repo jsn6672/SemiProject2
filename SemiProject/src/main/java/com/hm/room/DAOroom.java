@@ -112,7 +112,7 @@ public class DAOroom {
 			JSONObject room = (JSONObject) jp.parse(isr);
 
 			JSONArray items = (JSONArray) room.get("items");
-			ArrayList<Hotel> hotels = new ArrayList<Hotel>();
+			hotels = new ArrayList<Hotel>();
 			for (int i = 0; i < items.size(); i++) {
 				JSONObject roomObj = (JSONObject) items.get(i);
 				JSONObject a = (JSONObject) roomObj.get("repPhoto");

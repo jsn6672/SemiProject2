@@ -24,36 +24,46 @@
 	<div class="container_hm">
 		<div class="hotel_list">
 			<input type="hidden" name="page">
-			<c:forEach items="${hotels }" var="h">
-				<div class="hotel_content">
 
-					<div class="hotel_img">
-						<img alt="" src="${h.r_imgpath }">
-					</div>
+			<c:choose>
+				<c:when test="${empty hotels}">
+					<span>검색결과가 없습니다.</span>
+				</c:when>
+				<c:otherwise>
 
-					<div class="hotel_info">
-						<div class="room_title">${h.r_title }</div>
-						<div class="hotel_roadaddress">
-							<p>주소 : ${h.r_roadaddress }</p>
+					<c:forEach items="${hotels }" var="h">
+						<div class="hotel_content">
+
+							<div class="hotel_img">
+								<img alt="" src="${h.r_imgpath }">
+							</div>
+
+							<div class="hotel_info">
+								<div class="room_title">${h.r_title }</div>
+								<div class="hotel_roadaddress">
+									<p>주소 : ${h.r_roadaddress }</p>
+								</div>
+								<button name="clickhotel"
+									onclick="location.href='roomClickC?place=${h.r_roadaddress }'">위치
+									찾기</button>
+							</div>
 						</div>
-						<button name="clickhotel"
-							onclick="location.href='roomClickC?place=${h.r_roadaddress }'">위치
-							찾기</button>
-					</div>
-				</div>
-				<br>
-			</c:forEach>
-		${pageCount } / ${itmes }
-			<a href="roomPageC?p=1>">◀◀</a>
-			<c:forEach begin="1" end="${pageCount }" var="i">
-				<a href="roomPageC?p=${i }">[${i }]</a>
-			</c:forEach>
-			<a href="roomPageC?p=${pageCount }">▶▶</a>
+						<br>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+		${curPageNo }
+			<div class="paging">
+				<a href="roomPageC?p=1>">[◀◀]</a>
+				a
+				<c:forEach begin="1" end="${pageCount }" var="i">
+					<a href="roomPageC?p=${i }">[${i }]</a>
+				</c:forEach>
+				<a href="roomPageC?p=${pageCount }">[▶▶]</a>
+			</div>
 		</div>
 
-
 		<hr>
-
 
 		<input type="hidden" id="place" value="${param.place }">
 		<div id="hm_map"></div>

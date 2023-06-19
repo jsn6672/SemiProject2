@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class roomClickC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DAOroom.markingMap(request);
+		DAOroom.roomPaging(1, request);
 		request.setAttribute("contentPage", "jsp/hotelmain.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
