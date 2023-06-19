@@ -23,6 +23,7 @@
 
 	<div class="container_hm">
 		<div class="hotel_list">
+			<input type="hidden" name="page">
 			<c:forEach items="${hotels }" var="h">
 				<div class="hotel_content">
 
@@ -35,19 +36,31 @@
 						<div class="hotel_roadaddress">
 							<p>주소 : ${h.r_roadaddress }</p>
 						</div>
-						<button name="clickhotel" onclick="location.href='roomClickC?place=${h.r_roadaddress }'">위치 찾기</button>
+						<button name="clickhotel"
+							onclick="location.href='roomClickC?place=${h.r_roadaddress }'">위치
+							찾기</button>
 					</div>
-
 				</div>
 				<br>
 			</c:forEach>
+		${pageCount } / ${itmes }
+			<a href="roomPageC?p=1>">◀◀</a>
+			<c:forEach begin="1" end="${pageCount }" var="i">
+				<a href="roomPageC?p=${i }">[${i }]</a>
+			</c:forEach>
+			<a href="roomPageC?p=${pageCount }">▶▶</a>
 		</div>
+
+
 		<hr>
+
+
 		<input type="hidden" id="place" value="${param.place }">
 		<div id="hm_map"></div>
 	</div>
 
 	<script type="text/javascript" src="js/mapmarking.js">
+		
 	</script>
 
 </body>

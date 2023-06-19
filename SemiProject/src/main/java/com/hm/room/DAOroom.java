@@ -2,7 +2,6 @@ package com.hm.room;
 
 import java.io.InputStream;
 
-
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,6 +21,10 @@ import org.json.simple.parser.JSONParser;
 import com.hm.main.DBManager;
 
 public class DAOroom {
+	
+	
+	private static ArrayList<Hotel> hotels = new ArrayList<Hotel>();
+
 
 	public static void getAllRoom(HttpServletRequest request) {
 
@@ -45,13 +48,13 @@ public class DAOroom {
 			JSONObject room = (JSONObject) jp.parse(isr);
 
 			JSONArray items = (JSONArray) room.get("items");
-			ArrayList<Hotel> hotels = new ArrayList<Hotel>();
+			hotels = new ArrayList<Hotel>();
 			for (int i = 0; i < items.size(); i++) {
 				JSONObject roomObj = (JSONObject) items.get(i);
 
 				System.out.println(roomObj.get("title"));
-				JSONObject a = (JSONObject)roomObj.get("repPhoto");
-				JSONObject b = (JSONObject)a.get("photoid");
+				JSONObject a = (JSONObject) roomObj.get("repPhoto");
+				JSONObject b = (JSONObject) a.get("photoid");
 
 //				System.out.println(roomObj.get("address"));
 //				System.out.println(roomObj.get("roadaddress"));
@@ -68,13 +71,12 @@ public class DAOroom {
 				double latitude = (double) roomObj.get("latitude");
 				double longitude = (double) roomObj.get("longitude");
 				String phoneno = (String) roomObj.get("phoneno");
-				String imgpath = (String)b.get("imgpath");
-				String thumnailpath = (String)b.get("thumnailpath");
+				String imgpath = (String) b.get("imgpath");
+				String thumnailpath = (String) b.get("thumnailpath");
 				String tag = (String) roomObj.get("tag");
 
-				hotels.add
-				(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, imgpath, thumnailpath, tag));
-
+				hotels.add(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, imgpath,
+						thumnailpath, tag));
 
 			}
 			request.setAttribute("hotels", hotels);
@@ -86,7 +88,7 @@ public class DAOroom {
 	}
 
 	public static void searchroom(HttpServletRequest request) {
-		
+
 		try {
 			String search = request.getParameter("hotelsearch");
 			String encodedsearch = URLEncoder.encode(search, "UTF-8");
@@ -113,8 +115,8 @@ public class DAOroom {
 			ArrayList<Hotel> hotels = new ArrayList<Hotel>();
 			for (int i = 0; i < items.size(); i++) {
 				JSONObject roomObj = (JSONObject) items.get(i);
-				JSONObject a = (JSONObject)roomObj.get("repPhoto");
-				JSONObject b = (JSONObject)a.get("photoid");
+				JSONObject a = (JSONObject) roomObj.get("repPhoto");
+				JSONObject b = (JSONObject) a.get("photoid");
 
 				System.out.println(roomObj.get("title"));
 
@@ -125,12 +127,12 @@ public class DAOroom {
 				double latitude = (double) roomObj.get("latitude");
 				double longitude = (double) roomObj.get("longitude");
 				String phoneno = (String) roomObj.get("phoneno");
-				String imgpath = (String)b.get("imgpath");
-				String thumnailpath = (String)b.get("thumnailpath");
+				String imgpath = (String) b.get("imgpath");
+				String thumnailpath = (String) b.get("thumnailpath");
 				String tag = (String) roomObj.get("tag");
 
-				hotels.add
-				(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, imgpath, thumnailpath, tag));
+				hotels.add(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, imgpath,
+						thumnailpath, tag));
 
 			}
 			request.setAttribute("hotels", hotels);
@@ -141,11 +143,12 @@ public class DAOroom {
 	}
 
 	public static void markingMap(HttpServletRequest request) {
-		
+
 		try {
+			//String lg = request.getParameter("languageselect");
 			String search = request.getParameter("clickhotel");
 			String encodedsearch = null;
-			if(search != null)
+			if (search != null)
 				encodedsearch = URLEncoder.encode(search, "UTF-8");
 			System.out.println(encodedsearch);
 			String url = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=x8uwubc8s4qzunfb&locale=kr&category=c3&roadaddress="
@@ -167,11 +170,11 @@ public class DAOroom {
 			JSONObject room = (JSONObject) jp.parse(isr);
 
 			JSONArray items = (JSONArray) room.get("items");
-			ArrayList<Hotel> hotels = new ArrayList<Hotel>();
+			hotels = new ArrayList<Hotel>();
 			for (int i = 0; i < items.size(); i++) {
 				JSONObject roomObj = (JSONObject) items.get(i);
-				JSONObject a = (JSONObject)roomObj.get("repPhoto");
-				JSONObject b = (JSONObject)a.get("photoid");
+				JSONObject a = (JSONObject) roomObj.get("repPhoto");
+				JSONObject b = (JSONObject) a.get("photoid");
 
 				System.out.println(roomObj.get("title"));
 
@@ -189,15 +192,15 @@ public class DAOroom {
 				System.out.println(longitude);
 				String phoneno = (String) roomObj.get("phoneno");
 				System.out.println(phoneno);
-				String imgpath = (String)b.get("imgpath");
+				String imgpath = (String) b.get("imgpath");
 				System.out.println(imgpath);
-				String thumnailpath = (String)b.get("thumnailpath");
+				String thumnailpath = (String) b.get("thumnailpath");
 				System.out.println(thumnailpath);
 				String tag = (String) roomObj.get("tag");
 				System.out.println(tag);
 
-				hotels.add
-				(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, imgpath, thumnailpath, tag));
+				hotels.add(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, imgpath,
+						thumnailpath, tag));
 
 			}
 			request.setAttribute("hotels", hotels);
@@ -205,38 +208,30 @@ public class DAOroom {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-
-		
-	
-		}
-
-	public static void roomPaging(HttpServletRequest request) {
-		
-		request.setAttribute("curPageNo", page);
-
-		int cnt = 5; // 한페이지당 보여줄 개수
-		int total = movies.size(); // 총 데이터 개수
-		int pageCount = (int) Math.ceil((double) total / cnt); // 총페이지수
-
-		request.setAttribute("pageCount", pageCount);
-		int start = total - (cnt * (page - 1));
-		int end = (page == pageCount) ? -1 : start - (cnt + 1);
-		
-		ArrayList<Movie> items = new ArrayList<Movie>();
-		for (int i = start - 1; i > end; i--) {
-			items.add(movies.get(i));
-		}
-			request.setAttribute("movies", items);
-			
-			
-			
-		}
-		
-		
 	}
 
 	
-
 	
+	public static void roomPaging(int page, HttpServletRequest request) {
+
+		int cnt = 5;
+		int total = hotels.size();
+		int pageCount = (int) Math.ceil((double) total / cnt);
+		
+		int start = cnt * (page - 1);
+		int end = Math.min(start + cnt, total + (total % cnt)); // Avoid index out of bound error
+		
+		ArrayList<Hotel> items = new ArrayList<Hotel>();
+		for (int i = start; i < end; i++) {
+			items.add(hotels.get(i));
+		}
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("curPageNo", page);
+		request.setAttribute("hotels", items);
+			
+			
+		}
+
+	}
+
 
