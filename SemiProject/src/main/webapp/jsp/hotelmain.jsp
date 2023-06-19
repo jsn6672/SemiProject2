@@ -52,10 +52,9 @@
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
-		${curPageNo }
+			${curPageNo }
 			<div class="paging">
 				<a href="roomPageC?p=1>">[◀◀]</a>
-				a
 				<c:forEach begin="1" end="${pageCount }" var="i">
 					<a href="roomPageC?p=${i }">[${i }]</a>
 				</c:forEach>
@@ -65,8 +64,32 @@
 
 		<hr>
 
-		<input type="hidden" id="place" value="${param.place }">
-		<div id="hm_map"></div>
+		<div class="right_side">
+			<input type="hidden" id="place" value="${param.place }">
+			<div id="hm_map"></div>
+
+			<div class="reviewbox">
+				<div style="text-align: center; border: 1px solid #dddddd">
+					<div style="background-color: #eeeeee; text-align: center;">
+						글쓰기 양식</div>
+					<div class="review_title">
+						<input type="text" class="form-control" placeholder="글 제목"
+							name="bbsTitle" maxlength="50">
+					</div>
+					<div class="review_text">
+						<textarea class="form-control" placeholder="글 내용"
+							name="bbsContent" maxlength="2048" style="height: 350px;"></textarea>
+					</div>
+				</div>
+				<div>
+					<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+				</div>
+			</div>
+
+
+		</div>
+
+
 	</div>
 
 	<script type="text/javascript" src="js/mapmarking.js">
