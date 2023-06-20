@@ -13,17 +13,18 @@
 </head>
 
 <body>
-
-	<form action="roomSearchC">
-		<input name="hotelsearch" type="text">
-		<button>검색</button>
-	</form>
+	<div class="hotel_search">
+		<form action="roomSearchC">
+			<input name="hotelsearch" type="text">
+			<button>검색</button>
+		</form>
+	</div>
 
 	<br>
 
 	<div class="container_hm">
 		<div class="hotel_list">
-			<input type="hidden" name="page">
+			s <input type="hidden" name="page">
 
 			<c:choose>
 				<c:when test="${empty hotels}">
@@ -71,30 +72,46 @@
 			<div class="reviewbox">
 				<div style="text-align: center; border: 1px solid #dddddd">
 					<div style="background-color: #eeeeee; text-align: center;">
-						글쓰기 양식</div>
-					<div class="review_title">
-						<input type="text" class="form-control" placeholder="글 제목"
-							name="bbsTitle" maxlength="50">
+						리뷰 & 평가</div>
+					<div>
+						<input type="text" class="review_title" placeholder="글 제목"
+							name="bbsTitle">
 					</div>
-					<div class="review_text">
-						<textarea class="form-control" placeholder="글 내용"
-							name="bbsContent" maxlength="2048" style="height: 350px;"></textarea>
+					<div>
+						<textarea class="review_text" placeholder="글 내용"></textarea>
+					</div>
+					<div>
+						<input name="imgReg" class="photo" type="file"> 평점 <select
+							name="starpoint">
+							<option value="1">1</option>
+							<option value="1.5">1.5</option>
+							<option value="2">2</option>
+							<option value="2.5">2.5</option>
+							<option value="3">3</option>
+							<option value="3.5">3.5</option>
+							<option value="4">4</option>
+							<option value="4.5">4.5</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+					<div class="reg">
+						<button name="reviewReg" class="reg">글 등록</button>
 					</div>
 				</div>
-				<div>
-					<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
-				</div>
+						<div>카테고리</div>
+						<div>이름</div>
+						<div>제목</div>
+						<div>내용</div>
+						<div>별점</div>
+						<div>사진</div>
 			</div>
 
 
 		</div>
-
-
 	</div>
 
 	<script type="text/javascript" src="js/mapmarking.js">
 		
 	</script>
-
 </body>
 </html>

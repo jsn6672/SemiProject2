@@ -214,7 +214,7 @@ public class DAOroom {
 	
 	public static void roomPaging(int page, HttpServletRequest request) {
 
-		int cnt = 5;
+		int cnt = 7;
 		int total = hotels.size();
 		int pageCount = (int) Math.ceil((double) total / cnt);
 		

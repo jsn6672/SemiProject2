@@ -1,11 +1,30 @@
 @charset "UTF-8";
 
-.container_hm{
-	display: flex;
+.hotel_search{
+	margin-left: 50pt;
 	
 }
+
+.hotel_search input{
+	width: 200pt;
+	height: 20pt;
+}
+.hotel_search button{
+		width: 40pt;
+		height: 20pt;
+}
+
+
+
+.container_hm{
+	display: flex;
+	margin: 50pt;
+	text-align: center;
+}
+
 .hotel_list{
 	display: content;
+	
 }
 
 .hotel_content {
@@ -32,4 +51,52 @@
 	margin : 15pt;
 	width: 350px;
 	}
+
+.right_side{
+	margin: 30pt;
+	margin-top: 0;
+}
+
+#hm_map {
+	width: 1300px;
+	height: 900px;
+}
+
+
+
+
+
+/* 리뷰 페이지 */
+
+.reviewbox{
+	font-size: 15pt;
+	margin-top: 10pt;
+	
+}
+
+.review_title{
+	width: 80%;
+	height: 50px;
+	font-size: 15pt;
+	margin-top:5pt; 
+}
+
+.review_text{
+	width: 80%;
+	height: 100px;
+	font-size: 15pt;
+}
+
+.reg{
+	margin-top: 10pt;
+}
+
+.reg button{
+	width: 200pt;
+	height: 30pt;
+	
+}
+
+
+
 
