@@ -11,13 +11,15 @@ public class Hotel {
 		private String r_imgpath;
 		private String r_thumnailpath;
 		private String r_tag;
+		private String r_pk;
 		
 		public Hotel() {
 
 		}
 
 		public Hotel(String r_title, String r_address, String r_roadaddress, String r_introduction, double r_latitude,
-				double r_longitude, String r_phoneno, String r_imgpath, String r_thumnailpath, String r_tag) {
+				double r_longitude, String r_phoneno, String r_imgpath, String r_thumnailpath, String r_tag,
+				String r_pk) {
 			super();
 			this.r_title = r_title;
 			this.r_address = r_address;
@@ -29,6 +31,7 @@ public class Hotel {
 			this.r_imgpath = r_imgpath;
 			this.r_thumnailpath = r_thumnailpath;
 			this.r_tag = r_tag;
+			this.r_pk = r_pk;
 		}
 
 		public String getR_title() {
@@ -111,6 +114,23 @@ public class Hotel {
 			this.r_tag = r_tag;
 		}
 
+		public String getR_pk() {
+			return r_pk;
+		}
+
+		public void setR_pk(String r_pk) {
+			this.r_pk = r_pk;
+		}
+
+		@Override
+		public String toString() {
+			return "Hotel [r_title=" + r_title + ", r_address=" + r_address + ", r_roadaddress=" + r_roadaddress
+					+ ", r_introduction=" + r_introduction + ", r_latitude=" + r_latitude + ", r_longitude="
+					+ r_longitude + ", r_phoneno=" + r_phoneno + ", r_imgpath=" + r_imgpath + ", r_thumnailpath="
+					+ r_thumnailpath + ", r_tag=" + r_tag + ", r_pk=" + r_pk + "]";
+		}
+		
+		
 		
 		
 }

@@ -18,9 +18,9 @@ public class DBManager {
 	
 	public static Connection connect() throws SQLException {
 		
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:\\PHM_java\\Wallet_DB202204301707;";
 		System.out.println("연결성공");
-		return DriverManager.getConnection(url, "c##hm", "hm");
+		return DriverManager.getConnection(url, "MACUSER", "Soldesk802!!!");
 		
 	}
 

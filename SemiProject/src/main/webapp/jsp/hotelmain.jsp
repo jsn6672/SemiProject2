@@ -73,7 +73,7 @@
 				<div style="text-align: center; border: 1px solid #dddddd">
 					<div style="background-color: #eeeeee; text-align: center;">
 						리뷰 & 평가</div>
-				
+
 					<div>
 						<textarea class="review_text" name="r_text" placeholder="글 내용"></textarea>
 					</div>
@@ -95,45 +95,27 @@
 						<button name="reviewReg" class="reg">글 등록</button>
 					</div>
 				</div>
-				<c:forEach items="${reviews }" var="r">
-					<div class="review_list">
-
-						<div>
-							<span>카테고리</span>
-							<div>${r.r_content }</div>
-						</div>
-
-						<div>
-							<span>유저</span>
-							<div>${r.r_username }</div>
-						</div>
-
-						<div>
-							<span> 제목 </span>
-							<div>${r.r_title }</div>
-						</div>
-
-						<div>
-							<span>내용 </span>
-							<div>${r.r_review }</div>
-						</div>
-
-						<div>
-							<span>별점</span>
-							<div>${r.r_starpoint }</div>
-						</div>
-
-						<div>
-							<span>사진</span>
-							<div>${r.img }</div>
-						</div>
+					<button class="expandButton" onclick="loacation.href='reviewListC'">평가 보기</button>
+					<div class="review_list" style="display: flex;">
+						<c:forEach items="${reivews }" var="r">
+						<p>${r.r_username }</p>
+						<p>${r.r_starpoint }</p>
+						<p>${r.r_content }</p>
+						<p>${r.r_contentname }</p>
+						<p>${r.r_review }</p>
+						
+						
+						
+						</c:forEach>
 					</div>
-				</c:forEach>
 			</div>
-
 
 		</div>
 	</div>
+
+
+
+
 
 	<script type="text/javascript" src="js/mapmarking.js">
 		

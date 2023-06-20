@@ -21,10 +21,8 @@ import org.json.simple.parser.JSONParser;
 import com.hm.main.DBManager;
 
 public class DAOroom {
-	
-	
-	private static ArrayList<Hotel> hotels = new ArrayList<Hotel>();
 
+	private static ArrayList<Hotel> hotels = new ArrayList<Hotel>();
 
 	public static void getAllRoom(HttpServletRequest request) {
 
@@ -74,9 +72,10 @@ public class DAOroom {
 				String imgpath = (String) b.get("imgpath");
 				String thumnailpath = (String) b.get("thumnailpath");
 				String tag = (String) roomObj.get("tag");
+				String pk = (String) roomObj.get("contentsid");
 
 				hotels.add(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, imgpath,
-						thumnailpath, tag));
+						thumnailpath, tag, pk));
 
 			}
 			request.setAttribute("hotels", hotels);
@@ -130,9 +129,10 @@ public class DAOroom {
 				String imgpath = (String) b.get("imgpath");
 				String thumnailpath = (String) b.get("thumnailpath");
 				String tag = (String) roomObj.get("tag");
+				String pk = (String) roomObj.get("contentsid");
 
 				hotels.add(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, imgpath,
-						thumnailpath, tag));
+						thumnailpath, tag, pk));
 
 			}
 			request.setAttribute("hotels", hotels);
@@ -145,7 +145,7 @@ public class DAOroom {
 	public static void markingMap(HttpServletRequest request) {
 
 		try {
-			//String lg = request.getParameter("languageselect");
+			// String lg = request.getParameter("languageselect");
 			String search = request.getParameter("clickhotel");
 			String encodedsearch = null;
 			if (search != null)
@@ -198,9 +198,10 @@ public class DAOroom {
 				System.out.println(thumnailpath);
 				String tag = (String) roomObj.get("tag");
 				System.out.println(tag);
+				String pk = (String) roomObj.get("contentsid");
 
-				hotels.add(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, imgpath,
-						thumnailpath, tag));
+				hotels.add(new Hotel(title, address, roadaddress, introduction,
+						latitude, longitude, phoneno, imgpath, thumnailpath, tag, pk));
 
 			}
 			request.setAttribute("hotels", hotels);
@@ -210,17 +211,15 @@ public class DAOroom {
 		}
 	}
 
-	
-	
 	public static void roomPaging(int page, HttpServletRequest request) {
 
-		int cnt = 7;
+		int cnt = 6;
 		int total = hotels.size();
 		int pageCount = (int) Math.ceil((double) total / cnt);
-		
+
 		int start = cnt * (page - 1);
 		int end = Math.min(start + cnt, total + (total % cnt)); // Avoid index out of bound error
-		
+
 		ArrayList<Hotel> items = new ArrayList<Hotel>();
 		for (int i = start; i < end; i++) {
 			items.add(hotels.get(i));
@@ -228,10 +227,7 @@ public class DAOroom {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("curPageNo", page);
 		request.setAttribute("hotels", items);
-			
-			
-		}
 
 	}
 
-
+}

@@ -16,9 +16,6 @@ public class DAOreview {
 
 	private static ArrayList<Review> reviews;
 
-	private static Connection con =null;
-	
-	
 	public static void regReview(HttpServletRequest request) {
 
 		String path = request.getServletContext().getRealPath("img");
@@ -109,10 +106,10 @@ public class DAOreview {
 				String username = rs.getString("r_username");
 				String content = rs.getString("r_content");
 				String contentname = rs.getString("r_contentname");
-				String title = rs.getString("r_title");
 				double starpoint = rs.getDouble("r_starpoint");
 				String review = rs.getString("r_review");
 				String img = rs.getString("r_img");
+				reviews.add(new Review(no, username, content, contentname, starpoint, review, img));
 			}
 
 			request.setAttribute("reviews", reviews);
