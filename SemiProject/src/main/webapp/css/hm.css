@@ -24,6 +24,7 @@
 
 .hotel_list{
 	display: content;
+
 	
 }
 
@@ -53,7 +54,7 @@
 	}
 
 .right_side{
-	margin: 30pt;
+	margin: 50pt;
 	margin-top: 0;
 }
 
@@ -74,12 +75,7 @@
 	
 }
 
-.review_title{
-	width: 80%;
-	height: 50px;
-	font-size: 15pt;
-	margin-top:5pt; 
-}
+
 
 .review_text{
 	width: 80%;
@@ -97,6 +93,10 @@
 	
 }
 
+.review_list{
+	border: 1px solid black;
+	display: flex;
+}
 
 
 

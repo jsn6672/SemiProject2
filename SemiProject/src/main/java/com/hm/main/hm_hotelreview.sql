@@ -3,7 +3,7 @@ create table hotelR_test(
 	r_username varchar2(10 char) not null,
 	r_content varchar2(10 char) not null,
 	r_contentname varchar2(20 char) not null,
-	r_title varchar2(20 char) not null,
+
 	r_starpoint decimal(3, 1) not null,
 	r_review varchar2(400 char) not null,
 	r_img varchar2(300 char) 

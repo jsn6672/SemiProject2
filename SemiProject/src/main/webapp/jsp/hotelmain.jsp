@@ -24,7 +24,7 @@
 
 	<div class="container_hm">
 		<div class="hotel_list">
-			s <input type="hidden" name="page">
+			<input type="hidden" name="page">
 
 			<c:choose>
 				<c:when test="${empty hotels}">
@@ -73,16 +73,13 @@
 				<div style="text-align: center; border: 1px solid #dddddd">
 					<div style="background-color: #eeeeee; text-align: center;">
 						리뷰 & 평가</div>
+				
 					<div>
-						<input type="text" class="review_title" placeholder="글 제목"
-							name="bbsTitle">
+						<textarea class="review_text" name="r_text" placeholder="글 내용"></textarea>
 					</div>
 					<div>
-						<textarea class="review_text" placeholder="글 내용"></textarea>
-					</div>
-					<div>
-						<input name="imgReg" class="photo" type="file"> 평점 <select
-							name="starpoint">
+						<input name="r_img" class="photo" type="file"> 평점 <select
+							name="r_starpoint">
 							<option value="1">1</option>
 							<option value="1.5">1.5</option>
 							<option value="2">2</option>
@@ -98,12 +95,40 @@
 						<button name="reviewReg" class="reg">글 등록</button>
 					</div>
 				</div>
-						<div>카테고리</div>
-						<div>이름</div>
-						<div>제목</div>
-						<div>내용</div>
-						<div>별점</div>
-						<div>사진</div>
+				<c:forEach items="${reviews }" var="r">
+					<div class="review_list">
+
+						<div>
+							<span>카테고리</span>
+							<div>${r.r_content }</div>
+						</div>
+
+						<div>
+							<span>유저</span>
+							<div>${r.r_username }</div>
+						</div>
+
+						<div>
+							<span> 제목 </span>
+							<div>${r.r_title }</div>
+						</div>
+
+						<div>
+							<span>내용 </span>
+							<div>${r.r_review }</div>
+						</div>
+
+						<div>
+							<span>별점</span>
+							<div>${r.r_starpoint }</div>
+						</div>
+
+						<div>
+							<span>사진</span>
+							<div>${r.img }</div>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
 
 

@@ -9,6 +9,13 @@ import java.sql.SQLException;
 public class DBManager {
 
 	
+	public static final DBManager DB = new DBManager();
+	
+	private DBManager() {
+		
+	}
+	
+	
 	public static Connection connect() throws SQLException {
 		
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
