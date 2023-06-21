@@ -20,44 +20,33 @@ public class DAOreview {
 	public static void regReview(HttpServletRequest request) {
 
 		String path = request.getServletContext().getRealPath("img");
-
 		Connection con = null;
+		String sql = "insert into hotelR_test values(hotelR_test_seq.nextval,?,?,?,?,?)";
 		PreparedStatement pstmt = null;
-		String sql = "insert into hotelR_test values(hotelR_test_seq.nextval,?,?,?,?,?,?)";
 
 		try {
-			MultipartRequest mr = new MultipartRequest(request, path, 30 * 1024 * 1024, "utf-8",
-					new DefaultFileRenamePolicy());
 
 			con = DBManager2.connect();
 			pstmt = con.prepareStatement(sql);
 
-			String username = mr.getParameter("r_username");
-			String content = mr.getParameter("r_content");
-			String contentname = mr.getParameter("r_contentname");
-			double starpoint = Double.parseDouble(mr.getParameter("r_starpoint"));
-			String text = mr.getParameter("r_text");
-			
+			String username = request.getParameter("r_username");
+			String content = request.getParameter("r_content");
+			String contentname = request.getParameter("r_contentname");
+			double starpoint = Double.parseDouble(request.getParameter("r_starpoint"));
+			String text = request.getParameter("r_text");
+
 			System.out.println(username);
 			System.out.println(content);
 			System.out.println(contentname);
 			System.out.println(starpoint);
 			System.out.println(text);
-			String img = mr.getFilesystemName("r_img");
 
-			System.out.println(img);
-			
-			if (img == null || img.isEmpty()) {
-				img = null;
-			}
 
 			pstmt.setString(1, username);
 			pstmt.setString(2, content);
 			pstmt.setString(3, contentname);
 			pstmt.setDouble(4, starpoint);
 			pstmt.setString(5, text);
-			pstmt.setString(6, img);
-			
 
 			if (pstmt.executeUpdate() == 1) {
 				System.out.println("등록 성공");
@@ -120,11 +109,10 @@ public class DAOreview {
 				String content = rs.getString("r_content");
 				String contentname = rs.getString("r_contentname");
 				double starpoint = rs.getDouble("r_starpoint");
-				String review = rs.getString("r_review");
-				String img = rs.getString("r_img");
-				reviews.add(new Review(no, username, content, contentname, starpoint, review, img));
+				String review = rs.getString("r_text");
+				reviews.add(new Review(no, username, content, contentname, starpoint, review));
 			}
-			request.setAttribute("rv", reviews);
+			request.setAttribute("r", reviews);
 
 		} catch (Exception e) {
 			e.printStackTrace();

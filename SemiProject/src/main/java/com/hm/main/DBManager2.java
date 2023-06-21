@@ -28,8 +28,7 @@ public class DBManager2 {
 			try {
 				if (rs != null) {
 					rs.close();
-				}
-				pstmt.close();
+				} pstmt.close();
 				con.close();
 			} catch (Exception e) {
 				e.printStackTrace();

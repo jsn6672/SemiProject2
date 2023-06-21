@@ -36,7 +36,10 @@
 						<div class="hotel_content">
 
 							<div class="hotel_img">
-								<img alt="" src="${h.r_imgpath }">
+								<!--  	<img alt="" src"${h.r_imgpath }">-->
+								<img src="${h.r_imgpath }" alt="…"
+									data-roadaddress="${h.r_roadaddress}"
+									onclick="moveToLocationByAddress(this.dataset.roadaddress)">
 							</div>
 
 							<div class="hotel_info">
@@ -44,8 +47,8 @@
 								<div class="hotel_roadaddress">
 									<p>주소 : ${h.r_roadaddress }</p>
 								</div>
-								<button name="clickhotel"
-									onclick="location.href='roomClickC?place=${h.r_roadaddress }'">위치
+								<button name="clickhotel" data-roadaddress="${h.r_roadaddress}"
+									onclick="moveToLocationByAddress(this.dataset.roadaddress)">위치
 									찾기</button>
 							</div>
 						</div>
@@ -112,31 +115,31 @@
 						<div class="review_list">
 							<div>
 								<span>사용자명</span>
-								<c:forEach items="${rv }" var="r">
+								<c:forEach items="${r }" var="r">
 									<p>${r.r_username }</p>
 								</c:forEach>
 							</div>
 							<div>
 								<span>분류</span>
-								<c:forEach items="${rv }" var="r">
+								<c:forEach items="${r }" var="r">
 									<p>${r.r_content }</p>
 								</c:forEach>
 							</div>
 							<div>
 								<span>장소</span>
-								<c:forEach items="${rv }" var="r">
+								<c:forEach items="${r }" var="r">
 									<p>${r.r_contentname }</p>
 								</c:forEach>
 							</div>
 							<div>
 								<span>별점</span>
-								<c:forEach items="${rv }" var="r">
+								<c:forEach items="${r }" var="r">
 									<p>${r.r_starpoint }</p>
 								</c:forEach>
 							</div>
 							<div>
 								<span>코멘트</span>
-								<c:forEach items="${rv }" var="r">
+								<c:forEach items="${r }" var="r">
 									<p>${r.r_review }</p>
 								</c:forEach>
 							</div>
@@ -152,7 +155,7 @@
 
 
 
-	<script type="text/javascript" src="js/mapmarking.js">
+	<script type="text/javascript" src="js/mark_map2.js">
 		
 	</script>
 </body>
