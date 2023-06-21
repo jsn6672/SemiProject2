@@ -12,7 +12,7 @@ DROP TABLE hotelR_test;
 
 create sequence hotelR_test_seq;
 
-insert into hotelR_test values
-(hotelR_test_seq.nextval,'phm','숙박','마빈','4.5','정말 죽여줘요','누락 새끼야');	
+insert into hotelR_test values (hotelR_test_seq.nextval,'phm','숙박','마빈','4.5','정말 죽여줘요','누락 새끼야');	
+insert into hotelR_test values (hotelR_test_seq.nextval,'hm','숙박','베니키아','4','에흐흥','');	
 
 select * from hotelR_test;

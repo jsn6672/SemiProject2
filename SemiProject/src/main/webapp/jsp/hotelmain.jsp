@@ -70,44 +70,79 @@
 			<div id="hm_map"></div>
 
 			<div class="reviewbox">
-				<div style="text-align: center; border: 1px solid #dddddd">
-					<div style="background-color: #eeeeee; text-align: center;">
-						리뷰 & 평가</div>
 
-					<div>
-						<textarea class="review_text" name="r_text" placeholder="글 내용"></textarea>
+				<form action="reviewRegC" method="post"
+					enctype="multipart/form-data">
+					<div style="text-align: center; border: 1px solid #dddddd">
+						<div style="background-color: #eeeeee; text-align: center;">
+							리뷰 & 평가</div>
+
+						<div>
+							<input name="r_username" type="text" placeholder="사용자명">
+							<input name="r_content" type="text" placeholder="분류"> <input
+								name="r_contentname" type="text" placeholder="장소">
+						</div>
+
+						<div>
+							<textarea class="review_text" name="r_text" placeholder="글 내용"></textarea>
+						</div>
+						<div>
+							<input name="r_img" class="photo" type="file"> 평점 <select
+								name="r_starpoint">
+								<option value="1">1</option>
+								<option value="1.5">1.5</option>
+								<option value="2">2</option>
+								<option value="2.5">2.5</option>
+								<option value="3">3</option>
+								<option value="3.5">3.5</option>
+								<option value="4">4</option>
+								<option value="4.5">4.5</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+						<div class="reg">
+							<button class="reg">글 등록</button>
+						</div>
 					</div>
-					<div>
-						<input name="r_img" class="photo" type="file"> 평점 <select
-							name="r_starpoint">
-							<option value="1">1</option>
-							<option value="1.5">1.5</option>
-							<option value="2">2</option>
-							<option value="2.5">2.5</option>
-							<option value="3">3</option>
-							<option value="3.5">3.5</option>
-							<option value="4">4</option>
-							<option value="4.5">4.5</option>
-							<option value="5">5</option>
-						</select>
+				</form>
+
+				<form action="reviewListC">
+					<div class="accordion">
+						<button>펼치기</button>
+						<div class="review_list">
+							<div>
+								<span>사용자명</span>
+								<c:forEach items="${rv }" var="r">
+									<p>${r.r_username }</p>
+								</c:forEach>
+							</div>
+							<div>
+								<span>분류</span>
+								<c:forEach items="${rv }" var="r">
+									<p>${r.r_content }</p>
+								</c:forEach>
+							</div>
+							<div>
+								<span>장소</span>
+								<c:forEach items="${rv }" var="r">
+									<p>${r.r_contentname }</p>
+								</c:forEach>
+							</div>
+							<div>
+								<span>별점</span>
+								<c:forEach items="${rv }" var="r">
+									<p>${r.r_starpoint }</p>
+								</c:forEach>
+							</div>
+							<div>
+								<span>코멘트</span>
+								<c:forEach items="${rv }" var="r">
+									<p>${r.r_review }</p>
+								</c:forEach>
+							</div>
+						</div>
 					</div>
-					<div class="reg">
-						<button name="reviewReg" class="reg">글 등록</button>
-					</div>
-				</div>
-					<button class="expandButton" onclick="loacation.href='reviewListC'">평가 보기</button>
-					<div class="review_list" style="display: flex;">
-						<c:forEach items="${reivews }" var="r">
-						<p>${r.r_username }</p>
-						<p>${r.r_starpoint }</p>
-						<p>${r.r_content }</p>
-						<p>${r.r_contentname }</p>
-						<p>${r.r_review }</p>
-						
-						
-						
-						</c:forEach>
-					</div>
+				</form>
 			</div>
 
 		</div>

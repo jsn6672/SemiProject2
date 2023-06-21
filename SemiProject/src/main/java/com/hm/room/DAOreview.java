@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import com.hm.main.DBManager;
+import com.hm.main.DBManager2;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -28,15 +29,27 @@ public class DAOreview {
 			MultipartRequest mr = new MultipartRequest(request, path, 30 * 1024 * 1024, "utf-8",
 					new DefaultFileRenamePolicy());
 
-			con = DBManager.connect();
+			con = DBManager2.connect();
 			pstmt = con.prepareStatement(sql);
 
-			String username = mr.getParameter("username");
-			String content = mr.getParameter("contnet");
-			String contentname = mr.getParameter("contnetname");
+			String username = mr.getParameter("r_username");
+			String content = mr.getParameter("r_content");
+			String contentname = mr.getParameter("r_contentname");
 			double starpoint = Double.parseDouble(mr.getParameter("r_starpoint"));
 			String text = mr.getParameter("r_text");
+			
+			System.out.println(username);
+			System.out.println(content);
+			System.out.println(contentname);
+			System.out.println(starpoint);
+			System.out.println(text);
 			String img = mr.getFilesystemName("r_img");
+
+			System.out.println(img);
+			
+			if (img == null || img.isEmpty()) {
+				img = null;
+			}
 
 			pstmt.setString(1, username);
 			pstmt.setString(2, content);
@@ -44,17 +57,17 @@ public class DAOreview {
 			pstmt.setDouble(4, starpoint);
 			pstmt.setString(5, text);
 			pstmt.setString(6, img);
+			
 
 			if (pstmt.executeUpdate() == 1) {
 				System.out.println("등록 성공");
 				request.setAttribute("r", "등록완료");
-
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, null);
+			DBManager2.close(con, pstmt, null);
 		}
 
 	}
@@ -67,7 +80,7 @@ public class DAOreview {
 
 		try {
 
-			con = DBManager.connect();
+			con = DBManager2.connect();
 			pstmt = con.prepareStatement(sql);
 
 			if (pstmt.executeUpdate() == 1) {
@@ -79,7 +92,7 @@ public class DAOreview {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, null);
+			DBManager2.close(con, pstmt, null);
 		}
 
 	}
@@ -94,7 +107,7 @@ public class DAOreview {
 
 		try {
 
-			con = DBManager.connect();
+			con = DBManager2.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -111,13 +124,12 @@ public class DAOreview {
 				String img = rs.getString("r_img");
 				reviews.add(new Review(no, username, content, contentname, starpoint, review, img));
 			}
-
-			request.setAttribute("reviews", reviews);
+			request.setAttribute("rv", reviews);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager2.close(con, pstmt, rs);
 		}
 
 	}

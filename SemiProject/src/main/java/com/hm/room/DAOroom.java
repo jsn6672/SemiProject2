@@ -24,6 +24,8 @@ public class DAOroom {
 
 	private static ArrayList<Hotel> hotels = new ArrayList<Hotel>();
 
+	
+	
 	public static void getAllRoom(HttpServletRequest request) {
 
 		try {

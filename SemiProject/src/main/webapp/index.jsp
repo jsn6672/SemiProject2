@@ -14,7 +14,7 @@
 
 	<table>
 		<tr>
-			<td> <a href="roomAllsearchC">숙박</a> </td>
+			<td><a href="roomAllsearchC">숙박</a></td>
 		</tr>
 	</table>
 
@@ -25,4 +25,4 @@
 	</table>
 
 </body>
-</html>	
+</html>
