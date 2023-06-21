@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,21 +18,20 @@
 			<div class="time"></div>
 			<div class="icon"></div>
 			<div class="temp"></div>
-			<a href="#quick" class="quick_btn">quick</a>
-			<!-- Äü¹öÆ° -->
-			<br> <a href="#signup" class="login_btn">Login</a>
-			<!-- ·Î±×ÀÎ¹öÆ° -->
+			<!-- í€µë²„íŠ¼ -->
+			<br> <jsp:include page="${loginPage }"></jsp:include>
+			<!-- ë¡œê·¸ì¸ë²„íŠ¼ -->
 		</div>
 	</div>
 	<div class="page1_main">
 		<section class='section' id='section2'></section>
-		<!-- ·Î±×ÀÎÃ¢ -->
+		<!-- ë¡œê·¸ì¸ì°½ -->
 		<div class="popup" id="signup">
 			<a href="#a">X</a>
 			<div class="sign_up">
-				<h1 class="signup_header">¾È³ç, À°Áö»ç¶÷ :-)</h1>
+				<h1 class="signup_header">ì•ˆë…•, ìœ¡ì§€ì‚¬ëŒ :-)</h1>
 				<br>
-				<form action="" method="post">
+				<form action="loginC" method="post">
 					<div class="int-area">
 						<label for="id">USER ID</label> <input type="text" name="id"
 							id="id" autocomplete="off" required>
@@ -51,12 +50,12 @@
 				</div>
 			</div>
 		</div>
-		<!-- ·Î±×ÀÎÃ¢ ³¡ -->
+		<!-- ë¡œê·¸ì¸ì°½ ë -->
 
 		<div id="dim"></div>
 
 
-		<!-- Äü¸Ş´º -->
+		<!-- í€µë©”ë‰´ -->
 		<div class="quick_menu" id="quick">
 			<a href="#a">x</a>
 			<h2>quick menu</h2>
@@ -82,17 +81,17 @@
 
 		<div class="logo">
 			<div class="logo1">
-				<span class="point">¿Ã·¹</span>±æÀ»
+				<span class="point">ì˜¬ë ˆ</span>ê¸¸ì„
 			</div>
-			<div class="logo2">¿©ÇàÇÏ´Â</div>
+			<div class="logo2">ì—¬í–‰í•˜ëŠ”</div>
 			<div class="logo3">
-				È÷Ä¡<span class="point">ÇÏÀÌ</span>Ä¿¸¦
+				íˆì¹˜<span class="point">í•˜ì´</span>ì»¤ë¥¼
 			</div>
-			<div class="logo4">À§ÇÑ ¾È³»¼­</div>
+			<div class="logo4">ìœ„í•œ ì•ˆë‚´ì„œ</div>
 		</div>
 		<div class="arrow_control">
 			<input type="image" id='button1' src="css/img/arrow_down.png" />
-			<!-- ÆäÀÌÁö ÀÌµ¿ È­»ìÇ¥ -->
+			<!-- í˜ì´ì§€ ì´ë™ í™”ì‚´í‘œ -->
 		</div>
 	</div>
 
@@ -126,12 +125,12 @@
 		</div>
 	<div class="arrow_control">
 		<input type="image" id='button2' src="css/img/arrow_up.png" />
-		<!-- ÆäÀÌÁö ÀÌµ¿ È­»ìÇ¥ -->
+		<!-- í˜ì´ì§€ ì´ë™ í™”ì‚´í‘œ -->
 	</div>
 	</div>
 </body>
 
-<!-- Jquery ¹Ş¾Æ¿À±â -->
+<!-- Jquery ë°›ì•„ì˜¤ê¸° -->
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"
 	integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
 	crossorigin="anonymous">
@@ -139,7 +138,7 @@
 </script>
 
 <script>
-/* ³¯¾¾¸¦ ¹Ş¾Æ¿ÀÀÚ ÀçÈ¯¾Æ */
+/* ë‚ ì”¨ë¥¼ ë°›ì•„ì˜¤ì ì¬í™˜ì•„ */
 	$
 			.getJSON(
 					'https://api.openweathermap.org/data/2.5/weather?q=Jeju City&appid=e4ef05580f862e66fd424cf8275dc13f&units=metric',
@@ -149,8 +148,8 @@
 						var ct = result.dt;
 
 						function convertTime(t) {
-							var week = new Array('ÀÏ¿äÀÏ', '¿ù¿äÀÏ', 'È­¿äÀÏ', '¼ö¿äÀÏ',
-									'¸ñ¿äÀÏ', '±İ¿äÀÏ', 'Åä¿äÀÏ');
+							var week = new Array('ì¼ìš”ì¼', 'ì›”ìš”ì¼', 'í™”ìš”ì¼', 'ìˆ˜ìš”ì¼',
+									'ëª©ìš”ì¼', 'ê¸ˆìš”ì¼', 'í† ìš”ì¼');
 							var days = new Date().getDay();
 							var today = week[days];
 							var ot = new Date(t * 1000);
@@ -158,17 +157,17 @@
 							var m = ot.getMinutes();
 
 							if (hr >= 12 && hr <= 24) {
-								return today + ' /' + ' ¿ÀÈÄ ' + hr + ' : ' + m
+								return today + ' /' + ' ì˜¤í›„ ' + hr + ' : ' + m
 							} else {
-								return today + ' /' + ' ¿ÀÀü ' + hr + ' : ' + m
+								return today + ' /' + ' ì˜¤ì „ ' + hr + ' : ' + m
 							}
 						}
 						function temps(temp) {
-							return temp + '¡É'
+							return temp + 'â„ƒ'
 						}
 
 						function winds(wind) {
-							return 'Ç³¼Ó ' + wind + ' m/s'
+							return 'í’ì† ' + wind + ' m/s'
 						}
 
 						var wiconUrl = '<img src="https://openweathermap.org/img/wn/'+result.weather[0].icon+'@2x.png" alt="'+result.weather[0].description+'">'
@@ -183,7 +182,7 @@
 </script>
 
 <script>
-/* ½ºÅ©·Ñ ÀÌµ¿ ±â´É */
+/* ìŠ¤í¬ë¡¤ ì´ë™ ê¸°ëŠ¥ */
     const button1 = document.getElementById('button1');
     const section1 = document.getElementById('section1');
 

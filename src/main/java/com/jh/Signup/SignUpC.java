@@ -12,10 +12,12 @@ import com.jh.login.AccountDAO;
 @WebServlet("/SignUpC")
 public class SignUpC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		SignUpDAO.signup(request);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	AccountDAO.signup(request);
+	
 	}
 
 }

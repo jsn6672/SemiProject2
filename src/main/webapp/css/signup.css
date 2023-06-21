@@ -17,7 +17,7 @@ height: 0;
 	display : grid;
 	justify-content : center;
 	width: 21%;
-	height: 90%;
+	height: 85%;
 	border-radius: 20px;
 	text-align: center;
 	padding: 20px;
@@ -86,7 +86,7 @@ height: 0;
 	border-radius: 20px;
 }
 .signupCancel_btn{
-	margin-top : 20px;
+	margin-bottom : 30px;
 	width: 50%; height: 50px;
 	background:#ff1e1e;
 	color: #fff;
@@ -107,7 +107,7 @@ height: 0;
 }
 .item2-reg-gender label{
 	padding-right: 10px;
-}
+} 
 .item2-reg-birth{
 	display: flex;
 	justify-content: center;
@@ -130,4 +130,7 @@ height: 0;
 }
 #question_selectbox{
 	width: 100%;
+}
+.error{
+	color: red;
 }

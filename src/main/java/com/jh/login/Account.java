@@ -9,6 +9,28 @@ public class Account {
 	private String birth;
 	private String addr;
 	private	String question;
+	private String question_number;
+
+	public Account(String id, String pw, String name, String gender, String birth, String addr, String question,
+			String question_number) {
+		super();
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.gender = gender;
+		this.birth = birth;
+		this.addr = addr;
+		this.question = question;
+		this.question_number = question_number;
+	}
+
+	public String getQuestion_number() {
+		return question_number;
+	}
+
+	public void setQuestion_number(String question_number) {
+		this.question_number = question_number;
+	}
 
 	public Account() {
 		// TODO Auto-generated constructor stub
@@ -75,15 +97,5 @@ public class Account {
 		this.addr = addr;
 	}
 
-	public Account(String id, String pw, String name, String gender, String birth, String addr) {
-		super();
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.gender = gender;
-		this.birth = birth;
-		this.addr = addr;
-	}
-	
 	
 }

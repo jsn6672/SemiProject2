@@ -30,6 +30,22 @@
 	font-size: 15px;
 	margin-top: 15px;
 }
+.logout_btn{
+	display: block;
+	width: 75px;
+	height: 40px;
+	text-decoration: none;
+	text-align: center;
+	line-height: 40px;
+	border: 1px solid grey;
+	color: white;
+	background: #ff1e1e;
+	border-radius: 50px;
+	top: 0;
+	font-size: 15px;
+	margin-top: 15px;
+}
+
 .time {
 	color: white;
 	text-align: center;
