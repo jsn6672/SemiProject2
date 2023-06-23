@@ -18,14 +18,16 @@ public class DrinkDetailC extends HttpServlet {
 		if (language.equals("1")) {
 			Login.ChangeCountry(request);			
 		}
-		
 		String country = (String) request.getSession().getAttribute("country");
+		if (country == null) {
+			Login.KoreanPage(request);
+		}
 		if (country.equals("korean")) {
 			BrewerDAO.brewer(request);
 			BrewerDAO.seedrink(request);
 			BrewerDAO.ReadReview(request);
-			ArrayList jsnr = (ArrayList)request.getAttribute("review");
-			if (jsnr.size() != 0) {
+			ArrayList<String> jsnr = (ArrayList<String>) request.getAttribute("review");
+			if (jsnr != null && !jsnr.isEmpty()) {
 				BrewerDAO.reviewPaging(1, request);				 
 			}
 			BrewerDAO.listPaging(Integer.parseInt(request.getParameter("listp")), request);
@@ -33,8 +35,8 @@ public class DrinkDetailC extends HttpServlet {
 			BrewerDAO.brewerJp(request);
 			BrewerDAO.seedrinkJp(request);
 			BrewerDAO.ReadReviewJp(request);
-			ArrayList jsnr = (ArrayList)request.getAttribute("review");
-			if (jsnr.size() != 0) {
+			ArrayList<String> jsnr = (ArrayList<String>) request.getAttribute("review");
+			if (jsnr != null && !jsnr.isEmpty()) {
 				BrewerDAO.reviewPaging(1, request);				 
 			}
 			BrewerDAO.listPaging(Integer.parseInt(request.getParameter("listp")), request);

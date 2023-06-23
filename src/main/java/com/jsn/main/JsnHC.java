@@ -38,8 +38,8 @@ public class JsnHC extends HttpServlet {
 			BrewerDAO.brewerHCJp(request);
 			BrewerDAO.seedrinkJp(request);
 			BrewerDAO.ReadReviewJp(request);
-			ArrayList jsnr = (ArrayList) request.getAttribute("review");
-			if (jsnr.size() != 0) {
+			ArrayList<String> jsnr = (ArrayList<String>) request.getAttribute("review");
+			if (jsnr != null && !jsnr.isEmpty()) {
 				BrewerDAO.reviewPaging(1, request);
 			}
 			BrewerDAO.listPaging(1, request);
