@@ -2,43 +2,85 @@ package com.jh.Signup;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import com.jh.login.Account;
 import com.jh.main.DBManager;
+
 
 public class SignUpDAO {
 
-	public static void signup (HttpServletRequest request) {
+    public static void signup(HttpServletRequest request) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        String sql = "INSERT INTO jh_account values (?,?,?,?,?,?,?)";
+
+        try {
+            con = DBManager.connect();
+            pstmt = con.prepareStatement(sql);
+
+            String name = request.getParameter("userName");
+            String id = request.getParameter("userId");
+            String pw = request.getParameter("userPw");
+            String birth = request.getParameter("userBirth");
+            String gender = request.getParameter("gender");
+            String question = request.getParameter("question");
+            String answer = request.getParameter("answer");
+            
+            System.out.println(name);
+            System.out.println(id);
+            System.out.println(pw);
+            System.out.println(birth);
+            System.out.println(gender);
+            System.out.println(question);
+            System.out.println(answer);
+            
+            pstmt.setString(1, name);
+            pstmt.setString(2, id);
+            pstmt.setString(3, pw);
+            pstmt.setString(4, birth);
+            pstmt.setString(5, gender);
+            pstmt.setString(6, question);
+            pstmt.setString(7, answer);
+
+            if (pstmt.executeUpdate() == 1) {
+                System.out.println("등록완료");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(con, pstmt, null);
+        }
+    }
+
+	public static int idcheck(HttpServletRequest request) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql ="insert into jh_account values(?,?,?,?,?,?,?)";
-		
+		ResultSet rs = null;
+		String id = request.getParameter("id");
+		String sql = "select * from jh_account where a_id =?";
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs =  pstmt.executeQuery();
 			
-			String name = request.getParameter("name");
-			String id = request.getParameter("id");
-			String pw = request.getParameter("pw");
-			String gender = request.getParameter("gender");
-			String birth = request.getParameter("birth");
-			String question = request.getParameter("question");
-			String answer = request.getParameter("answer");
-			
-			pstmt.setString(1, name);
-			pstmt.setString(2, id);
-			pstmt.setString(3, pw);
-			pstmt.setString(4, birth);
-			pstmt.setString(5, gender);
-			pstmt.setString(6, question);
-			pstmt.setString(7, answer);
+			if (rs.next()) {
+				return 1;
+			}else {
+				return 0;
+			}
 			
 		} catch (Exception e) {
+			request.setAttribute("r", "실패");
 			e.printStackTrace();
-		}finally {
-			DBManager.close(con, pstmt, null);
+		} finally {
+			DBManager.close(con, pstmt, rs);
 		}
+		return 0;
 	}
-	
 }

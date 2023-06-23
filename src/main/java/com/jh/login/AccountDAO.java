@@ -14,7 +14,7 @@ public class AccountDAO {
 
 	public static void loginCheck(HttpServletRequest request) {
 		Account account = (Account) request.getSession().getAttribute("account");
-
+		System.out.println(account);
 		if (account == null) {
 			request.setAttribute("loginPage", "login.jsp");
 		} else {
@@ -37,7 +37,6 @@ public class AccountDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs =  pstmt.executeQuery();
-			
 			if (rs.next()) {
 				String db_pw = rs.getString("a_pw");
 				if (pw.equals(db_pw)) {
@@ -48,12 +47,13 @@ public class AccountDAO {
 					a.setPw(db_pw);
 					a.setBirth(rs.getString("a_birth"));
 					a.setGender(rs.getString("a_gender"));
-					a.setAddr(rs.getString("a_addr"));
 					a.setQuestion(rs.getString("a_question"));
-					a.setQuestion_number(rs.getString("a_question_number"));
+					a.setQuestion_answer(rs.getString("a_question_anwser"));
 					
 					HttpSession hs = request.getSession();
 					hs.setAttribute("account", a);
+					
+					result = "로그인 성공";
 				} else {
 					result = "암호 오류";
 				}

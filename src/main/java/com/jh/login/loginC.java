@@ -9,17 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/loginC")
 public class loginC extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		AccountDAO.logout(request);
 		AccountDAO.loginCheck(request);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		AccountDAO.login(request);
 		AccountDAO.loginCheck(request);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("index.jsp").forward(request, response);// 로그인 성공 후 원하는 페이지로 리다이렉트
 	}
-
 }

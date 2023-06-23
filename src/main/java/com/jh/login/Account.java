@@ -8,94 +8,89 @@ public class Account {
 	private String gender;
 	private String birth;
 	private String addr;
-	private	String question;
-	private String question_number;
+	private String question;
+	private String question_answer;
+	
+public Account() {
+	// TODO Auto-generated constructor stub
+}
 
-	public Account(String id, String pw, String name, String gender, String birth, String addr, String question,
-			String question_number) {
-		super();
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.gender = gender;
-		this.birth = birth;
-		this.addr = addr;
-		this.question = question;
-		this.question_number = question_number;
-	}
+public String getId() {
+	return id;
+}
 
-	public String getQuestion_number() {
-		return question_number;
-	}
+public void setId(String id) {
+	this.id = id;
+}
 
-	public void setQuestion_number(String question_number) {
-		this.question_number = question_number;
-	}
+public String getPw() {
+	return pw;
+}
 
-	public Account() {
-		// TODO Auto-generated constructor stub
-	}
+public void setPw(String pw) {
+	this.pw = pw;
+}
 
-	public String getQuestion() {
-		return question;
-	}
+public String getName() {
+	return name;
+}
 
-	public Account(String question) {
-		super();
-		this.question = question;
-	}
+public void setName(String name) {
+	this.name = name;
+}
 
-	public void setQuestion(String question) {
-		this.question = question;
-	}
+public String getGender() {
+	return gender;
+}
 
-	public String getId() {
-		return id;
-	}
+public void setGender(String gender) {
+	this.gender = gender;
+}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+public String getBirth() {
+	return birth;
+}
 
-	public String getPw() {
-		return pw;
-	}
+public void setBirth(String birth) {
+	this.birth = birth;
+}
 
-	public void setPw(String pw) {
-		this.pw = pw;
-	}
+public String getAddr() {
+	return addr;
+}
 
-	public String getName() {
-		return name;
-	}
+public void setAddr(String addr) {
+	this.addr = addr;
+}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+public String getQuestion() {
+	return question;
+}
 
-	public String getGender() {
-		return gender;
-	}
+public void setQuestion(String question) {
+	this.question = question;
+}
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+public String getQuestion_answer() {
+	return question_answer;
+}
 
-	public String getBirth() {
-		return birth;
-	}
+public void setQuestion_answer(String question_answer) {
+	this.question_answer = question_answer;
+}
 
-	public void setBirth(String birth) {
-		this.birth = birth;
-	}
-
-	public String getAddr() {
-		return addr;
-	}
-
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
+public Account(String id, String pw, String name, String gender, String birth, String addr, String question,
+		String question_answer) {
+	super();
+	this.id = id;
+	this.pw = pw;
+	this.name = name;
+	this.gender = gender;
+	this.birth = birth;
+	this.addr = addr;
+	this.question = question;
+	this.question_answer = question_answer;
+}	
+}
 
 	
-}

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/infobox.css">
 <link rel="stylesheet" href="css/toolbar.css">
 <link rel="stylesheet" href="css/quick_menu.css">
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -34,14 +34,14 @@
 				<form action="loginC" method="post">
 					<div class="int-area">
 						<label for="id">USER ID</label> <input type="text" name="id"
-							id="id" autocomplete="off" required>
+							id="login_id" autocomplete="off">
 					</div>
 					<div class="int-area">
 						<label for="id">USER PW</label> <input type="password" name="pw"
-							id="pw" autocomplete="off" required>
+							id="login_pw" autocomplete="off">
 					</div>
 					<div class="btn-area">
-						<button href="SignUpC" class="login_btn" type="submit" id="btn">LOGIN</button>
+						<button class="login_btn" id="btn" type="submit">LOGIN</button>
 					</div>
 				</form>
 				<div class="caption">
@@ -131,11 +131,7 @@
 </body>
 
 <!-- Jquery 받아오기 -->
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"
-	integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-	crossorigin="anonymous">
-	
-</script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
 <script>
 /* 날씨를 받아오자 재환아 */
@@ -196,5 +192,9 @@
         window.scrollBy({top: section2.getBoundingClientRect().top, behavior: 'smooth'});
     });
 </script>
-
-</html>
+<script>
+        // 로그인 실패 알림 표시
+        <% if (request.getAttribute("loginError") != null) { %>
+            alert("<%= request.getAttribute("loginError") %>");
+        <% } %>
+    </script>

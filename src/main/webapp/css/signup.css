@@ -77,23 +77,7 @@ height: 0;
 	margin-bottom: 50px;
 	
 }
-.signup_btn{
-	width: 50%; height: 50px;
-	background:#166cea;
-	color: #fff;
-	font-size: 20px;
-	border: none;
-	border-radius: 20px;
-}
-.signupCancel_btn{
-	margin-bottom : 30px;
-	width: 50%; height: 50px;
-	background:#ff1e1e;
-	color: #fff;
-	font-size: 20px;
-	border: none;
-	border-radius: 20px;
-}
+
 .items-reg-question{
 	height:200px;
 	position: relative;
@@ -133,4 +117,38 @@ height: 0;
 }
 .error{
 	color: red;
+}
+.idck{
+	width: 30%; height: 30px;
+	background:rgb(0, 213, 69);
+	color: #fff;
+	font-size: 14px;
+	font-weight : bold;
+	border: none;
+	border-radius: 20px;
+	text-align: center;
+}
+.signUp_btns{
+	position: absolute;
+	bottom: 20px;
+	text-align: center;
+	margin-left: 11%;
+}
+.signup_btn{
+	width: 100%; height: 50px;
+	background:#166cea;
+	color: #fff;
+	font-size: 20px;
+	border: none;
+	border-radius: 20px;
+	margin-bottom: 10px;
+}
+.signupCancel_btn{
+	margin-bottom : 20px;
+	width: 100%; height: 50px;
+	background:#ff1e1e;
+	color: #fff;
+	font-size: 20px;
+	border: none;
+	border-radius: 20px;
 }
