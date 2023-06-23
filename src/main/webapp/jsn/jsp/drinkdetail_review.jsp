@@ -54,7 +54,12 @@
 							<span style="color: orange;">★</span>${r.r_starpoint/2 }</div>
 						<div class="jsn-review-content">${r.r_review}</div>
 						<div>
-							<img src="jsn/imgfile/${r.r_img }" height="100px">
+							<!--  							<img src="jsn/imgfile/${r.r_img }" height="100px"> -->
+							<img src="jsn/imgfile/${r.r_img }" class="img" width="100px">
+							<div class="modal">
+								<span class="close">&times;</span> <img class="modal_content"
+									id="img01">
+							</div>
 						</div>
 					</div>
 				</c:forEach>
