@@ -13,13 +13,19 @@
 </head>
 
 <body>
-	<div class="hotel_search">
-		<form action="roomSearchC">
-			<input name="hotelsearch" type="text">
-			<button>검색</button>
-		</form>
-	</div>
-	
+
+
+	<div class="container_hm">
+		<div class="hotel_list">
+			<input type="hidden" name="page">
+
+			<div class="hotel_search">
+				<form action="roomSearchC">
+					<input name="hotelsearch" type="text">
+					<button>검색</button>
+				</form>
+			</div>
+			<!-- 
 	  	 <div>
 		<form action="ACDcontroller">
 			<button>데이터 전환</button>
@@ -30,28 +36,23 @@
 			<button>데이터 전환</button>
 		</form>
 	</div>
-	
+	 -->
 
-	<br>
+			<br>
 
-	<div class="container_hm">
-		<div class="hotel_list">
-			<input type="hidden" name="page">
 
 			<c:choose>
-				<c:when test="${empty hotels}">
+				<c:when test="${empty hotels }">
 					<span>검색결과가 없습니다.</span>
 				</c:when>
 				<c:otherwise>
 
 					<c:forEach items="${hotels }" var="h">
-						<div class="hotel_content">
-
+						<div class="hotel_content"
+						 data-roadaddress="${h.r_roadaddress}"
+							onclick="moveToLocationByAddress(this.dataset.roadaddress)">
 							<div class="hotel_img">
-								<!--  	<img alt="" src"${h.r_imgpath }">-->
-								<img src="${h.r_imgpath }" alt="…"
-									data-roadaddress="${h.r_roadaddress}"
-									onclick="moveToLocationByAddress(this.dataset.roadaddress)">
+								<img src="${h.r_imgpath }" alt="…">
 							</div>
 
 							<div class="hotel_info">
@@ -59,9 +60,6 @@
 								<div class="hotel_roadaddress">
 									<p>주소 : ${h.r_roadaddress }</p>
 								</div>
-								<button name="clickhotel" data-roadaddress="${h.r_roadaddress}"
-									onclick="moveToLocationByAddress(this.dataset.roadaddress)">위치
-									찾기</button>
 							</div>
 						</div>
 						<br>
@@ -124,8 +122,8 @@
 				<form action="reviewListC">
 					<div class="accordion">
 						<button>펼치기</button>
-						<div class="review_list">
-							<div>
+						<div class="reviet">
+							<div>w_lis
 								<span>사용자명</span>
 								<c:forEach items="${r }" var="r">
 									<p>${r.r_username }</p>
@@ -163,11 +161,10 @@
 		</div>
 	</div>
 
+	
 
 
-
-
-	<script type="text/javascript" src="js/mark_map2.js">
+  	<script type="text/javascript" src="js/mark_map2.js">
 		
 	</script>
 </body>

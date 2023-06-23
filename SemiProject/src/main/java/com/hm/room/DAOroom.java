@@ -21,18 +21,51 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.hm.main.DBManager;
+import com.hm.main.DBManager2;
 
 public class DAOroom {
 
 	private static ArrayList<Hotel> hotels = new ArrayList<Hotel>();
 
 	
+	public static void getAllroomV2(HttpServletRequest request) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from hotelGrade_test";
+
+		try {
+			con = DBManager2.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			ArrayList<Hotel2> hotels2 = new ArrayList<Hotel2>();
+			
+			while (rs.next()) {
+				String title = rs.getString("d_title");
+				hotels2.add(new Hotel2(title));
+			}
+		
+			request.setAttribute("hotel2", hotels2);
+			
+			
+		} catch (Exception e) {
+
+		} finally {
+			DBManager2.close(con, pstmt, rs);
+		}
+		
+			
+	}
+
+	
+	
 	
 	public static void getAllRoom(HttpServletRequest request) {
 
-		try {
-			String url = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=x8uwubc8s4qzunfb&locale=kr&category=c3";
-
+	try {	
+			String url = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=x8uwubc8s4qzunfb&locale=kr&category=c3&page=";
 			URL u = new URL(url);
 			HttpsURLConnection huc = (HttpsURLConnection) u.openConnection();
 
@@ -58,7 +91,6 @@ public class DAOroom {
 				JSONObject a = (JSONObject) roomObj.get("repPhoto");
 				JSONObject b = (JSONObject) a.get("photoid");
 
-
 				String title = (String) roomObj.get("title");
 				String address = (String) roomObj.get("address");
 				String roadaddress = (String) roomObj.get("roadaddress");
@@ -82,8 +114,20 @@ public class DAOroom {
 
 	public static void searchroom(HttpServletRequest request) {
 
+	//	Connection con = null;
+	//	PreparedStatement pstmt = null;
+	//	ResultSet rs = null;
+	//	String sql = "select * from hotelGrade_test WHERE d_title like '%'||?||'%'";
+		
 		try {
+		//	con = DBManager2.connect();
+		//	pstmt = con.prepareStatement(sql);
+		//	rs = pstmt.executeQuery();
+		//	pstmt.setString(1, request.getParameter("hotelsearch"));
+			
+			
 			String search = request.getParameter("hotelsearch");
+		//	String search = rs.getString("d_contentsid");
 			String encodedsearch = URLEncoder.encode(search, "UTF-8");
 			System.out.println(encodedsearch);
 			String url = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=x8uwubc8s4qzunfb&locale=kr&category=c3&title="
@@ -137,7 +181,7 @@ public class DAOroom {
 	public static void markingMap(HttpServletRequest request) {
 
 		try {
-			// String lg = request.getParameter("languageselect");
+	
 			String search = request.getParameter("clickhotel");
 			String encodedsearch = null;
 			if (search != null)
@@ -239,4 +283,5 @@ public class DAOroom {
 
 	}
 
+	
 }

@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/roomAllsearchC")
 public class roomAllsearchC extends HttpServlet {
-	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DAOroom.getAllRoom(request);
+	//	DAOroom.getAllroomV2(request);
 		DAOroom.roomPaging(1, request);
 		request.setAttribute("contentPage", "jsp/hotelmain.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);

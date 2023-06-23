@@ -1,20 +1,21 @@
 @charset "UTF-8";
 
-.hotel_search{
-	margin-left: 50pt;
-	
-}
 
+
+/* 숙박 업소 검색 기능*/ 
+.hotel_search{
+ 	width: 600px;
+ 	height: 100px;
+}
+ 
 .hotel_search input{
-	width: 200pt;
-	height: 20pt;
+	width : 300pt;
+	height: 30px;
 }
 .hotel_search button{
-		width: 40pt;
-		height: 20pt;
+		height: 30px;
+		width: 60pt;
 }
-
-
 
 .container_hm{
 	display: flex;
@@ -24,7 +25,8 @@
 
 .hotel_list{
 	display: content;
-
+	margin: 80pt;
+	margin-top: 0pt;
 	
 }
 

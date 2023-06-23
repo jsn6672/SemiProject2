@@ -12,4 +12,6 @@ insert into HOTELgrade_test values
 
 SELECT * FROM hotelGrade_test WHERE d_title = '몬딱쉼터';
 
+select * from hotelGrade_test WHERE d_title like '%스카이%';
+
 select * from user_constraints where constraint_name = 'SYS_C007838';
