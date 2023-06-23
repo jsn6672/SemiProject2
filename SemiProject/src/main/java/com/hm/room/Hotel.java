@@ -5,8 +5,6 @@ public class Hotel {
 		private String r_address;
 		private String r_roadaddress;
 		private String r_introduction;
-		private double r_latitude;
-		private double r_longitude;
 		private String r_phoneno;
 		private String r_imgpath;
 		private String r_thumnailpath;
@@ -17,22 +15,23 @@ public class Hotel {
 
 		}
 
-		public Hotel(String r_title, String r_address, String r_roadaddress, String r_introduction, double r_latitude,
-				double r_longitude, String r_phoneno, String r_imgpath, String r_thumnailpath, String r_tag,
-				String r_pk) {
+		
+
+		public Hotel(String r_title, String r_address, String r_roadaddress, String r_introduction, String r_phoneno,
+				String r_imgpath, String r_thumnailpath, String r_tag, String r_pk) {
 			super();
 			this.r_title = r_title;
 			this.r_address = r_address;
 			this.r_roadaddress = r_roadaddress;
 			this.r_introduction = r_introduction;
-			this.r_latitude = r_latitude;
-			this.r_longitude = r_longitude;
 			this.r_phoneno = r_phoneno;
 			this.r_imgpath = r_imgpath;
 			this.r_thumnailpath = r_thumnailpath;
 			this.r_tag = r_tag;
 			this.r_pk = r_pk;
 		}
+
+
 
 		public String getR_title() {
 			return r_title;
@@ -66,21 +65,7 @@ public class Hotel {
 			this.r_introduction = r_introduction;
 		}
 
-		public double getR_latitude() {
-			return r_latitude;
-		}
 
-		public void setR_latitude(double r_latitude) {
-			this.r_latitude = r_latitude;
-		}
-
-		public double getR_longitude() {
-			return r_longitude;
-		}
-
-		public void setR_longitude(double r_longitude) {
-			this.r_longitude = r_longitude;
-		}
 
 		public String getR_phoneno() {
 			return r_phoneno;
@@ -122,13 +107,7 @@ public class Hotel {
 			this.r_pk = r_pk;
 		}
 
-		@Override
-		public String toString() {
-			return "Hotel [r_title=" + r_title + ", r_address=" + r_address + ", r_roadaddress=" + r_roadaddress
-					+ ", r_introduction=" + r_introduction + ", r_latitude=" + r_latitude + ", r_longitude="
-					+ r_longitude + ", r_phoneno=" + r_phoneno + ", r_imgpath=" + r_imgpath + ", r_thumnailpath="
-					+ r_thumnailpath + ", r_tag=" + r_tag + ", r_pk=" + r_pk + "]";
-		}
+		
 		
 		
 		

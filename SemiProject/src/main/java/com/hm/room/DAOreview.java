@@ -50,7 +50,7 @@ public class DAOreview {
 
 			if (pstmt.executeUpdate() == 1) {
 				System.out.println("등록 성공");
-				request.setAttribute("r", "등록완료");
+				request.setAttribute("r", "등록성공");
 			}
 
 		} catch (Exception e) {

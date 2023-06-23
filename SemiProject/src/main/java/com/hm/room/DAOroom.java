@@ -2,6 +2,7 @@ package com.hm.room;
 
 import java.io.InputStream;
 
+
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -10,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
@@ -56,28 +58,18 @@ public class DAOroom {
 				JSONObject a = (JSONObject) roomObj.get("repPhoto");
 				JSONObject b = (JSONObject) a.get("photoid");
 
-//				System.out.println(roomObj.get("address"));
-//				System.out.println(roomObj.get("roadaddress"));
-//				System.out.println(roomObj.get("introduction"));
-//				System.out.println(roomObj.get("latitude"));
-//				System.out.println(roomObj.get("longitude"));
-//				System.out.println(roomObj.get("phoneno"));
-//				System.out.println(roomObj.get("tag"));
 
 				String title = (String) roomObj.get("title");
 				String address = (String) roomObj.get("address");
 				String roadaddress = (String) roomObj.get("roadaddress");
 				String introduction = (String) roomObj.get("introduction");
-				double latitude = (double) roomObj.get("latitude");
-				double longitude = (double) roomObj.get("longitude");
 				String phoneno = (String) roomObj.get("phoneno");
 				String imgpath = (String) b.get("imgpath");
 				String thumnailpath = (String) b.get("thumnailpath");
 				String tag = (String) roomObj.get("tag");
 				String pk = (String) roomObj.get("contentsid");
 
-				hotels.add(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, imgpath,
-						thumnailpath, tag, pk));
+				hotels.add(new Hotel(title, address, roadaddress, introduction, phoneno, imgpath, thumnailpath, tag, pk));
 
 			}
 			request.setAttribute("hotels", hotels);
@@ -125,15 +117,13 @@ public class DAOroom {
 				String address = (String) roomObj.get("address");
 				String roadaddress = (String) roomObj.get("roadaddress");
 				String introduction = (String) roomObj.get("introduction");
-				double latitude = (double) roomObj.get("latitude");
-				double longitude = (double) roomObj.get("longitude");
 				String phoneno = (String) roomObj.get("phoneno");
 				String imgpath = (String) b.get("imgpath");
 				String thumnailpath = (String) b.get("thumnailpath");
 				String tag = (String) roomObj.get("tag");
 				String pk = (String) roomObj.get("contentsid");
 
-				hotels.add(new Hotel(title, address, roadaddress, introduction, latitude, longitude, phoneno, imgpath,
+				hotels.add(new Hotel(title, address, roadaddress, introduction, phoneno, imgpath,
 						thumnailpath, tag, pk));
 
 			}
@@ -188,10 +178,6 @@ public class DAOroom {
 				System.out.println(roadaddress);
 				String introduction = (String) roomObj.get("introduction");
 				System.out.println(introduction);
-				double latitude = (double) roomObj.get("latitude");
-				System.out.println(latitude);
-				double longitude = (double) roomObj.get("longitude");
-				System.out.println(longitude);
 				String phoneno = (String) roomObj.get("phoneno");
 				System.out.println(phoneno);
 				String imgpath = (String) b.get("imgpath");
@@ -203,7 +189,7 @@ public class DAOroom {
 				String pk = (String) roomObj.get("contentsid");
 
 				hotels.add(new Hotel(title, address, roadaddress, introduction,
-						latitude, longitude, phoneno, imgpath, thumnailpath, tag, pk));
+						 phoneno, imgpath, thumnailpath, tag, pk));
 
 			}
 			request.setAttribute("hotels", hotels);
@@ -213,22 +199,43 @@ public class DAOroom {
 		}
 	}
 
+	
+	
 	public static void roomPaging(int page, HttpServletRequest request) {
 
-		int cnt = 6;
+		
+	try {
+		
+			
+		int cnt = 5;
 		int total = hotels.size();
+		// int pageCount = (int) Math.ceil((double) total / cnt);
 		int pageCount = (int) Math.ceil((double) total / cnt);
+		
+	//	int start = cnt * (page - 1);
+	//	int end = Math.min(start + cnt, total + (total % cnt)); // Avoid index out of bound error
+		
+		int start = (page - 1) * cnt;
+	    int end = Math.min(start + cnt, total);
+		 
+		 
+		List<Hotel> items = hotels.subList(start, end);
+		
+		
+		int maxPageButtons = 6; // 최대 페이지 선택 버튼 수
+	    int startPage = Math.max(1, page - maxPageButtons / 2);
+	    int endPage = Math.min(startPage + maxPageButtons - 1, pageCount);
 
-		int start = cnt * (page - 1);
-		int end = Math.min(start + cnt, total + (total % cnt)); // Avoid index out of bound error
-
-		ArrayList<Hotel> items = new ArrayList<Hotel>();
-		for (int i = start; i < end; i++) {
-			items.add(hotels.get(i));
-		}
-		request.setAttribute("pageCount", pageCount);
-		request.setAttribute("curPageNo", page);
-		request.setAttribute("hotels", items);
+	    request.setAttribute("pageCount", pageCount);
+	    request.setAttribute("curPageNo", page);
+	    request.setAttribute("hotels", items);
+	    request.setAttribute("startPage", startPage);
+	    request.setAttribute("endPage", endPage);
+		
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+	}
 
 	}
 

@@ -19,6 +19,18 @@
 			<button>검색</button>
 		</form>
 	</div>
+	
+	  	 <div>
+		<form action="ACDcontroller">
+			<button>데이터 전환</button>
+		</form>
+	</div>
+	 <div>
+		<form action="ACDcontroller2">
+			<button>데이터 전환</button>
+		</form>
+	</div>
+	
 
 	<br>
 
