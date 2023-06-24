@@ -28,40 +28,6 @@ public class DAOroom {
 	private static ArrayList<Hotel> hotels = new ArrayList<Hotel>();
 
 	
-	public static void getAllroomV2(HttpServletRequest request) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		String sql = "select * from hotelGrade_test";
-
-		try {
-			con = DBManager2.connect();
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			ArrayList<Hotel2> hotels2 = new ArrayList<Hotel2>();
-			
-			while (rs.next()) {
-				String title = rs.getString("d_title");
-				hotels2.add(new Hotel2(title));
-			}
-		
-			request.setAttribute("hotel2", hotels2);
-			
-			
-		} catch (Exception e) {
-
-		} finally {
-			DBManager2.close(con, pstmt, rs);
-		}
-		
-			
-	}
-
-	
-	
-	
 	public static void getAllRoom(HttpServletRequest request) {
 
 	try {	
