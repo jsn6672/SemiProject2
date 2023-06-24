@@ -5,7 +5,7 @@ var customOverlay;//오버레이 기능
 
 let place = document.getElementById('place')?.value;
 
-function moveToLocationByAddress(roadaddress, title, introduction, imgpath, alltag) {
+function moveToLocationByAddress(roadaddress, title, introduction, imgpath, tag) {
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new kakao.maps.services.Geocoder();
 
@@ -13,7 +13,9 @@ function moveToLocationByAddress(roadaddress, title, introduction, imgpath, allt
 	if (marker) {
 		marker.setMap(null);
 	}
-
+	if (customOverlay) {
+		customOverlay.setMap(null);
+	}
 	// 주소로 좌표를 검색합니다
 	geocoder.addressSearch(roadaddress, function(result, status) {
 		// 정상적으로 검색이 완료됐으면 
@@ -27,24 +29,24 @@ function moveToLocationByAddress(roadaddress, title, introduction, imgpath, allt
 			});
 
 			// 커스텀 오버레이를 생성합니다
-			var content = '<div class="wrap">' + 
-            '    <div class="info">' + 
-            '        <div class="title">' + title + 
-            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-            '        </div>' + 
-            '        <div class="body">' + 
-            '            <div class="img">' +
-            '                <img src="'+imgpath+'" width="73" height="70">' +
-            '           </div>' + 
-            '            <div class="desc">' + 
-            '                <div class="ellipsis">'+roadaddress+'</div>' + 
-            '                <div class="jibun ellipsis">'+introduction+'</div>' + 
-            '                <div class="tag">'+alltag+'</div>' + 
-            '            </div>' + 
-            '        </div>' + 
-            '    </div>' +    
-            '</div>';
-            
+			var content = '<div class="wrap">' +
+				'    <div class="info">' +
+				'        <div class="title">' + title +
+				'            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+				'        </div>' +
+				'        <div class="body">' +
+				'            <div class="img">' +
+				'                <img src="' + imgpath + '" width="73" height="70">' +
+				'           </div>' +
+				'            <div class="desc">' +
+				'                <div class="ellipsis">' + roadaddress + '</div>' +
+				'                <div class="jibun ellipsis">' + introduction + '</div>' +
+				'                <div class="tag">' + tag + '</div>' +
+				'            </div>' +
+				'        </div>' +
+				'    </div>' +
+				'</div>';
+
 			customOverlay = new kakao.maps.CustomOverlay({
 				position: coords,
 				content: content,
@@ -88,26 +90,26 @@ geocoder.addressSearch(place, function(result, status) {
 		});
 
 		// 커스텀 오버레이를 생성합니다
-		var content ='<div class="wrap">' + 
-            '    <div class="info">' + 
-            '        <div class="title">' + 
-            '            ' + 
-            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-            '        </div>' + 
-            '        <div class="body">' + 
-            '            <div class="img">' +
-            '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
-            '           </div>' + 
-            '            <div class="desc">' + 
-            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
-            '                <div class="introduction">(우) 63309 (지번) 영평동 2181</div>' + 
-            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-            '            </div>' + 
-            '        </div>' + 
-            '    </div>' +    
-            '</div>';
-		
-		
+		var content = '<div class="wrap">' +
+			'    <div class="info">' +
+			'        <div class="title">' +
+			'            ' +
+			'            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+			'        </div>' +
+			'        <div class="body">' +
+			'            <div class="img">' +
+			'                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+			'           </div>' +
+			'            <div class="desc">' +
+			'                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
+			'                <div class="introduction">(우) 63309 (지번) 영평동 2181</div>' +
+			'                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
+			'            </div>' +
+			'        </div>' +
+			'    </div>' +
+			'</div>';
+
+
 		customOverlay = new kakao.maps.CustomOverlay({
 			position: coords,
 			content: content,
@@ -118,11 +120,11 @@ geocoder.addressSearch(place, function(result, status) {
 		// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 		map.panTo(coords);
 
-	// 커스텀 오버레이를 지도에 표시합니다
-	customOverlay.setMap(map);
-}
-	
-	
+		// 커스텀 오버레이를 지도에 표시합니다
+		customOverlay.setMap(map);
+	}
+
+
 	map.setMaxLevel(9);
 	map.setMinLevel(3);
 });

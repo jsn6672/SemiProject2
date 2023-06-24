@@ -50,13 +50,18 @@
 					<c:forEach items="${hotels }" var="h">
 						<div class="hotel_content"
 						 data-roadaddress="${h.r_roadaddress}"
-							onclick="moveToLocationByAddress(this.dataset.roadaddress)">
+						 data-title="${h.r_title}"
+						 data-introduction="${h.r_introduction}"
+						 data-imgpath="${h.r_imgpath}"
+						 data-tag="${h.r_tag}"
+							onclick=
+		"moveToLocationByAddress(this.dataset.roadaddress, this.dataset.title, this.dataset.introduction, this.dataset.imgpath, this.dataset.tag)">
 							<div class="hotel_img">
 								<img src="${h.r_imgpath }" alt="…">
 							</div>
 
 							<div class="hotel_info">
-								<div class="room_title">${h.r_title }</div>
+								<div class="hotel_title">${h.r_title }</div>
 								<div class="hotel_roadaddress">
 									<p>주소 : ${h.r_roadaddress }</p>
 								</div>
