@@ -1,5 +1,3 @@
-<%-- JSP 코드 --%>
-
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -22,7 +20,7 @@
 						<input id="id" name="userId" placeholder="영,숫자 포함 5글자 이상"
 							class="textInput-reg" autocomplete="off">
 							<div id="idError" class="error"></div>
-						<br><button onclick="idCheck() return false" class="idck" id="idck">중복확인</button>
+						<br><button onclick="idCheck()" class="idck" id="idck">중복확인</button>
 						<div id="idCheckResult"></div>
 					</div>
 				</div>
@@ -55,8 +53,8 @@
 					<div class="item1-reg">Gender</div>
 					<div class="item2-reg-gender">
 						<label><input class="gender" type="radio" name="gender"
-							value="남" checked="checked"> 남자</label><label><input
-							type="radio" name="gender" value="여"> 여자</label>
+							value="male" checked="checked"> 남자</label><label><input
+							type="radio" name="gender" value="female"> 여자</label>
 					</div>
 					<div class="items-reg">
 						<div class="item1-reg">Birth</div>
@@ -84,7 +82,7 @@
 				</div>
 				<br>
 				<div class="signUp_btns">
-					<button class="signup_btn" onclick="location.href='SignUpC'">Sign Up</button>
+					<button class="signup_btn" onclick="">Sign Up</button>
 				<button onclick="window.location.href='index.jsp'"class="signupCancel_btn" type="button">Cancel</button>
 				</div>
 			</form>
