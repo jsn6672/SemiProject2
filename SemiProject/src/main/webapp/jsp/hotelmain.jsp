@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/overlaycustom.css">
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"
@@ -166,11 +168,8 @@
 		</div>
 	</div>
 
-	
 
-
-  	<script type="text/javascript" src="js/mark_map2.js">
-		
+    	<script type="text/javascript" src="js/mark_map2.js">
 	</script>
 </body>
 </html>

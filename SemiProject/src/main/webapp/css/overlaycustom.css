@@ -1,8 +1,24 @@
 @charset "UTF-8";
 
+
 .wrap{
+	background-color: white;
 	border: 1px solid black;
-	width: 100px;
-	height: 70px;
-	
+	width: 800px;
+	height: 520px;
 }
+.title{
+	font-size: 25pt;
+	margin: 5pt;
+}
+
+.body img{
+	 width: 500pt;
+	 height: 220pt;
+}
+
+.desc{
+	margin:20pt;
+	text-align: left;
+}
+
