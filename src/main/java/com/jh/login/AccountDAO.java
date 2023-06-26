@@ -76,4 +76,35 @@ public class AccountDAO {
 		hs.removeAttribute("account");
 	}
 
+	public static boolean validLogin(HttpServletRequest request) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		String db_id = null;
+		boolean isValid = false;
+		
+		String sql = "select * from jh_account where a_id =?";
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs =  pstmt.executeQuery();
+			
+			if (rs.next()) {
+				String db_pw = rs.getString("a_pw");
+				if (pw.equals(db_pw)) {
+					isValid = true;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		return isValid;
+		
+	}
+	
 }

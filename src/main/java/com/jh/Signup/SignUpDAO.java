@@ -16,11 +16,12 @@ public class SignUpDAO {
     public static void signup(HttpServletRequest request) {
         Connection con = null;
         PreparedStatement pstmt = null;
-        String sql = "INSERT INTO jh_account values (?,?,?,?,?,?,?)";
+        String sql = "insert into jh_account values(?,?,?,?,?,?,?)";
 
         try {
             con = DBManager.connect();
             pstmt = con.prepareStatement(sql);
+         //   request.setCharacterEncoding("UTF-8");
 
             String id = request.getParameter("userId");
             String pw = request.getParameter("userPw");
@@ -28,13 +29,13 @@ public class SignUpDAO {
             String gender = request.getParameter("gender");
             String birth = request.getParameter("userBirth");
             String question = request.getParameter("question");
-            String answer = request.getParameter("answer");
+            String answer = request.getParameter("userAnswer");
             
-            System.out.println(name);
             System.out.println(id);
             System.out.println(pw);
-            System.out.println(birth);
+            System.out.println(name);
             System.out.println(gender);
+            System.out.println(birth);
             System.out.println(question);
             System.out.println(answer);
             
@@ -48,8 +49,8 @@ public class SignUpDAO {
 
             if (pstmt.executeUpdate() == 1) {
                 System.out.println("등록완료");
+                request.setAttribute("r", "가입이 완료 되었습니다.");
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

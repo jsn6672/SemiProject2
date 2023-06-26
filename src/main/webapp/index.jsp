@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="css/infobox.css">
 <link rel="stylesheet" href="css/toolbar.css">
 <link rel="stylesheet" href="css/quick_menu.css">
+<script type="text/javascript" src="js/login.js"></script>
+
 <meta charset="utf-8">
 <title>Insert title here</title>
 </head>
@@ -19,15 +21,15 @@
 			<div class="icon"></div>
 			<div class="temp"></div>
 			<!-- 퀵버튼 -->
-			<br> <jsp:include page="${loginPage }"></jsp:include>
+			<br>
+			<jsp:include page="${loginPage }"></jsp:include>
 			<!-- 로그인버튼 -->
 		</div>
 	</div>
 	<div class="page1_main">
 		<section class='section' id='section2'></section>
 		<!-- 로그인창 -->
-		<div class="popup" id="signup">
-			<a href="#a">X</a>
+		<div class="popup" id="signup" onclick="closePopup(event)">
 			<div class="sign_up">
 				<h1 class="signup_header">안녕, 육지사람 :-)</h1>
 				<br>
@@ -41,7 +43,7 @@
 							id="login_pw" autocomplete="off">
 					</div>
 					<div class="btn-area">
-						<button class="login_btn" id="btn" type="submit">LOGIN</button>
+						<button class="loginConfirm_btn" id="btn" type="submit">LOGIN</button>
 					</div>
 				</form>
 				<div class="caption">
@@ -123,10 +125,10 @@
 				</div>
 			</div>
 		</div>
-	<div class="arrow_control">
-		<input type="image" id='button2' src="css/img/arrow_up.png" />
-		<!-- 페이지 이동 화살표 -->
-	</div>
+		<div class="arrow_control">
+			<input type="image" id='button2' src="css/img/arrow_up.png" />
+			<!-- 페이지 이동 화살표 -->
+		</div>
 	</div>
 </body>
 
@@ -192,9 +194,11 @@
         window.scrollBy({top: section2.getBoundingClientRect().top, behavior: 'smooth'});
     });
 </script>
-<script>
-        // 로그인 실패 알림 표시
-        <% if (request.getAttribute("loginError") != null) { %>
-            alert("<%= request.getAttribute("loginError") %>");
-        <% } %>
-    </script>
+
+  <!-- 로그인실패 알람 표시 --> 
+    <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
+    <% if (errorMessage != null) { %>
+        <script>
+            alert("<%= errorMessage %>");
+        </script>
+    <% } %>

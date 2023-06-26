@@ -18,8 +18,18 @@ public class loginC extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		AccountDAO.login(request);
-		AccountDAO.loginCheck(request);
-		request.getRequestDispatcher("index.jsp").forward(request, response);// 로그인 성공 후 원하는 페이지로 리다이렉트
+		if (AccountDAO.validLogin(request)) {
+			AccountDAO.login(request);
+			AccountDAO.loginCheck(request);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}else {
+			
+			AccountDAO.loginCheck(request);
+		        String errorMessage = "아이디나 암호가 틀렸습니다.";
+		        request.setAttribute("errorMessage", errorMessage);
+		        request.getRequestDispatcher("index.jsp").forward(request, response);
+		    }
+		}
+		
 	}
-}
+

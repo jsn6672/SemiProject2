@@ -28,7 +28,7 @@ public class SignUpDAO {
             String gender = request.getParameter("gender");
             String birth = request.getParameter("userBirth");
             String question = request.getParameter("question");
-            String answer = request.getParameter("answer");
+            String answer = request.getParameter("userAnswer");
             
             System.out.println(name);
             System.out.println(id);
