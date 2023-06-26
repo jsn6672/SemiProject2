@@ -20,16 +20,17 @@ public class DrinkSearchC extends HttpServlet {
 		if (country.equals("korean")) {
 			BrewerDAO.brewerSearch(request);
 			BrewerDAO.seedrink(request);
-			BrewerDAO.listPaging(Integer.parseInt(request.getParameter("listp")), request);
+			BrewerDAO.listPaging(1, request);
 			BrewerDAO.ReadReview(request);
 			ArrayList<String> jsnr = (ArrayList<String>) request.getAttribute("review");
 			if (jsnr != null && !jsnr.isEmpty()) {
+				System.out.println("리뷰 있음");
 				BrewerDAO.reviewPaging(1, request);
 			}
 		} else {
 			BrewerDAO.brewerSearchJp(request);
 			BrewerDAO.seedrinkJp(request);
-			BrewerDAO.listPaging(Integer.parseInt(request.getParameter("listp")), request);
+			BrewerDAO.listPaging(1, request);
 			BrewerDAO.ReadReviewJp(request);
 			ArrayList<String> jsnr = (ArrayList<String>) request.getAttribute("review");
 			if (jsnr != null && !jsnr.isEmpty()) {

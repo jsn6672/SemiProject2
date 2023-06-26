@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="jsn/css/drinkdetail.css">
 <script type="text/javascript" src="jsn/js/starpoint.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<button

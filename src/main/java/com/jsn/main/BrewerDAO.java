@@ -91,6 +91,8 @@ public class BrewerDAO {
 			Drink d = new Drink(no, name, level, volume, material, market, avgscore, img);
 
 			request.setAttribute("drink_detail", d);
+			pstmt.close();
+			rs.close();
 			pstmt = con.prepareStatement(brewsql);
 			pstmt.setString(1, market);
 			rs = pstmt.executeQuery();
@@ -488,21 +490,21 @@ public class BrewerDAO {
 		ResultSet rs = null;
 		ResultSet rs2 = null;
 		String drinksql = "select * from jsn_traditional_drink where t_name like '%'||?||'%' order by t_avgscore desc";
-		String brewersql = "select * from jsn_traditional_drink where t_market = (select b_no from jsn_brewer where b_name like '%?%') order by t_avgscore DESC";
+		String brewersql = "select * from jsn_traditional_drink where t_market = (select b_no from jsn_brewer where b_name like '%'||?||'%') order by t_avgscore DESC";
 		String brwsql = "select * from jsn_brewer where b_no = ?";
 		try {
-			pstmt = null;
 			con = DBManeger.connect();
 			String type = request.getParameter("type");
 			String search = request.getParameter("name");
 			System.out.println(type);
 			if (type.equals("drinkname")) {
 				pstmt = con.prepareStatement(drinksql);
-				pstmt.setString(1, search);
+				System.out.println(2);
 			} else {
 				pstmt = con.prepareStatement(brewersql);
-				pstmt.setString(1, search);
+				System.out.println(3);
 			}
+			pstmt.setString(1, search);
 
 			System.out.println("--------");
 			System.out.println(search);
@@ -521,8 +523,10 @@ public class BrewerDAO {
 				String material = rs.getString("t_material");
 				String marketnum = rs.getString("t_market");
 				Double avgscore = rs.getDouble("t_avgscore");
-				String img = rs.getString("img");
-
+				String img = rs.getString("t_img");
+				
+				System.out.println(no + name + level);
+				
 				if (cnt == 1) {
 					no1 = no;
 				}
@@ -642,7 +646,7 @@ public class BrewerDAO {
 				String material = JsnPapago.translation(rs.getString("t_material"));
 				String marketnum = rs.getString("t_market");
 				Double avgscore = rs.getDouble("t_avgscore");
-				String img = rs.getString("img");
+				String img = rs.getString("t_img");
 
 				if (cnt == 1) {
 					no1 = no;

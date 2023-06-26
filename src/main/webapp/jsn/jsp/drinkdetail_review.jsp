@@ -55,11 +55,8 @@
 						<div class="jsn-review-content">${r.r_review}</div>
 						<div>
 							<!--  							<img src="jsn/imgfile/${r.r_img }" height="100px"> -->
-							<img src="jsn/imgfile/${r.r_img }" class="img" width="100px">
-							<div class="modal">
-								<span class="close">&times;</span> <img class="modal_content"
-									id="img01">
-							</div>
+							<img src="jsn/imgfile/${r.r_img }" class="jsnReviewimg"
+								width="100px">
 						</div>
 					</div>
 				</c:forEach>
@@ -103,4 +100,15 @@
 
 
 </body>
+	<script type="text/javascript">
+		function openModal(modalname) {
+			$("#modal").fadeIn(300);
+			$("." + modalname).fadeIn(300);
+		}
+
+		$("#modal, .close").on('click', function() {
+			$("#modal").fadeOut(300);
+			$(".modal-con").fadeOut(300);
+		});
+	</script>
 </html>
