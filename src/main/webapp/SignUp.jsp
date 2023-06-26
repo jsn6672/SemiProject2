@@ -1,98 +1,93 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="css/signup.css">
-<meta charset="EUC-KR">
+<script type="text/javascript" src="js/signUpCheck.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<div class="container-reg">
-		<form action="SignUpC" method="post" enctype="multipart/form-data">
-			<div class="signup-window">
+		<div class="signup-window">
+			<form action="SignUpC" method="post" onsubmit="return signUpCheck();">
 				<h1>Sign Up</h1>
-				<br>
-				<div class="items-reg">
-					<div class="item1-reg">Name</div>
-					<div class="item2-reg">
-						<input name="name" placeholder="ÇÊ¼ö" class="textInput-reg"
-							autocomplete="off" required>
-					</div>
-				</div>
 				<div class="items-reg">
 					<div class="item1-reg">ID</div>
 					<div class="item2-reg">
-						<input name="id" placeholder="¿µ,¼ýÀÚ Æ÷ÇÔ 5±ÛÀÚ ÀÌ»ó"
-							class="textInput-reg" autocomplete="off" required>
+						<input id="id" name="userId" placeholder="ì˜,ìˆ«ìž í¬í•¨ 5ê¸€ìž ì´ìƒ"
+							class="textInput-reg" autocomplete="off">
+							<div id="idError" class="error"></div>
+						<br><a onclick="idCheck()" class="idck" id="idck" >ì¤‘ë³µí™•ì¸</a>
+						<div id="idCheckResult"></div>
 					</div>
 				</div>
 				<div class="items-reg">
 					<div class="item1-reg">PW</div>
 					<div class="item2-reg">
-						<input type="password" name="pw" placeholder="¿µ,¼ýÀÚ,Æ¯¹® Æ÷ÇÔ 8±ÛÀÚ ÀÌ»ó"
-							class="textInput-reg" autocomplete="off" required>
+						<input id="pw" type="password" name="userPw"
+							placeholder="ì˜,ìˆ«ìž,íŠ¹ë¬¸ í¬í•¨ 8ê¸€ìž ì´ìƒ" class="textInput-reg"
+							autocomplete="off">
+						<div id="pwError" class="error"></div>
 					</div>
 				</div>
 				<div class="items-reg">
 					<div class="item1-reg">PW confirm</div>
 					<div class="item2-reg">
-						<input type="password" name="pw" placeholder="ºñ¹Ð¹øÈ£ ÀçÈ®ÀÎ"
-							class="textInput-reg" autocomplete="off" required>
+						<input id="pwCheck" type="password" name="userPwCheck"
+							placeholder="ë¹„ë°€ë²ˆí˜¸ ìž¬í™•ì¸" class="textInput-reg" autocomplete="off">
+						<div id="pwCheckError" class="error"></div>
+					</div>
+				</div>
+				<div class="items-reg">
+					<div class="item1-reg">Name</div>
+					<div class="item2-reg">
+						<input id="name" name="userName" placeholder="ë³¸ëª… or ë‹‰ë„¤ìž„"
+							class="textInput-reg" autocomplete="off">
+						<div id="nameError" class="error"></div>
 					</div>
 				</div>
 				<div class="items-reg">
 					<div class="item1-reg">Gender</div>
-					<div class="item2-reg gender">
-						<label><input type="radio" name="gender" value="³²"
-							checked="checked"> ³²ÀÚ</label> <label><input type="radio"
-							name="gender" value="¿©"> ¿©ÀÚ</label>
+					<div class="item2-reg-gender">
+						<label><input class="gender" type="radio" name="gender"
+							value="male" checked="checked"> ë‚¨ìž</label><label><input
+							type="radio" name="gender" value="female"> ì—¬ìž</label>
+					</div>
+					<div class="items-reg">
+						<div class="item1-reg">Birth</div>
+						<div class="item2-reg">
+							<input name="userBirth" placeholder="YY-MM-DD"
+								class="textInput-reg" autocomplete="off">
+							<div id="birthError" class="error"></div>
+						</div>
 					</div>
 				</div>
-				<div class="items-reg">
-					<div class="item1-reg">Address</div>
-					<div class="item2-reg">
-						<select name="addr">
-							<option value="seoul">¼­¿ï</option>
-							<option value="deajeon">´ëÀü</option>
-							<option value="deagu">´ë±¸</option>
-							<option value="busan">ºÎ»ê</option>
-							<option value="gwangju">±¤ÁÖ</option>
-							<option value="ulsan">¿ï»ê</option>
-							<option value="incheon">ÀÎÃµ</option>
-							<option value="kyeonggi">°æ±âµµ</option>
-							<option value="gangwon">°­¿øµµ</option>
-							<option value="Nchungcheong">ÃæÃ»ºÏµµ</option>
-							<option value="Schungcheong">ÃæÃ»³²µµ</option>
-							<option value="Njeonla">Àü¶óºÏµµ</option>
-							<option value="Sjeonla">Àü¶ó³²µµ</option>
-							<option value="Ngyeongsang">°æ»óºÏµµ</option>
-							<option value="Sgyeongsang">°æ»ó³²µµ</option>
-							<option value="jeju">Á¦ÁÖµµ</option>
-							<option value="foreign">ÇØ¿Ü°ÅÁÖ</option>
+				<div class="items-reg-question">
+					<div class="item1-reg-question">Question</div>
+					<br>
+					<div class="item2-reg" id="question">
+						<select id="question_selectbox" name="question">
+							<option value="1">ë‹¹ì‹ ì´ ê°€ìž¥ ì¢‹ì•„í•˜ëŠ” ìƒ‰ê¹”ì€?</option>
+							<option value="2">ë‹¹ì‹ ì˜ ë³´ë¬¼ 1í˜¸ëŠ”?</option>
 						</select>
+						<div class="answer">
+							<input class="textInput-reg" type="text" name="userAnswer"
+								id="answer" autocomplete="off" placeholder="ì§ˆë¬¸ì— ëŒ€í•œ ë‹µë³€">
+							<div id="answerError" class="error"></div>
+						</div>
 					</div>
 				</div>
-				<div class="items-reg">
-					<div class="item1-reg">Question</div>
-					<div class="item2-reg">
-						<select name="question">
-							<option value="QnA1">´ç½ÅÀÌ °¡Àå ÁÁ¾ÆÇÏ´Â »ö±òÀº?</option>
-							<option value="QnA2">´ç½ÅÀÇ º¸¹° 1È£´Â?</option>
-						</select>
-						<input type="text" name="answer" id="answer" autocomplete="off" required>
-					</div>
+				<br>
+				<div class="signUp_btns">
+					<button class="signup_btn" id="signup_btn">Sign Up</button>
+				<button onclick="window.location.href='index.jsp'"class="signupCancel_btn" type="button">Cancel</button>
 				</div>
-				<div class="items-reg item3-reg">
-					<div class="button-reg">
-						<br>
-						<button class="signup_btn" type="submit">Sign up</button>
-						<br>
-						<button class="signupCancel_btn" type="submit">Cancel</button>
-					</div>
-				</div>
-			</div>
+			</form>
+		</div>
 	</div>
-	</form>
 </body>
+
 </html>

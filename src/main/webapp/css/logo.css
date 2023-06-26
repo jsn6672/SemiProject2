@@ -1,0 +1,34 @@
+@charset "EUC-KR";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+
+.logo{
+font-family: 'Noto Sans KR', sans-serif;
+padding-top : 250px;
+line-height: 80px;
+color: white;
+text-align: center;
+
+	}		
+.logo1{
+font-weight: bold;
+font-size: 80px;
+padding-left: 110px;
+}	
+.logo2{
+font-weight: bold;
+font-size: 70px;
+padding-left: 130px;
+	}	
+.logo3{
+font-weight: bold;
+font-size: 80px;
+	}	
+.logo4{
+font-weight: bold;
+font-size: 65px;
+padding-left: 150px;
+}
+.point{
+color: #FF763B;
+}

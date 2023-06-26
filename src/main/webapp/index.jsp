@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,9 @@
 <link rel="stylesheet" href="css/infobox.css">
 <link rel="stylesheet" href="css/toolbar.css">
 <link rel="stylesheet" href="css/quick_menu.css">
-<meta charset="EUC-KR">
+<script type="text/javascript" src="js/login.js"></script>
+
+<meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -18,44 +20,44 @@
 			<div class="time"></div>
 			<div class="icon"></div>
 			<div class="temp"></div>
-			<a href="#quick" class="quick_btn">quick</a>
-			<!-- Äü¹öÆ° -->
-			<br> <a href="#signup" class="login_btn">Login</a>
-			<!-- ·Î±×ÀÎ¹öÆ° -->
+			<!-- í€µë²„íŠ¼ -->
+			<br>
+			<jsp:include page="${loginPage }"></jsp:include>
+			<!-- ë¡œê·¸ì¸ë²„íŠ¼ -->
 		</div>
 	</div>
 	<div class="page1_main">
 		<section class='section' id='section2'></section>
-		<!-- ·Î±×ÀÎÃ¢ -->
-		<div class="popup" id="signup">
-			<a href="#a">X</a>
+		<!-- ë¡œê·¸ì¸ì°½ -->
+		<div class="popup" id="signup" onclick="closePopup(event)">
 			<div class="sign_up">
-				<h1 class="signup_header">¾È³ç, À°Áö»ç¶÷ :-)</h1>
+				<h1 class="signup_header">ì•ˆë…•, ìœ¡ì§€ì‚¬ëŒ :-)</h1>
 				<br>
-				<form action="" method="post">
+				<form action="loginC" method="post">
 					<div class="int-area">
 						<label for="id">USER ID</label> <input type="text" name="id"
-							id="id" autocomplete="off" required>
+							id="login_id" autocomplete="off">
 					</div>
 					<div class="int-area">
 						<label for="id">USER PW</label> <input type="password" name="pw"
-							id="pw" autocomplete="off" required>
+							id="login_pw" autocomplete="off">
 					</div>
 					<div class="btn-area">
-						<button class="login_btn" type="submit" id="btn">LOGIN</button>
+						<button class="loginConfirm_btn" id="btn" type="submit">LOGIN</button>
 					</div>
 				</form>
 				<div class="caption">
-					<a href="">Forgot Password?</a><br> <a href="SignUpC">Join to us</a>
+					<a href="SignUpC">Forgot Password?</a><br> <a
+						href="SignUp.jsp">Join to us</a>
 				</div>
 			</div>
 		</div>
-		<!-- ·Î±×ÀÎÃ¢ ³¡ -->
+		<!-- ë¡œê·¸ì¸ì°½ ë -->
 
-	<div id="dim"></div>
+		<div id="dim"></div>
 
 
-		<!-- Äü¸Ş´º -->
+		<!-- í€µë©”ë‰´ -->
 		<div class="quick_menu" id="quick">
 			<a href="#a">x</a>
 			<h2>quick menu</h2>
@@ -68,11 +70,11 @@
 					</div>
 					<div class="quick_icon">
 						<img src="css/img/gyul.png"> &nbsp;&nbsp; <img
-							src="css/img/udo.png">
+							src="css/img/beach.png">
 					</div>
 					<div class="quick_icon">
 						<img src="css/img/sul.png"> &nbsp;&nbsp; <img
-							src="css/img/gyul2.png">
+							src="css/img/grandfa.png">
 					</div>
 				</div>
 			</form>
@@ -81,17 +83,17 @@
 
 		<div class="logo">
 			<div class="logo1">
-				<span class="point">¿Ã·¹</span>±æÀ»
+				<span class="point">ì˜¬ë ˆ</span>ê¸¸ì„
 			</div>
-			<div class="logo2">¿©ÇàÇÏ´Â</div>
+			<div class="logo2">ì—¬í–‰í•˜ëŠ”</div>
 			<div class="logo3">
-				È÷Ä¡<span class="point">ÇÏÀÌ</span>Ä¿¸¦
+				íˆì¹˜<span class="point">í•˜ì´</span>ì»¤ë¥¼
 			</div>
-			<div class="logo4">À§ÇÑ ¾È³»¼­</div>
+			<div class="logo4">ìœ„í•œ ì•ˆë‚´ì„œ</div>
 		</div>
 		<div class="arrow_control">
 			<input type="image" id='button1' src="css/img/arrow_down.png" />
-			<!-- ÆäÀÌÁö ÀÌµ¿ È­»ìÇ¥ -->
+			<!-- í˜ì´ì§€ ì´ë™ í™”ì‚´í‘œ -->
 		</div>
 	</div>
 
@@ -100,63 +102,41 @@
 		<div class="infobox_main">
 			<div class="box_setup1">
 				<div class="infobox1 infobox_hover">
-					<div class="infobox_header">
-						<img class="info_icon" src="css/img/rentcar.png" /><a>·»ÅÍÄ«</a>
-						<div class="infobox_header_back"></div>
-					</div>
+					<h1>CarRent</h1>
 				</div>
 				<div class="infobox2 infobox_hover">
-					<div class="infobox_header">
-						<img class="info_icon" src="css/img/hostel.png" /><a>¼÷¼Ò</a>
-						<div class="infobox_header_back"></div>
-					</div>
+					<h2>Accommodation</h2>
 				</div>
 			</div>
 			<div class="box_setup2">
 				<div class="infobox3 infobox_hover">
-					<div class="infobox_header">
-						<img class="info_icon" src="css/img/gyul.png" /><a>½Ä´ç</a>
-						<div class="infobox_header_back"></div>
-					</div>
+					<h2>Must to go</h2>
 				</div>
 				<div class="infobox4 infobox_hover">
-					<div class="infobox_header">
-						<img class="info_icon" src="css/img/udo.png" /><a>°ü±¤Áö</a>
-						<div class="infobox_header_back"></div>
-					</div>
+					<h1>Food</h1>
 				</div>
 			</div>
 			<div class="box_setup3">
 				<div class="infobox5 infobox_hover">
-					<div class="infobox_header">
-						<img class="info_icon" src="css/img/sul.png" /><a>ÀüÅëÁÖ</a>
-						<div class="infobox_header_back"></div>
-					</div>
+					<h1>Liquor</h1>
 				</div>
 				<div class="infobox6 infobox_hover">
-					<div class="infobox_header">
-						<img class="info_icon" src="css/img/gyul2.png" /><a>±âÅ¸</a>
-						<div class="infobox_header_back"></div>
-					</div>
+					<h2>idk yet</h2>
 				</div>
 			</div>
 		</div>
 		<div class="arrow_control">
 			<input type="image" id='button2' src="css/img/arrow_up.png" />
-			<!-- ÆäÀÌÁö ÀÌµ¿ È­»ìÇ¥ -->
+			<!-- í˜ì´ì§€ ì´ë™ í™”ì‚´í‘œ -->
 		</div>
 	</div>
 </body>
 
-<!-- Jquery ¹Ş¾Æ¿À±â -->
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"
-	integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-	crossorigin="anonymous">
-	
-</script>
+<!-- Jquery ë°›ì•„ì˜¤ê¸° -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
 <script>
-/* ³¯¾¾¸¦ ¹Ş¾Æ¿ÀÀÚ ÀçÈ¯¾Æ */
+/* ë‚ ì”¨ë¥¼ ë°›ì•„ì˜¤ì ì¬í™˜ì•„ */
 	$
 			.getJSON(
 					'https://api.openweathermap.org/data/2.5/weather?q=Jeju City&appid=e4ef05580f862e66fd424cf8275dc13f&units=metric',
@@ -166,8 +146,8 @@
 						var ct = result.dt;
 
 						function convertTime(t) {
-							var week = new Array('ÀÏ¿äÀÏ', '¿ù¿äÀÏ', 'È­¿äÀÏ', '¼ö¿äÀÏ',
-									'¸ñ¿äÀÏ', '±İ¿äÀÏ', 'Åä¿äÀÏ');
+							var week = new Array('ì¼ìš”ì¼', 'ì›”ìš”ì¼', 'í™”ìš”ì¼', 'ìˆ˜ìš”ì¼',
+									'ëª©ìš”ì¼', 'ê¸ˆìš”ì¼', 'í† ìš”ì¼');
 							var days = new Date().getDay();
 							var today = week[days];
 							var ot = new Date(t * 1000);
@@ -175,17 +155,17 @@
 							var m = ot.getMinutes();
 
 							if (hr >= 12 && hr <= 24) {
-								return today + ' /' + ' ¿ÀÈÄ ' + hr + ' : ' + m
+								return today + ' /' + ' ì˜¤í›„ ' + hr + ' : ' + m
 							} else {
-								return today + ' /' + ' ¿ÀÀü ' + hr + ' : ' + m
+								return today + ' /' + ' ì˜¤ì „ ' + hr + ' : ' + m
 							}
 						}
 						function temps(temp) {
-							return temp + '¡É'
+							return temp + 'â„ƒ'
 						}
 
 						function winds(wind) {
-							return 'Ç³¼Ó ' + wind + ' m/s'
+							return 'í’ì† ' + wind + ' m/s'
 						}
 
 						var wiconUrl = '<img src="https://openweathermap.org/img/wn/'+result.weather[0].icon+'@2x.png" alt="'+result.weather[0].description+'">'
@@ -200,7 +180,7 @@
 </script>
 
 <script>
-/* ½ºÅ©·Ñ ÀÌµ¿ ±â´É */
+/* ìŠ¤í¬ë¡¤ ì´ë™ ê¸°ëŠ¥ */
     const button1 = document.getElementById('button1');
     const section1 = document.getElementById('section1');
 
@@ -215,4 +195,10 @@
     });
 </script>
 
-</html>
+  <!-- ë¡œê·¸ì¸ì‹¤íŒ¨ ì•ŒëŒ í‘œì‹œ --> 
+    <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
+    <% if (errorMessage != null) { %>
+        <script>
+            alert("<%= errorMessage %>");
+        </script>
+    <% } %>
