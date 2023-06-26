@@ -50,14 +50,10 @@
 				<c:otherwise>
 
 					<c:forEach items="${hotels }" var="h">
-						<div class="hotel_content"
-						 data-roadaddress="${h.r_roadaddress}"
-						 data-title="${h.r_title}"
-						 data-introduction="${h.r_introduction}"
-						 data-imgpath="${h.r_imgpath}"
-						 data-tag="${h.r_tag}"
-							onclick=
-		"moveToLocationByAddress(this.dataset.roadaddress, this.dataset.title, this.dataset.introduction, this.dataset.imgpath, this.dataset.tag)">
+						<div class="hotel_content" data-roadaddress="${h.r_roadaddress}"
+							data-title="${h.r_title}" data-introduction="${h.r_introduction}"
+							data-imgpath="${h.r_imgpath}" data-tag="${h.r_tag}"
+							onclick="moveToLocationByAddress(this.dataset.roadaddress, this.dataset.title, this.dataset.introduction, this.dataset.imgpath, this.dataset.tag)">
 							<div class="hotel_img">
 								<img src="${h.r_imgpath }" alt="…">
 							</div>
@@ -65,7 +61,7 @@
 							<div class="hotel_info">
 								<div class="hotel_title">${h.r_title }</div>
 								<div class="hotel_roadaddress">
-									<p>주소 : ${h.r_roadaddress }</p>
+									<p>연락처 : ${h.r_phoneno }</p>
 								</div>
 							</div>
 						</div>
@@ -98,17 +94,17 @@
 							리뷰 & 평가</div>
 
 						<div>
-							<input name="r_username" type="text" placeholder="사용자명">
-							<input name="r_content" type="text" placeholder="분류"> <input
-								name="r_contentname" type="text" placeholder="장소">
+							<input name="reg_username" type="text" placeholder="사용자명">
+							<input name="reg_content" type="text" placeholder="분류"> 
+							<input name="reg_contentname" type="text" placeholder="장소">
 						</div>
 
 						<div>
-							<textarea class="review_text" name="r_text" placeholder="글 내용"></textarea>
+							<textarea class="review_text" name="reg_text" placeholder="글 내용"></textarea>
 						</div>
 						<div>
-							<input name="r_img" class="photo" type="file"> 평점 <select
-								name="r_starpoint">
+							<input name="reg_img" class="photo" type="file"> 평점 
+							<select	name="reg_starpoint">
 								<option value="1">1</option>
 								<option value="1.5">1.5</option>
 								<option value="2">2</option>
@@ -126,50 +122,15 @@
 					</div>
 				</form>
 
-				<form action="reviewListC">
-					<div class="accordion">
-						<button>펼치기</button>
-						<div class="reviet">
-							<div>w_lis
-								<span>사용자명</span>
-								<c:forEach items="${r }" var="r">
-									<p>${r.r_username }</p>
-								</c:forEach>
-							</div>
-							<div>
-								<span>분류</span>
-								<c:forEach items="${r }" var="r">
-									<p>${r.r_content }</p>
-								</c:forEach>
-							</div>
-							<div>
-								<span>장소</span>
-								<c:forEach items="${r }" var="r">
-									<p>${r.r_contentname }</p>
-								</c:forEach>
-							</div>
-							<div>
-								<span>별점</span>
-								<c:forEach items="${r }" var="r">
-									<p>${r.r_starpoint }</p>
-								</c:forEach>
-							</div>
-							<div>
-								<span>코멘트</span>
-								<c:forEach items="${r }" var="r">
-									<p>${r.r_review }</p>
-								</c:forEach>
-							</div>
-						</div>
-					</div>
-				</form>
+		
 			</div>
 
 		</div>
 	</div>
 
 
-    	<script type="text/javascript" src="js/mark_map2.js">
+	<script type="text/javascript" src="js/mark_map2.js">
+		
 	</script>
 </body>
 </html>

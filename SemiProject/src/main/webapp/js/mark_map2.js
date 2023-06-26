@@ -1,4 +1,3 @@
-
 var map;
 var marker; // 추가: 이전 마커를 저장하기 위한 변수
 var customOverlay;//오버레이 기능
@@ -41,9 +40,9 @@ function moveToLocationByAddress(roadaddress, title, introduction, imgpath, tag)
 				'                <img src="' + imgpath + '" width="500" height="350" >' +
 				'           </div>' +
 				'            <div class="desc">' +
-				'                <div class="roadaddress">' + '<p>' + '주소 : ' + roadaddress + '</p>' + '</div>' +
-				'                <div class="introduction">' + '<p>' + '소개 : ' + introduction + + '</p>' + '</div>' +
-				'                <div class="tag">' + '<p>' + '태그 : ' + tag + + '</p>' + '</div>' +
+				'          <div class="roadaddress">' + roadaddress + '</div>' +
+				'          <div class="introduction">' + introduction + '</div>' +
+				'          <div class="tag">' + tag + '</div>' +
 				'            </div>' +
 				'        </div>' +
 				'    </div>' +
@@ -53,7 +52,7 @@ function moveToLocationByAddress(roadaddress, title, introduction, imgpath, tag)
 				position: coords,
 				content: content,
 				xAnchor: 0.5,
-				yAnchor: 1.0
+				yAnchor: 1.2
 			});
 
 			// 커스텀 오버레이를 지도에 표시합니다
@@ -91,26 +90,6 @@ geocoder.addressSearch(place, function(result, status) {
 			position: coords
 		});
 
-		// 커스텀 오버레이를 생성합니다
-		var content = '<div class="wrap" >' +
-			'    <div class="info">' +
-			'        <div class="title" >' + title +
-			'            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-			'        </div>' +
-			'        <div class="body">' +
-			'            <div class="img">' +
-			'                <img src="' + imgpath + '" width="300" height="250" >' +
-			'           </div>' +
-			'            <div class="desc">' +
-			'                <div class="roadaddress">' + roadaddress + '</div>' +
-			'                <div class="introduce">' + introduction + '</div>' +
-			'                <div class="tag">' + tag + '</div>' +
-			'            </div>' +
-			'        </div>' +
-			'    </div>' +
-			'</div>';
-
-
 		customOverlay = new kakao.maps.CustomOverlay({
 			position: coords,
 			content: content,
@@ -124,7 +103,6 @@ geocoder.addressSearch(place, function(result, status) {
 		// 커스텀 오버레이를 지도에 표시합니다
 		customOverlay.setMap(map);
 	}
-
 
 	map.setMaxLevel(10);
 	map.setMinLevel(3);
