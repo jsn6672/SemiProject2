@@ -14,6 +14,7 @@
 	<button
 		onclick="location.href='DrinkDetailC?no=${drink_detail.t_no}&language=1&listp=${curListPageNo }'">번역</button>
 	<button onclick="location.href='JsnHC'">뒤돌</button>
+	<button onclick="location.href='JPC'">JPC</button>
 	<div
 		style="display: flex; align-items: flex-start; text-align: center;">
 		<div class="drink-list" style="flex-basis: 15%; text-align: center;">

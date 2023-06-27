@@ -229,4 +229,9 @@ public class GourmetM {
 		
 	}
 
+	public static void mapGourmet(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
