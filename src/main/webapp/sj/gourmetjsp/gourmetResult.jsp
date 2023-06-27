@@ -39,7 +39,7 @@
 						
 						
 						
-						<button onclick="sjOpenReview()">Review</button>
+						<button onclick="sjOpenReview(${g.id})">Review</button>
 
 						
 					</div>
@@ -58,33 +58,40 @@
 		<!-- 결과와 지도를 묶는 div 끝 -->
 
 
-		<!-- 리뷰 모달창 -->
+		<!-- 리뷰 뷰잉 모달창 -->
 		<div id="sjReview" class="sj-review">
 			<div class="sj-review-content">
 				<span onclick="sjCloseReview()" class="sj-close">&times;</span>
 				<h2>Review</h2>
 				<button onclick="sjOpenReviewWrite()">Write</button>
 				<p>
+				<c:forEach var="g" items="${gourmets }">
 					<table>
 						<tr>
+							<td>이미지</td>
 							<td>이미지</td>
 						</tr>
 						<tr>
 							<td>제목</td>
+							<td>제목</td>
 						</tr>
 						<tr>
+							<td>작성자</td>
 							<td>작성자</td>
 						</tr>
 						<tr>
 							<td>평점</td>
+							<td>평점</td>
 						</tr>
 						<tr>
+							<td>내용</td>
 							<td>내용</td>
 						</tr>
 						<tr>
 							<td><button onclick>Modify</button></td><td><button>Delete</button></td>
 						</tr>
 					</table>
+					</c:forEach>	
 				</p>
 			</div>
 		</div>
@@ -98,7 +105,7 @@
 				<p>
 				
 				<table>
-				<form>
+				<form action="GourmetReviewC" method="post" enctype="multipart/form-data">
 					<tr>
 						<td>평점</td>
 						<td><select name=sj-reviewGrade>
@@ -126,7 +133,7 @@
 						<td><input name="sj-r_pw"></td>
 					</tr>
 					<tr>
-						<td><button onclick="GourmetReviewRegC">등록하기</button></td>
+						<td><button>등록하기</button></td>
 					</tr>
 				</form>
 				</table>

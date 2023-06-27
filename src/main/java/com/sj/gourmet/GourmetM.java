@@ -229,4 +229,44 @@ public class GourmetM {
 		
 	}
 
+	public static void getAllReview(HttpServletRequest request) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from sj_gourmet_review";
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			Gourmet g = null;
+			
+			ArrayList<Gourmet> gourmets = new ArrayList<Gourmet>();
+			
+			while (rs.next()) {
+				g = new Gourmet();
+				
+				g.setGm_no(rs.getString("gm_no"));
+				g.setGm_no(rs.getString("gm_g_no"));
+				g.setGm_no(rs.getString("gm_l_no"));
+				g.setGm_no(rs.getString("gm_pw"));
+				g.setGm_no(rs.getString("gm_grade"));
+				g.setGm_no(rs.getString("gm_date"));
+				g.setGm_no(rs.getString("gm_menu"));
+				g.setGm_no(rs.getString("gm_review"));
+				g.setGm_no(rs.getString("gm_pic"));
+				gourmets.add(g);
+			}
+			request.setAttribute("gourmets", gourmets);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+		
+	}
+
 }

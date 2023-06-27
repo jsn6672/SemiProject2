@@ -11,13 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 public class GourmetReviewC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		GourmetM.reviewGourmet(request);
-		request.setAttribute("contentPage", "gourmetReview.jsp");
-		request.getRequestDispatcher("gourmetjsp/gourmetReview.jsp").forward(request, response);
+		GourmetM.getAllReview(request);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		GourmetM.reviewGourmet(request);
+		request.setAttribute("contentPage", "gourmetReview.jsp");
+		request.getRequestDispatcher("gourmetjsp/gourmetReview.jsp").forward(request, response);
 	}
-
+	
 }
