@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class JsnHC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Login.KoreanPage(request);
+		drinkSession.KoreanPage(request);
 //		BrewerDAO.brewer(request);
 
 		String country = (String) request.getSession().getAttribute("country");

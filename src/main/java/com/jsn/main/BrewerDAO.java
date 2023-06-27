@@ -124,7 +124,7 @@ public class BrewerDAO {
 
 		String sql = "insert into jsn_drink_review values (jsn_review_seq.nextval, ?, ?, ?, sysdate, ?, ?)";
 		try {
-			
+
 			MultipartRequest mr = new MultipartRequest(request, path, 30 * 1024 * 1024, "utf-8",
 					new DefaultFileRenamePolicy());
 			System.out.println(path);
@@ -133,7 +133,7 @@ public class BrewerDAO {
 			String review = mr.getParameter("review");
 			String starpoint = mr.getParameter("starpoint");
 			String img = mr.getFilesystemName("review_img");
-			
+
 			System.out.println(img);
 			if (img == null) {
 				img = "no_pic.jpg";
@@ -524,9 +524,9 @@ public class BrewerDAO {
 				String marketnum = rs.getString("t_market");
 				Double avgscore = rs.getDouble("t_avgscore");
 				String img = rs.getString("t_img");
-				
+
 				System.out.println(no + name + level);
-				
+
 				if (cnt == 1) {
 					no1 = no;
 				}
@@ -542,6 +542,9 @@ public class BrewerDAO {
 			}
 			request.setAttribute("drink", d);
 			request.setAttribute("no", no1);
+			if (cnt == 0) {
+				request.setAttribute("notfound", "검색 결과가 없습니다");
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
@@ -619,7 +622,7 @@ public class BrewerDAO {
 			pstmt = null;
 			con = DBManeger.connect();
 			String type = request.getParameter("type");
-			String search = request.getParameter("name");
+			String search = JsnPapago.translationkr(request.getParameter("name"));
 			System.out.println(type);
 			if (type.equals("drinkname")) {
 				pstmt = con.prepareStatement(drinksql);
@@ -663,6 +666,10 @@ public class BrewerDAO {
 			}
 			request.setAttribute("drink", d);
 			request.setAttribute("no", no1);
+
+			if (cnt == 0) {
+				request.setAttribute("notfound", "검색 결과가 없습니다");
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
@@ -671,4 +678,150 @@ public class BrewerDAO {
 		}
 
 	}
+
+	public static void SearchbrewerResult(HttpServletRequest request) {
+		Connection con = null;
+		Connection con2 = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		ResultSet rs2 = null;
+		String drinksql = "select * from jsn_traditional_drink where t_name like '%'||?||'%' order by t_avgscore desc";
+		String brewersql = "select * from jsn_traditional_drink where t_market = (select b_no from jsn_brewer where b_name like '%'||?||'%') order by t_avgscore DESC";
+		String brwsql = "select * from jsn_brewer where b_no = ?";
+		try {
+			con = DBManeger.connect();
+
+			String type = (String) request.getSession().getAttribute("drinktype");
+			String search = (String) request.getSession().getAttribute("drinksearch");
+			System.out.println(type);
+			if (type.equals("drinkname")) {
+				pstmt = con.prepareStatement(drinksql);
+				System.out.println(2);
+			} else {
+				pstmt = con.prepareStatement(brewersql);
+				System.out.println(3);
+			}
+			pstmt.setString(1, search);
+
+			System.out.println("--------");
+			System.out.println(search);
+			System.out.println("--------");
+			rs = pstmt.executeQuery();
+
+			String no1 = "";
+			int cnt = 0;
+			d = new ArrayList<Drink>();
+			while (rs.next()) {
+				cnt++;
+				String no = rs.getString("t_no");
+				String name = rs.getString("t_name");
+				String level = rs.getString("t_level");
+				String volume = rs.getString("t_volume");
+				String material = rs.getString("t_material");
+				String marketnum = rs.getString("t_market");
+				Double avgscore = rs.getDouble("t_avgscore");
+				String img = rs.getString("t_img");
+
+				System.out.println(no + name + level);
+
+				if (cnt == 1) {
+					no1 = no;
+				}
+				con2 = DBManeger.connect();
+				pstmt2 = con2.prepareStatement(brwsql);
+				pstmt2.setString(1, marketnum);
+				rs2 = pstmt2.executeQuery();
+
+				rs2.next();
+				String market = rs2.getString("b_name");
+
+				d.add(new Drink(no, name, level, volume, material, market, avgscore, img));
+			}
+			request.setAttribute("drink", d);
+			request.setAttribute("no", no1);
+			if (cnt == 0) {
+				request.setAttribute("notfound", "검색 결과가 없습니다");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			DBManeger.close(con, pstmt, rs);
+			DBManeger.close(con2, pstmt2, rs2);
+		}
+	}
+
+	public static void SearchbrewerResultJp(HttpServletRequest request) {
+		Connection con = null;
+		Connection con2 = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		ResultSet rs2 = null;
+		String drinksql = "select * from jsn_traditional_drink where t_name like '%'||?||'%' order by t_avgscore desc";
+		String brewersql = "select * from jsn_traditional_drink where t_market = (select b_no from jsn_brewer where b_name like '%'||?||'%') order by t_avgscore DESC";
+		String brwsql = "select * from jsn_brewer where b_no = ?";
+		try {
+			con = DBManeger.connect();
+
+			String type = (String) request.getSession().getAttribute("drinktype");
+			String search = JsnPapago.translationkr((String) request.getSession().getAttribute("drinksearch"));
+			System.out.println(type);
+			if (type.equals("drinkname")) {
+				pstmt = con.prepareStatement(drinksql);
+				System.out.println(2);
+			} else {
+				pstmt = con.prepareStatement(brewersql);
+				System.out.println(3);
+			}
+			pstmt.setString(1, search);
+
+			System.out.println("--------");
+			System.out.println(search);
+			System.out.println("--------");
+			rs = pstmt.executeQuery();
+
+			String no1 = "";
+			int cnt = 0;
+			d = new ArrayList<Drink>();
+			while (rs.next()) {
+				cnt++;
+				String no = rs.getString("t_no");
+				String name = JsnPapago.translation(rs.getString("t_name"));
+				String level = rs.getString("t_level");
+				String volume = rs.getString("t_volume");
+				String material = JsnPapago.translation(rs.getString("t_material"));
+				String marketnum = rs.getString("t_market");
+				Double avgscore = rs.getDouble("t_avgscore");
+				String img = rs.getString("t_img");
+
+				System.out.println(no + name + level);
+
+				if (cnt == 1) {
+					no1 = no;
+				}
+				con2 = DBManeger.connect();
+				pstmt2 = con2.prepareStatement(brwsql);
+				pstmt2.setString(1, marketnum);
+				rs2 = pstmt2.executeQuery();
+
+				rs2.next();
+				String market = JsnPapago.translation(rs2.getString("b_name"));
+
+				d.add(new Drink(no, name, level, volume, material, market, avgscore, img));
+			}
+			request.setAttribute("drink", d);
+			request.setAttribute("no", no1);
+			if (cnt == 0) {
+				request.setAttribute("notfound", "검색 결과가 없습니다");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			DBManeger.close(con, pstmt, rs);
+			DBManeger.close(con2, pstmt2, rs2);
+		}
+
+	}
+
 }
