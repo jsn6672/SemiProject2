@@ -12,7 +12,7 @@
 </head>
 <body>
 	<button
-		onclick="location.href='DrinkDetailC?no=${drink_detail.t_no}&language=1&listp=${curListPageNo }&reviewp=${curReviewPageNo }'">번역</button>
+		onclick="location.href='DrinkDetailC?no=${drink_detail.t_no}&language=1&listp=${curListPageNo }'">번역</button>
 	<button onclick="location.href='JsnHC'">뒤돌</button>
 	<div
 		style="display: flex; align-items: flex-start; text-align: center;">
@@ -25,7 +25,6 @@
 						<option value="brewername">양조장</option>
 					</select> <input name="name">
 					<button>검색</button>
-					${notfound}
 				</div>
 			</form>
 			<c:forEach items="${drink }" var="d">
@@ -34,7 +33,7 @@
 						<div
 							style="text-align: center; height: 70px; background-color: rgb(242, 242, 247); border-radius: 15%; width: 150px;">
 							<a
-								href="DrinkDetailC?no=${d.t_no }&language=2&listp=${curListPageNo}">${d.t_name }
+								href="DrinkSearchDetailC?no=${d.t_no }&language=2&listp=${curListPageNo}">${d.t_name }
 								<br>${d.t_market } <br>★ : ${d.t_avgscore/2 }
 							</a>
 						</div>
@@ -42,7 +41,7 @@
 					<c:otherwise>
 						<div style="height: 70px;">
 							<a
-								href="DrinkDetailC?no=${d.t_no }&language=2&listp=${curListPageNo}">${d.t_name }<br>${d.t_market }<br>평점
+								href="DrinkSearchDetailC?no=${d.t_no }&language=2&listp=${curListPageNo}">${d.t_name }<br>${d.t_market }<br>평점
 								: ${d.t_avgscore/2 }
 							</a>
 						</div>
@@ -50,13 +49,13 @@
 				</c:choose>
 			</c:forEach>
 			<div>
-				<a href="DrinkListPageC?listp=1&no=${drink_detail.t_no }">[맨처음]</a>
+				<a href="DrinkSearchListPageC?listp=1&no=${drink_detail.t_no }">[맨처음]</a>
 				<c:forEach begin="1" end="${listPageCount }" var="i">
-					<a href="DrinkListPageC?listp=${i }&no=${drink_detail.t_no }">
+					<a href="DrinkSearchListPageC?listp=${i }&no=${drink_detail.t_no }">
 						[${i }] </a>
 				</c:forEach>
 				<a
-					href="DrinkListPageC?listp=${listPageCount }&no=${drink_detail.t_no }">[맨
+					href="DrinkSearchListPageC?listp=${listPageCount }&no=${drink_detail.t_no }">[맨
 					끝]</a>
 			</div>
 		</div>

@@ -62,19 +62,19 @@
 				</c:forEach>
 				<div>
 					<a
-						href="DrinkReviewC?p=1&no=${drink_detail.t_no }&listp=${curListPageNo}">[맨처음]</a>
+						href="DrinkSearchReviewC?p=1&no=${drink_detail.t_no }&listp=${curListPageNo}">[맨처음]</a>
 					<c:forEach begin="1" end="${reviewPageCount }" var="i">
 						<a
-							href="DrinkReviewC?p=${i }&no=${drink_detail.t_no }&listp=${curListPageNo}">
+							href="DrinkSearchReviewC?p=${i }&no=${drink_detail.t_no }&listp=${curListPageNo}">
 							[${i }] </a>
 					</c:forEach>
 					<a
-						href="DrinkReviewC?p=${reviewPageCount }&no=${drink_detail.t_no }&listp=${curListPageNo}">[맨
+						href="DrinkSearchReviewC?p=${reviewPageCount }&no=${drink_detail.t_no }&listp=${curListPageNo}">[맨
 						끝]</a>
 				</div>
 			</div>
 		</c:if>
-		<form action="DrinkReviewC" method="post"
+		<form action="DrinkSearchReviewC" method="post"
 			enctype="multipart/form-data">
 			<div style="display: flex;">
 				<div class="jsn-user-name">
