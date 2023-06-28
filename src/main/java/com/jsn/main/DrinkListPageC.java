@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/DrinkListPageC")
 public class DrinkListPageC extends HttpServlet {
+//	왼쪽 리스트 페이징 컨트롤러
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String country = (String) request.getSession().getAttribute("country");

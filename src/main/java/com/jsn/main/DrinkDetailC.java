@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/DrinkDetailC")
 public class DrinkDetailC extends HttpServlet {
+//	번역, 디테일페이지 컨트롤러
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String language = request.getParameter("language");

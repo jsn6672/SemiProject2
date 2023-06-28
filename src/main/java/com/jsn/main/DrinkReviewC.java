@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/DrinkReviewC")
 public class DrinkReviewC extends HttpServlet {
+//	리뷰 페이징 컨트롤러
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String country = (String) request.getSession().getAttribute("country");
 		if (country == null) {
@@ -39,7 +40,7 @@ public class DrinkReviewC extends HttpServlet {
 		request.getRequestDispatcher("jsn/jsp/drinkdetail.jsp").forward(request, response);
 		
 	}
-
+//	리뷰 create 컨트롤러
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BrewerDAO.CreateReview(request);
 //		mr로 다 받아야 해서 등록 성공시 새로운 어트리뷰트 만들어서 그걸로 돌리기

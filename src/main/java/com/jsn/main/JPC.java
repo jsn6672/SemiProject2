@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/JPC")
 public class JPC extends HttpServlet {
+//	번역db 삽입 컨트롤러
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BrewerDAO.setDB(request);
 	}

@@ -9,39 +9,39 @@
 </head>
 <body>
 
-	<div style="display: flex;">
-		<div class="drink-detail-info" style="font-size: 15pt; width: 60%;">
-			<div style="display: flex;">
+	<div class="drink-detail-all">
+		<div class="drink-detail-info">
+			<div class="drink-detail-detail">
 				<div class="td1">이름</div>
 				<div class="td2">${drink_detail.t_name }</div>
 			</div>
-			<div style="display: flex;">
+			<div class="drink-detail-detail">
 				<div class="td1">평점</div>
 				<div class="td2">${drink_detail.t_avgscore/2 }</div>
 			</div>
-			<div style="display: flex;">
+			<div class="drink-detail-detail">
 				<div class="td1">도수</div>
 				<div class="td2">${drink_detail.t_level }%</div>
 			</div>
-			<div style="display: flex;">
+			<div class="drink-detail-detail">
 				<div class="td1">용량</div>
 				<div class="td2">${drink_detail.t_volume }ml</div>
 			</div>
-			<div style="display: flex;">
+			<div class="drink-detail-detail">
 				<div class="td1">주 원료</div>
 				<div class="td2">${drink_detail.t_material }</div>
 			</div>
-			<div style="display: flex;">
+			<div class="drink-detail-detail">
 				<div class="td1">양조장</div>
 				<div class="td2">${brewer.b_name }</div>
 			</div>
-			<div style="display: flex;">
+			<div class="drink-detail-detail">
 				<div class="td1">양조장 주소</div>
 				<div class="td2">${brewer.b_addr }</div>
 			</div>
 		</div>
 		<img alt="" width="200px;" src="${drink_detail.t_img }">
-		<div id="map" style="width: 20%; height: 350px;"></div>
+		<div id="map" class="drink-map"></div>
 	</div>
 
 	<div>
@@ -51,7 +51,7 @@
 					<div style="display: flex;">
 						<div class="jsn-user-name">${r.r_user }</div>
 						<div class="jsn-starpoint">
-							<span style="color: orange;">★</span>${r.r_starpoint/2 }</div>
+							<span class="drink-starpoint">★</span>${r.r_starpoint/2 }</div>
 						<div class="jsn-review-content">${r.r_review}</div>
 						<div>
 							<!--  							<img src="jsn/imgfile/${r.r_img }" height="100px"> -->
@@ -86,10 +86,10 @@
 						step="1" min="0" max="10">
 					</span>
 				</div>
-				<div class="review-create">
+				<div class="drinkreview-create">
 					<textarea rows="3" cols="80" name="review"></textarea>
 				</div>
-				<div class="review-button">
+				<div class="drinkreview-button">
 					<input name="listp" value="${curListPageNo}" hidden=""> <input
 						type="file" name="review_img">
 					<button name="no" value="${drink_detail.t_no }">등록</button>
