@@ -14,7 +14,7 @@ public class DrinkSearchC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String country = (String) request.getSession().getAttribute("country");
-		
+
 		if (country == null) {
 			drinkSession.KoreanPage(request);
 		}

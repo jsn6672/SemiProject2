@@ -236,8 +236,8 @@ public class BrewerDAO {
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
-		String sql = "select * from jsn_traditional_drink order by t_avgscore desc";
-		String brwsql = "select * from jsn_brewer where b_no = ?";
+		String sql = "select * from jsn_traditional_drink_jp order by t_avgscore desc";
+		String brwsql = "select * from jsn_brewer_jp where b_no = ?";
 		try {
 			con = DBManeger.connect();
 			pstmt = con.prepareStatement(sql);
@@ -246,10 +246,10 @@ public class BrewerDAO {
 			d = new ArrayList<Drink>();
 			while (rs.next()) {
 				String no = rs.getString("t_no");
-				String name = JsnPapago.translation(rs.getString("t_name"));
+				String name = rs.getString("t_name");
 				String level = rs.getString("t_level");
 				String volume = rs.getString("t_volume");
-				String material = JsnPapago.translation(rs.getString("t_material"));
+				String material = rs.getString("t_material");
 				String marketnum = rs.getString("t_market");
 				Double avgscore = rs.getDouble("t_avgscore");
 				String img = rs.getString("t_img");
@@ -260,7 +260,7 @@ public class BrewerDAO {
 				rs2 = pstmt2.executeQuery();
 
 				rs2.next();
-				String market = JsnPapago.translation(rs2.getString("b_name"));
+				String market = rs2.getString("b_name");
 				d.add(new Drink(no, name, level, volume, material, market, avgscore, img));
 			}
 
@@ -283,9 +283,9 @@ public class BrewerDAO {
 		if (num == null) {
 			num = (String) request.getAttribute("no");
 		}
-		String drinksql = "select * from jsn_traditional_drink where t_no = ?";
-		String brewsql = "select * from jsn_brewer where b_no = (select t_market"
-				+ "   from jsn_traditional_drink where t_no = ?)";
+		String drinksql = "select * from jsn_traditional_drink_jp where t_no = ?";
+		String brewsql = "select * from jsn_brewer_jp where b_no = (select t_market from jsn_traditional_drink_jp where t_no = ?)";
+		String kraddrsql = "select * from jsn_brewer where b_no = (select t_market from jsn_traditional_drink_jp where t_no = ?)";
 		try {
 			con = DBManeger.connect();
 			pstmt = con.prepareStatement(drinksql);
@@ -294,10 +294,10 @@ public class BrewerDAO {
 
 			rs.next();
 			String no = rs.getString("t_no");
-			String name = JsnPapago.translation(rs.getString("t_name"));
+			String name = rs.getString("t_name");
 			String level = rs.getString("t_level");
 			String volume = rs.getString("t_volume");
-			String material = JsnPapago.translation(rs.getString("t_material"));
+			String material = rs.getString("t_material");
 			String market = rs.getString("t_market");
 			Double avgscore = rs.getDouble("t_avgscore");
 			String img = rs.getString("t_img");
@@ -311,12 +311,18 @@ public class BrewerDAO {
 
 			rs.next();
 			no = rs.getString("b_no");
-			name = JsnPapago.translation(rs.getString("b_name"));
-			String addr = JsnPapago.translation(rs.getString("b_addr"));
+			name = rs.getString("b_name");
+			String addr = rs.getString("b_addr");
 
 			Brewer b = new Brewer(no, name, addr);
 
 			request.setAttribute("brewer", b);
+
+			pstmt = con.prepareStatement(kraddrsql);
+			pstmt.setString(1, market);
+			rs = pstmt.executeQuery();
+			rs.next();
+
 			request.setAttribute("kraddr", rs.getString("b_addr"));
 
 		} catch (Exception e) {
@@ -562,8 +568,8 @@ public class BrewerDAO {
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
-		String sql = "select * from jsn_traditional_drink order by t_avgscore desc";
-		String brwsql = "select * from jsn_brewer where b_no = ?";
+		String sql = "select * from jsn_traditional_drink_jp order by t_avgscore desc";
+		String brwsql = "select * from jsn_brewer_jp where b_no = ?";
 		try {
 			con = DBManeger.connect();
 			pstmt = con.prepareStatement(sql);
@@ -575,10 +581,10 @@ public class BrewerDAO {
 			while (rs.next()) {
 				cnt++;
 				String no = rs.getString("t_no");
-				String name = JsnPapago.translation(rs.getString("t_name"));
+				String name = rs.getString("t_name");
 				String level = rs.getString("t_level");
 				String volume = rs.getString("t_volume");
-				String material = JsnPapago.translation(rs.getString("t_material"));
+				String material = rs.getString("t_material");
 				String marketnum = rs.getString("t_market");
 				Double avgscore = rs.getDouble("t_avgscore");
 				String img = rs.getString("t_img");
@@ -592,7 +598,7 @@ public class BrewerDAO {
 				rs2 = pstmt2.executeQuery();
 
 				rs2.next();
-				String market = JsnPapago.translation(rs2.getString("b_name"));
+				String market = rs2.getString("b_name");
 
 				d.add(new Drink(no, name, level, volume, material, market, avgscore, img));
 			}
@@ -615,14 +621,14 @@ public class BrewerDAO {
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
-		String drinksql = "select * from jsn_traditional_drink where t_name like '%'||?||'%' order by t_avgscore desc";
-		String brewersql = "select * from jsn_traditional_drink where t_market = (select b_no from jsn_brewer where b_name like '%?%') order by t_avgscore";
-		String brwsql = "select * from jsn_brewer where b_no = ?";
+		String drinksql = "select * from jsn_traditional_drink_jp where t_name like '%'||?||'%' order by t_avgscore desc";
+		String brewersql = "select * from jsn_traditional_drink_jp where t_market = (select b_no from jsn_brewer_jp where b_name like '%'||?||'%') order by t_avgscore desc";
+		String brwsql = "select * from jsn_brewer_jp where b_no = ?";
 		try {
 			pstmt = null;
 			con = DBManeger.connect();
 			String type = request.getParameter("type");
-			String search = JsnPapago.translationkr(request.getParameter("name"));
+			String search = request.getParameter("name");
 			System.out.println(type);
 			if (type.equals("drinkname")) {
 				pstmt = con.prepareStatement(drinksql);
@@ -643,13 +649,15 @@ public class BrewerDAO {
 			while (rs.next()) {
 				cnt++;
 				String no = rs.getString("t_no");
-				String name = JsnPapago.translation(rs.getString("t_name"));
+				String name = rs.getString("t_name");
 				String level = rs.getString("t_level");
 				String volume = rs.getString("t_volume");
-				String material = JsnPapago.translation(rs.getString("t_material"));
+				String material = rs.getString("t_material");
 				String marketnum = rs.getString("t_market");
 				Double avgscore = rs.getDouble("t_avgscore");
 				String img = rs.getString("t_img");
+
+				System.out.println(name);
 
 				if (cnt == 1) {
 					no1 = no;
@@ -660,7 +668,7 @@ public class BrewerDAO {
 				rs2 = pstmt2.executeQuery();
 
 				rs2.next();
-				String market = JsnPapago.translation(rs2.getString("b_name"));
+				String market = rs2.getString("b_name");
 
 				d.add(new Drink(no, name, level, volume, material, market, avgscore, img));
 			}
@@ -668,6 +676,7 @@ public class BrewerDAO {
 			request.setAttribute("no", no1);
 
 			if (cnt == 0) {
+				System.out.println("없음");
 				request.setAttribute("notfound", "검색 결과가 없습니다");
 			}
 		} catch (Exception e) {
@@ -758,14 +767,14 @@ public class BrewerDAO {
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
-		String drinksql = "select * from jsn_traditional_drink where t_name like '%'||?||'%' order by t_avgscore desc";
-		String brewersql = "select * from jsn_traditional_drink where t_market = (select b_no from jsn_brewer where b_name like '%'||?||'%') order by t_avgscore DESC";
-		String brwsql = "select * from jsn_brewer where b_no = ?";
+		String drinksql = "select * from jsn_traditional_drink_jp where t_name like '%'||?||'%' order by t_avgscore desc";
+		String brewersql = "select * from jsn_traditional_drink_jp where t_market = (select b_no from jsn_brewer_jp where b_name like '%'||?||'%') order by t_avgscore DESC";
+		String brwsql = "select * from jsn_brewer_jp where b_no = ?";
 		try {
 			con = DBManeger.connect();
 
 			String type = (String) request.getSession().getAttribute("drinktype");
-			String search = JsnPapago.translationkr((String) request.getSession().getAttribute("drinksearch"));
+			String search = (String) request.getSession().getAttribute("drinksearch");
 			System.out.println(type);
 			if (type.equals("drinkname")) {
 				pstmt = con.prepareStatement(drinksql);
@@ -787,10 +796,10 @@ public class BrewerDAO {
 			while (rs.next()) {
 				cnt++;
 				String no = rs.getString("t_no");
-				String name = JsnPapago.translation(rs.getString("t_name"));
+				String name = rs.getString("t_name");
 				String level = rs.getString("t_level");
 				String volume = rs.getString("t_volume");
-				String material = JsnPapago.translation(rs.getString("t_material"));
+				String material = rs.getString("t_material");
 				String marketnum = rs.getString("t_market");
 				Double avgscore = rs.getDouble("t_avgscore");
 				String img = rs.getString("t_img");
@@ -806,7 +815,7 @@ public class BrewerDAO {
 				rs2 = pstmt2.executeQuery();
 
 				rs2.next();
-				String market = JsnPapago.translation(rs2.getString("b_name"));
+				String market = rs2.getString("b_name");
 
 				d.add(new Drink(no, name, level, volume, material, market, avgscore, img));
 			}
@@ -820,6 +829,82 @@ public class BrewerDAO {
 		} finally {
 			DBManeger.close(con, pstmt, rs);
 			DBManeger.close(con2, pstmt2, rs2);
+		}
+
+	}
+
+//	db 번역데이터 삽입
+	public static void setDB(HttpServletRequest request) {
+
+		Connection con = null;
+		Connection con2 = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		String sql = "select * from jsn_traditional_drink";
+		String dbsql = "insert into jsn_traditional_drink_jp values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String brwsql = "select * from jsn_brewer";
+		String dbbrwsql = "insert into jsn_brewer_jp values (?, ?, ?)";
+		try {
+			con = DBManeger.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				String no = rs.getString("t_no");
+				String name = JsnPapago.translation(rs.getString("t_name"));
+				String level = rs.getString("t_level");
+				String volume = rs.getString("t_volume");
+				String material = JsnPapago.translation(rs.getString("t_material"));
+				String marketnum = rs.getString("t_market");
+				Double avgscore = rs.getDouble("t_avgscore");
+				String cntreview = rs.getString("t_cntreview");
+				String img = rs.getString("t_img");
+
+				con2 = DBManeger.connect();
+				pstmt2 = con2.prepareStatement(dbsql);
+
+				pstmt2.setString(1, no);
+				pstmt2.setString(2, name);
+				pstmt2.setString(3, level);
+				pstmt2.setString(4, volume);
+				pstmt2.setString(5, material);
+				pstmt2.setString(6, marketnum);
+				pstmt2.setDouble(7, avgscore);
+				pstmt2.setString(8, cntreview);
+				pstmt2.setString(9, img);
+
+				if (pstmt2.executeUpdate() == 1) {
+					System.out.println("등록 완료");
+				}
+			}
+			DBManeger.close(con, pstmt, rs);
+			DBManeger.close(con2, pstmt2, null);
+			con = DBManeger.connect();
+			pstmt = con.prepareStatement(brwsql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				String no = rs.getString("b_no");
+				String name = JsnPapago.translation(rs.getString("b_name"));
+				String addr = JsnPapago.translation(rs.getString("b_addr"));
+				con2 = DBManeger.connect();
+				pstmt2 = con2.prepareStatement(dbbrwsql);
+
+				pstmt2.setString(1, no);
+				pstmt2.setString(2, name);
+				pstmt2.setString(3, addr);
+
+				if (pstmt2.executeUpdate() == 1) {
+					System.out.println("등록 완료");
+				}
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			DBManeger.close(con, pstmt, rs);
+			DBManeger.close(con2, pstmt2, null);
 		}
 
 	}

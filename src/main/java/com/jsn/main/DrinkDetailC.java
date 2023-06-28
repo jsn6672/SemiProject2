@@ -14,9 +14,9 @@ public class DrinkDetailC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String language = request.getParameter("language");
-		
+
 		if (language.equals("1")) {
-			drinkSession.ChangeCountry(request);			
+			drinkSession.ChangeCountry(request);
 		}
 		String country = (String) request.getSession().getAttribute("country");
 		if (country == null) {
@@ -28,7 +28,7 @@ public class DrinkDetailC extends HttpServlet {
 			BrewerDAO.ReadReview(request);
 			ArrayList<String> jsnr = (ArrayList<String>) request.getAttribute("review");
 			if (jsnr != null && !jsnr.isEmpty()) {
-				BrewerDAO.reviewPaging(Integer.parseInt(request.getParameter("reviewp")), request);				 
+				BrewerDAO.reviewPaging(1, request);
 			}
 			BrewerDAO.listPaging(Integer.parseInt(request.getParameter("listp")), request);
 		} else {
@@ -37,7 +37,7 @@ public class DrinkDetailC extends HttpServlet {
 			BrewerDAO.ReadReviewJp(request);
 			ArrayList<String> jsnr = (ArrayList<String>) request.getAttribute("review");
 			if (jsnr != null && !jsnr.isEmpty()) {
-				BrewerDAO.reviewPaging(Integer.parseInt(request.getParameter("reviewp")), request);				 
+				BrewerDAO.reviewPaging(1, request);
 			}
 			BrewerDAO.listPaging(Integer.parseInt(request.getParameter("listp")), request);
 		}
