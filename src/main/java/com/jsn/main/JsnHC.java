@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+//	전통주/양조장 홈컨
 @WebServlet("/JsnHC")
 public class JsnHC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

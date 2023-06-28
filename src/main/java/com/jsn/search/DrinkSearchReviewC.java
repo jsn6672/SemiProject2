@@ -16,6 +16,7 @@ import com.jsn.main.drinkSession;
 public class DrinkSearchReviewC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+//		검색한 후 리뷰 페이징 컨트롤러
 		String country = (String) request.getSession().getAttribute("country");
 		if (country == null) {
 			drinkSession.KoreanPage(request);
@@ -46,6 +47,7 @@ public class DrinkSearchReviewC extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+//		검색한 후 리뷰 create 컨트롤러
 		BrewerDAO.CreateReview(request);
 //		mr로 다 받아야 해서 등록 성공시 새로운 어트리뷰트 만들어서 그걸로 돌리기
 
