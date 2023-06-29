@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="jsn/css/drinkdetail.css">
+<link rel="stylesheet" href="jsn/css/drinkreview.css">
 <script type="text/javascript" src="jsn/js/starpoint.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -14,9 +15,9 @@
 	<button
 		onclick="location.href='DrinkDetailC?no=${drink_detail.t_no}&language=1&listp=${curListPageNo }'">번역</button>
 	<button onclick="location.href='JsnHC'">뒤돌</button>
-	<div
-		style="display: flex; align-items: flex-start; text-align: center;">
-		<div class="drink-list" style="flex-basis: 15%; text-align: center;">
+	<button onclick="location.href='JPC'">JPC</button>
+	<div class="drink-content">
+		<div class="drink-list">
 			<form action="DrinkSearchC">
 				<div>
 					<input name="listp" value="${curListPageNo }" hidden=""> <select
@@ -30,8 +31,7 @@
 			<c:forEach items="${drink }" var="d">
 				<c:choose>
 					<c:when test="${d.t_no == drink_detail.t_no }">
-						<div
-							style="text-align: center; height: 70px; background-color: rgb(242, 242, 247); border-radius: 15%; width: 150px;">
+						<div class="drink-list-attention">
 							<a
 								href="DrinkSearchDetailC?no=${d.t_no }&language=2&listp=${curListPageNo}">${d.t_name }
 								<br>${d.t_market } <br>★ : ${d.t_avgscore/2 }
@@ -39,7 +39,7 @@
 						</div>
 					</c:when>
 					<c:otherwise>
-						<div style="height: 70px;">
+						<div class="drink-list-notattention">
 							<a
 								href="DrinkSearchDetailC?no=${d.t_no }&language=2&listp=${curListPageNo}">${d.t_name }<br>${d.t_market }<br>평점
 								: ${d.t_avgscore/2 }

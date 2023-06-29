@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/DrinkSearchC")
 public class DrinkSearchC extends HttpServlet {
+//	검색창 컨트롤러
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String country = (String) request.getSession().getAttribute("country");
-		
+
 		if (country == null) {
 			drinkSession.KoreanPage(request);
 		}

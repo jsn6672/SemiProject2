@@ -14,6 +14,7 @@ import com.jsn.main.drinkSession;
 
 @WebServlet("/DrinkSearchDetailC")
 public class DrinkSearchDetailC extends HttpServlet {
+//	검색한 후 디테일페이지 / 번역 컨트롤러
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String language = request.getParameter("language");
@@ -22,6 +23,7 @@ public class DrinkSearchDetailC extends HttpServlet {
 			drinkSession.ChangeCountry(request);
 		}
 		String country = (String) request.getSession().getAttribute("country");
+		System.out.println(country);
 		if (country == null) {
 			drinkSession.KoreanPage(request);
 		}

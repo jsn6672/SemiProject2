@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.drink-detail-all{
+	display: flex;
+}
+
+.drink-detail-info{
+	font-size: 15pt;
+	width: 60%;
+}
+
+.drink-detail-detail{
+	display: flex;
+}
+
+.drink-map{
+	width: 20%; 
+	height: 350px;
+}
+
+.drink-starpoint{
+	color: orange;
+}
+
+.drinkreview-create {
+	width: 50%;
+}
+
+.drinkreview-button {
+	width: 5%;
+	font-size: 5pt;
+}
