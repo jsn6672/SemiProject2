@@ -1,16 +1,30 @@
 package com.sj.gourmet;
 
-public class GourmetInfo {
+import java.util.ArrayList;
+
+public class GourmetInfo2 {
 	private String id;
 	private String name; // �긽�샇紐�
 	private String tel; // �쟾�솕踰덊샇
 	private String menu; // 硫붾돱
 	private String addr; // 二쇱냼
 	private String img;
-
+	private ArrayList<Gourmet> reviews;
 		
-	public GourmetInfo() {
+	public GourmetInfo2() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public GourmetInfo2(String id, String name, String tel, String menu, String addr, String img,
+			ArrayList<Gourmet> reviews) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.tel = tel;
+		this.menu = menu;
+		this.addr = addr;
+		this.img = img;
+		this.reviews = reviews;
 	}
 
 	public String getId() {
@@ -61,15 +75,14 @@ public class GourmetInfo {
 		this.img = img;
 	}
 
-	public GourmetInfo(String id, String name, String tel, String menu, String addr, String img) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.tel = tel;
-		this.menu = menu;
-		this.addr = addr;
-		this.img = img;
+	public ArrayList<Gourmet> getReviews() {
+		return reviews;
 	}
+
+	public void setReviews(ArrayList<Gourmet> reviews) {
+		this.reviews = reviews;
+	}
+
 	
 	}
 	

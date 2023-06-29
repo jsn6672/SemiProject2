@@ -16,8 +16,8 @@ public class GourmetSearchC extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GourmetM.searchGourmet(request, response);
-		request.setAttribute("contentPage", "gourmetResult.jsp");
-		request.getRequestDispatcher("gourmetjsp/gourmet.jsp").forward(request, response);
+//		GourmetM.getAllReview(request);
+		request.getRequestDispatcher("sj/gourmetjsp/gourmetResult.jsp").forward(request, response);
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.sj.gourmet;
 
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -19,9 +20,14 @@ import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.jstl.sql.Result;
 
+import org.apache.jasper.compiler.NewlineReductionServletWriter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.oreilly.servlet.multipart.FileRenamePolicy;
 
 import netscape.javascript.JSObject;
 import java.sql.Connection;
@@ -69,15 +75,23 @@ public class GourmetM {
 			System.out.println(data);
 			
 			System.out.println(data.size());
-			ArrayList<GourmetInfo> gourmetInfos = new ArrayList<GourmetInfo>();
+			ArrayList<GourmetInfo2> gourmetInfos = new ArrayList<GourmetInfo2>();
 			String id = "";
 			String name = "";
 			String tel = "";
 			String addr = "";
 			String menu = "";
 			String img = "";
+			
+			String reviewSql = "select * from sj_gourmet_review where gm_store = ?";
+			Connection con = DBManager.connect();
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			Gourmet g = null;
 			for (int i = 0; i < data.size(); i++) {
-				GourmetInfo gourmetInfo = new GourmetInfo();
+				ArrayList<Gourmet> gourmets = new ArrayList<Gourmet>();
+				System.out.println(i);
+				GourmetInfo2 gourmetInfo = new GourmetInfo2();
 				JSONObject info = (JSONObject) data.get(i);
 				
 				JSONObject repPhoto = (JSONObject) info.get("repPhoto");
@@ -105,9 +119,30 @@ public class GourmetM {
 				gourmetInfo.setAddr(addr); 
 				gourmetInfo.setMenu(menu);
 				gourmetInfo.setImg(img);
-
+				
+				
+				pstmt = con.prepareStatement(reviewSql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				System.out.println(id);
+				while (rs.next()) {
+					g = new Gourmet();
+					
+					g.setGm_no(rs.getString("gm_no"));
+					g.setGm_g_no(rs.getString("gm_store"));
+					
+					g.setGm_l_no("gm_user");
+					g.setGm_pw(rs.getString("gm_pw"));
+					g.setGm_grade(rs.getString("gm_grade"));
+					g.setGm_date(rs.getString("gm_date"));
+					g.setGm_menu(rs.getString("gm_menu"));
+					g.setGm_review(rs.getString("gm_review"));
+					g.setGm_pic(rs.getString("gm_pic"));
+					gourmets.add(g);
+					System.out.println(g);
+				}
+				gourmetInfo.setReviews(gourmets);
 				gourmetInfos.add(gourmetInfo);
-
 			}
 			request.setAttribute("gourmetInfos", gourmetInfos);
 			request.setAttribute("input", input);
@@ -193,27 +228,64 @@ public class GourmetM {
 	 * }
 	 */
 
-	public static void reviewGourmet(HttpServletRequest request) {
+	public static void regReviewGourmet(HttpServletRequest request) {
 
-		
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		
-		String sql = "insert into sj_gourmet_review values (gm_no_seq.nextval, ?, ?, ?, sysdate, ?, ?, ?)";
+		String sql = "insert into sj_gourmet_review values (gm_no_seq.nextval, ?, 0, ?, ?, sysdate, ?, ?, 0)";
 		try {
+
+			
+			  String savePath="C:\\student\\"; File isDir = new File(savePath);
+			  if(!isDir.isDirectory()){ System.out.println("디렉토리가 없습니다. 디렉토리를 새로 생성합니다.");
+			  isDir.mkdir(); } System.out.println(savePath);
+			 
+
+		    
+			 MultipartRequest mr = new MultipartRequest(request, savePath, 30*1024*1024,
+			 "utf-8", new DefaultFileRenamePolicy());
+			 
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			
 			request.setCharacterEncoding("utf-8");
-			double grade = Double.parseDouble(request.getParameter("sj-reviewGrade"));
-			String reviewCon = request.getParameter("sj-r_text");
-			String reviewMenu = request.getParameter("sj-r_text");
-			String reviewPic = request.getParameter("sj-r_pic");
 			
-			pstmt.setDouble(1, grade);
-			pstmt.setString(2, reviewCon);
-			pstmt.setString(3, reviewMenu);
-			pstmt.setString(4, reviewPic);
+			/*
+			 * 리뷰 PK 
+			 * 1. 가게 ID 
+			 * 2. 유저 
+			 * 3. 패스워드 
+			 * 4. 평점 
+			 * 날짜 
+			 * 5. 메뉴 
+			 * 6. 리뷰 
+			 * 7. 사진
+			 */
+			
+			String id = mr.getParameter("sj-r_id");
+			System.out.println(id);
+			/* String user = request.getParameter("gm_l_no"); */
+			String pw = mr.getParameter("sj-r_pw");
+			String grade = mr.getParameter("sj-reviewGrade");
+			String menu = mr.getParameter("sj-r_menu");
+			String review = mr.getParameter("sj-r_text");
+//			String pic = request.getParameter("sj-r_pic");
+			
+			System.out.println(id);
+			System.out.println(pw);
+			System.out.println(grade);
+			System.out.println(menu);
+			System.out.println(review);
+//			System.out.println(pic);
+			
+			pstmt.setString(1, id);
+			/* pstmt.setString(2, user); */
+			pstmt.setString(2, pw);
+			pstmt.setString(3, grade);
+			pstmt.setString(4, menu);
+			pstmt.setString(5, review);
+//			pstmt.setString(6, pic);
 			
 			if (pstmt.executeUpdate() == 1) {
 				System.out.println("등록성공!");
@@ -229,9 +301,48 @@ public class GourmetM {
 		
 	}
 
-	public static void mapGourmet(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
-	}
+//	public static void getAllReview(HttpServletRequest request) {
+//		
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		
+//		String sql = "select * from sj_gourmet_review where gm_store = ?";
+//		try {
+//			con = DBManager.connect();
+//			pstmt = con.prepareStatement(sql);
+//			String id = request.getParameter("reviewId");
+//			System.out.println(id);
+//			
+//			pstmt.setString(1, id);
+//			rs = pstmt.executeQuery();
+//			
+//			Gourmet g = null;
+//			
+//			ArrayList<Gourmet2> gourmets = new ArrayList<Gourmet2>();
+//			
+//			while (rs.next()) {
+//				g = new Gourmet2();
+//				
+//				g.setGm_no(rs.getString("gm_no"));
+//				g.setGm_g_no(rs.getString("gm_g_no"));
+//				g.setGm_l_no("gm_l_no");
+//				g.setGm_pw(rs.getString("gm_pw"));
+//				g.setGm_grade(rs.getString("gm_grade"));
+//				g.setGm_date(rs.getString("gm_date"));
+//				g.setGm_menu(rs.getString("gm_menu"));
+//				g.setGm_review(rs.getString("gm_review"));
+//				g.setGm_pic(rs.getString("gm_pic"));
+//				gourmets.add(g);
+//			}
+//			request.setAttribute("gourmets", gourmets);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			DBManager.close(con, pstmt, rs);
+//		}
+//		
+//		
+//	}
 
 }
