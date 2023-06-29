@@ -9,6 +9,7 @@
 .left-side {
 	display: content;
 	margin: 30pt;
+	width: 500pt;
 }
 /* 숙박 업소 검색 기능*/
 .hotel_search {
@@ -32,6 +33,7 @@
 	margin-top: 0pt;
 	overflow-y: auto;
 	height: 900px;
+	width: 450pt;
 }
 
 .hotel_content {

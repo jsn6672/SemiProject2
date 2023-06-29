@@ -2,6 +2,7 @@ package com.hm.room;
 
 import java.io.InputStream;
 
+
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -18,7 +19,6 @@ public class DAOroom {
 
 	public static ArrayList<Hotel> hotels = new ArrayList<Hotel>();
 
-	
 	public static void getAllRoom(HttpServletRequest request) {
 
 	try {	
@@ -219,7 +219,6 @@ public class DAOroom {
 		 
 		 
 		List<Hotel> items = hotels.subList(start, end);
-		
 		
 		int maxPageButtons = 6; // 최대 페이지 선택 버튼 수
 	    int startPage = Math.max(1, page - maxPageButtons / 2);

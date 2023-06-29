@@ -1,11 +1,12 @@
 package com.hm.room;
 
 import java.sql.Connection;
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,42 +31,41 @@ public class DAOreview {
 			MultipartRequest mr = new MultipartRequest(request, path, 30 * 1024 * 1024, "utf-8",
 					new DefaultFileRenamePolicy());
 
-			String sql = "insert into hotelR_test values(hotelR_test_seq.nextval,?,?,?,?,?,?,?)";
+			String sql = "insert into hotelR_test values(hotelR_test_seq.nextval,?,?,?,?,?,?,?,sysdate)";
 
 			String id1 = "hmin0701";
 
 			con = DBManager2.connect();
 			pstmt = con.prepareStatement(sql);
 
-			String pk = mr.getParameter("hm_r_pk");
+			String cid = mr.getParameter("hm_r_cid");
 			String id = id1;
-			String hotelname = mr.getParameter("hm_r_title");
+			String title = mr.getParameter("hm_r_title");
+			String reviewname = mr.getParameter("hm_r_reviewname");
 			String grade = mr.getParameter("hm_reviewGrade");
 			String text = mr.getParameter("hm_r_text");
 			String img = mr.getFilesystemName("hm_r_pic");
 
-			System.out.println(pk);
+			System.out.println(cid);
 			System.out.println(id);
-			System.out.println(hotelname);
+			System.out.println(title);
+			System.out.println(reviewname);
 			System.out.println(grade);
 			System.out.println(text);
 			System.out.println(img);
 
-			// 현재 날짜와 시간을 가져옴
-			Timestamp currentDate = new Timestamp(System.currentTimeMillis());
-
-			pstmt.setString(1, pk);
+			pstmt.setString(1, cid);
 			pstmt.setString(2, id);
-			pstmt.setString(3, hotelname);
-			pstmt.setString(4, grade);
-			pstmt.setString(5, text);
-			pstmt.setString(6, img);
-			pstmt.setTimestamp(7, currentDate); // 현재 날짜와 시간을 설정
+			pstmt.setString(3, title);
+			pstmt.setString(4, reviewname);
+			pstmt.setString(5, grade);
+			pstmt.setString(6, text);
+			pstmt.setString(7, img);
 
 			if (pstmt.executeUpdate() == 1) {
 				System.out.println("등록 성공");
 				request.setAttribute("r", "등록 성공");
-				request.setAttribute("no", pk);
+				request.setAttribute("no", cid);
 			}
 
 		} catch (Exception e) {
@@ -82,35 +82,36 @@ public class DAOreview {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from hotelR_test where r_cid = ?";
+		String sql = "select * from hotelR_test";
 
-		String cid = (String) request.getAttribute("r_cid");
+	//	String cid = (String) request.getAttribute("r_cid");
 		try {
 			con = DBManager2.connect();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, cid);
 			rs = pstmt.executeQuery();
 			Review r = null;
 			
-
 			reviews = new ArrayList<Review>();
 			while (rs.next()) {
+				int no = rs.getInt("r_no");
+				
+				String cid = rs.getString("r_cid");
 				String id = "hmin0701";
-				String hotelname = rs.getString("r_hotelname");
+				String title = rs.getString("r_title");
+				String reviewname = rs.getString("r_reviewname");
 				double grade = rs.getDouble("r_grade");
 				String text = rs.getString("r_text");
 				String img = rs.getString("r_img");
 				String date = rs.getString("r_date");
-				
-				r= new Review(no ,cid, id, hotelname, grade, text, img, date);
 						
-						
-				System.out.println(hotelname);
+				System.out.println(cid);
 				System.out.println(date);
 				
-
+				r = new Review(no, cid, id, title, reviewname, grade, text, img, null);
+				reviews.add(r);
+				
 			}
-			request.setAttribute("r", reviews);
+			request.setAttribute("review", reviews);
 			System.out.println("조회완료");
 
 		} catch (Exception e) {

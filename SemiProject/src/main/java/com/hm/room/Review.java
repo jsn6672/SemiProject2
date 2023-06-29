@@ -1,31 +1,34 @@
 package com.hm.room;
 
+import java.util.Date;
+
 public class Review {
-	private int r_no;
+	private int r_no;		//리뷰 자체의 No
 	private String r_cid;
 	private String l_id;
-	private String r_hotelname;
+	private String r_title;
+	private String r_reviewname;
 	private double r_grade;
 	private String r_text;
 	private String r_img;
-	private String r_date;
+	private Date r_date;
 
 	public Review() {
 
 	}
 
-	public Review(int r_no, String r_cid, String l_id, String r_hotelname, double r_grade, String r_text, String r_img,
-			String r_date) {
+	public Review(int r_no, String r_cid, String l_id, String r_title, String r_reviewname, double r_grade,
+			String r_text, String r_img, Date r_date) {
 		super();
 		this.r_no = r_no;
 		this.r_cid = r_cid;
 		this.l_id = l_id;
-		this.r_hotelname = r_hotelname;
+		this.r_title = r_title;
+		this.r_reviewname = r_reviewname;
 		this.r_grade = r_grade;
 		this.r_text = r_text;
 		this.r_img = r_img;
 		this.r_date = r_date;
-
 	}
 
 	public int getR_no() {
@@ -52,12 +55,20 @@ public class Review {
 		this.l_id = l_id;
 	}
 
-	public String getR_hotelname() {
-		return r_hotelname;
+	public String getR_title() {
+		return r_title;
 	}
 
-	public void setR_hotelname(String r_hotelname) {
-		this.r_hotelname = r_hotelname;
+	public void setR_title(String r_title) {
+		this.r_title = r_title;
+	}
+
+	public String getR_reviewname() {
+		return r_reviewname;
+	}
+
+	public void setR_reviewname(String r_reviewname) {
+		this.r_reviewname = r_reviewname;
 	}
 
 	public double getR_grade() {
@@ -84,12 +95,13 @@ public class Review {
 		this.r_img = r_img;
 	}
 
-	public String getR_date() {
+	public Date getR_date() {
 		return r_date;
 	}
 
-	public void setR_date(String r_date) {
+	public void setR_date(Date r_date) {
 		this.r_date = r_date;
 	}
 
+	
 }

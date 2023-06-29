@@ -14,6 +14,7 @@ public class roomAllsearchC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		DAOroom.getAllRoom(request);
+		DAOreview.getAllReview(request);
 		DAOroom.roomPaging(1, request);
 		request.setAttribute("contentPage", "jsp/hotelmain.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
