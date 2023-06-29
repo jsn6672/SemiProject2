@@ -10,14 +10,68 @@
 	-webkit-backdrop-filter: blur(4px);
 }
 
+.toolbar_nav {
+	display: inline-block;
+	position: relative;
+	margin-right: 5%;
+	
+}
+.toolbar_nav hr {
+	 height:5px;
+ width:1px;
+ border-width:0;
+ color:white;
+ background-color:#000;
+}
+
+.toolbar_nav li {
+	text-decoration: none;
+	float: left;
+	padding: 0 70px;
+	line-height: 80px;
+	font-size: 20px;
+	list-style-type: none;
+	width: 230px;
+	height :70px;
+	text-align: center;
+}
+.toolbar_nav li:hover {
+	transition: all 0.2s ease-out;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+.toolbar_nav li a{
+	color: white;
+	text-decoration: none;
+}
+
 .toolbar-info {
 	display: flex;
 	justify-content: flex-end;
 	padding-right: 20px;
 }
-.login_btn{
+
+.quick_btn {
 	display: block;
-	width: 75px;
+	width: 60px;
+	height: 40px;
+	text-decoration: none;
+	text-align: center;
+	line-height: 40px;
+	color: white;
+	background: #166cea;
+	border-radius: 50px;
+	top: 0;
+	font-size: 15px;
+	margin-top: 15px;
+	margin-right: 10px;
+}
+.quick_btn:hover{
+	transform: scale(1.1);
+	transition: all 0.1s ease-out;
+}
+.login_btn {
+	display: block;
+	width: 60px;
 	height: 40px;
 	text-decoration: none;
 	text-align: center;
@@ -29,7 +83,11 @@
 	font-size: 15px;
 	margin-top: 15px;
 }
-.logout_btn{
+.login_btn:hover{
+	transform: scale(1.1);
+	transition: all 0.1s ease-out;
+}
+.logout_btn {
 	display: block;
 	width: 75px;
 	height: 40px;
@@ -44,7 +102,10 @@
 	font-size: 15px;
 	margin-top: 15px;
 }
-
+.logout_btn:hover{
+	transform: scale(1.1);
+	transition: all 0.1s ease-out;
+}
 .time {
 	color: white;
 	text-align: center;
@@ -67,10 +128,12 @@
 	padding-top: 15px;
 	padding-right: 10px;
 }
-/* 困连酒捞能 */img{
+/* 困连酒捞能 */
+img {
 	width: 80px;
 	height: 80px;
 }
+
 .arrow {
 	background-color: transparent;
 }
@@ -83,11 +146,13 @@
 	z-index: 5;
 	background-color: transparent;
 }
-#button1{
+
+#button1 {
 	width: 80px;
 	height: 80px;
 }
-#button2{
+
+#button2 {
 	width: 80px;
 	height: 80px;
 }

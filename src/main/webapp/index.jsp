@@ -16,13 +16,22 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<div class="toolbar">
 		<div class="toolbar-info">
+			<ul class="toolbar_nav">
+				<li><a href="#">메인</a></li>
+				<li><a href="#">여행</a></li>
+				<li><a href="#">숙소</a></li>
+				<li><a href="#">음식</a></li>
+				<li><a href="#">렌트카</a></li>
+				<li><a href="#">전통술</a></li>
+				<li><a href="#">돌하르방</a></li>
+			</ul>
 			<div class="time"></div>
 			<div class="icon"></div>
 			<div class="temp"></div>
 			<!-- 퀵버튼 -->
-			<br>
 			<jsp:include page="${loginPage }"></jsp:include>
 			<!-- 로그인버튼 -->
 		</div>

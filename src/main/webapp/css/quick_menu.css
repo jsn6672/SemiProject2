@@ -57,17 +57,3 @@
   margin-top : 5px;
   margin-left: 5px;
 }
-.quick_btn{
-	display: block;
-	width: 75px;
-	height: 40px;
-	text-decoration: none;
-	text-align: center;
-	line-height: 40px;
-	color: white;
-	background:#166cea;
-	border-radius: 50px;
-	top: 0;
-	font-size: 15px;
-	margin-top: 15px;
-}
