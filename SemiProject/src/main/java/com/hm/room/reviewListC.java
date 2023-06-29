@@ -13,8 +13,6 @@ public class reviewListC extends HttpServlet {
 	
 	DAOreview.getAllReview(request);
 	DAOroom.getAllRoom(request);
-	
-	
 	request.setAttribute("contentPage", "jsp/hotelmain.jsp");
 	request.getRequestDispatcher("index.jsp").forward(request, response);
 	

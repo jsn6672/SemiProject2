@@ -19,6 +19,7 @@ public class reviewRegC extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		DAOreview.regReview(request);
+		DAOreview.getAllReview(request);
 		DAOroom.getAllRoom(request);
 		request.setAttribute("contentPage", "jsp/hotelmain.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);

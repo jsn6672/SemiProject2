@@ -1,10 +1,7 @@
+let place = document.getElementById('place')?.value;
 var map;
 var marker; // 추가: 이전 마커를 저장하기 위한 변수
 var customOverlay;//오버레이 기능
-
-
-
-let place = document.getElementById('place')?.value;
 
 function moveToLocationByAddress(roadaddress, title, introduction, imgpath, tag) {
 	// 주소-좌표 변환 객체를 생성합니다
@@ -43,8 +40,7 @@ function moveToLocationByAddress(roadaddress, title, introduction, imgpath, tag)
 				'          <div class="roadaddress">' + roadaddress + '</div>' +
 				'          <div class="introduction">' + introduction + '</div>' +
 				'          <div class="tag">' + tag + '</div>' +
-				'            </div>' +
-				'        </div>' +
+				'   </div>' +
 				'    </div>' +
 				'</div>';
 
@@ -107,4 +103,10 @@ geocoder.addressSearch(place, function(result, status) {
 	map.setMaxLevel(10);
 	map.setMinLevel(3);
 });
+
+
+
+
+
+
 

@@ -19,15 +19,16 @@ public class DBManager2 {
 		// 닫을게 많은데 한번에 닫기 
 		public static void close(Connection con, PreparedStatement pstmt, ResultSet rs) {
 			try {
+
 				if (rs != null) {
+					
 					rs.close();
-				} 
-				if (pstmt != null) {
-					pstmt.close();
 				}
-				
+				pstmt.close();
 				con.close();
+				
 			} catch (Exception e) {
+
 				e.printStackTrace();
 			}
 		}

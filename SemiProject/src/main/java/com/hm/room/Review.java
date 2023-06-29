@@ -2,27 +2,30 @@ package com.hm.room;
 
 public class Review {
 	private int r_no;
-	private String r_username;
-	private String r_content;
-	private String r_contentname;
-	private double r_starpoint;
-	private String r_review;
+	private String r_cid;
+	private String l_id;
+	private String r_hotelname;
+	private double r_grade;
+	private String r_text;
 	private String r_img;
+	private String r_date;
 
 	public Review() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-	public Review(int r_no, String r_username, String r_content, String r_contentname, double r_starpoint,
-			String r_review, String r_img) {
+	public Review(int r_no, String r_cid, String l_id, String r_hotelname, double r_grade, String r_text, String r_img,
+			String r_date) {
 		super();
 		this.r_no = r_no;
-		this.r_username = r_username;
-		this.r_content = r_content;
-		this.r_contentname = r_contentname;
-		this.r_starpoint = r_starpoint;
-		this.r_review = r_review;
+		this.r_cid = r_cid;
+		this.l_id = l_id;
+		this.r_hotelname = r_hotelname;
+		this.r_grade = r_grade;
+		this.r_text = r_text;
 		this.r_img = r_img;
+		this.r_date = r_date;
+
 	}
 
 	public int getR_no() {
@@ -33,44 +36,44 @@ public class Review {
 		this.r_no = r_no;
 	}
 
-	public String getR_username() {
-		return r_username;
+	public String getR_cid() {
+		return r_cid;
 	}
 
-	public void setR_username(String r_username) {
-		this.r_username = r_username;
+	public void setR_cid(String r_cid) {
+		this.r_cid = r_cid;
 	}
 
-	public String getR_content() {
-		return r_content;
+	public String getL_id() {
+		return l_id;
 	}
 
-	public void setR_content(String r_content) {
-		this.r_content = r_content;
+	public void setL_id(String l_id) {
+		this.l_id = l_id;
 	}
 
-	public String getR_contentname() {
-		return r_contentname;
+	public String getR_hotelname() {
+		return r_hotelname;
 	}
 
-	public void setR_contentname(String r_contentname) {
-		this.r_contentname = r_contentname;
+	public void setR_hotelname(String r_hotelname) {
+		this.r_hotelname = r_hotelname;
 	}
 
-	public double getR_starpoint() {
-		return r_starpoint;
+	public double getR_grade() {
+		return r_grade;
 	}
 
-	public void setR_starpoint(double r_starpoint) {
-		this.r_starpoint = r_starpoint;
+	public void setR_grade(double r_grade) {
+		this.r_grade = r_grade;
 	}
 
-	public String getR_review() {
-		return r_review;
+	public String getR_text() {
+		return r_text;
 	}
 
-	public void setR_review(String r_review) {
-		this.r_review = r_review;
+	public void setR_text(String r_text) {
+		this.r_text = r_text;
 	}
 
 	public String getR_img() {
@@ -80,8 +83,13 @@ public class Review {
 	public void setR_img(String r_img) {
 		this.r_img = r_img;
 	}
-	
-}	
-	
 
+	public String getR_date() {
+		return r_date;
+	}
 
+	public void setR_date(String r_date) {
+		this.r_date = r_date;
+	}
+
+}

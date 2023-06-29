@@ -1,6 +1,7 @@
 package com.hm.room;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,13 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 public class roomAllsearchC extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		DAOroom.getAllRoom(request);
 		DAOroom.roomPaging(1, request);
 		request.setAttribute("contentPage", "jsp/hotelmain.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 	}
 
 }

@@ -8,24 +8,16 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/hm.css">
 
+
 </head>
 <body>
 
 	<table style="display: flex">
+		
 		<tr>
 			<td><a href="roomAllsearchC">숙박</a></td>
 		</tr>
-		<tr>
-			<td>
-			<form action="roomAllsearchC" method="get">
-			<select class="languageselect" name="langauage"> 
-			 <option value="kr"> korean </option>
-			 <option value="jp"> japan </option>
-			</select>
-			<button> 변경 </button>
-			</form>
-			</td>
-		</tr>
+
 	</table>
 
 	<table id="site">
@@ -33,6 +25,8 @@
 			<td><jsp:include page="${contentPage }"></jsp:include></td>
 		</tr>
 	</table>
-
+	
+	
+<script type="text/javascript" src="js/reviewfunction.js"></script>
 </body>
 </html>
