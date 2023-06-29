@@ -4,7 +4,7 @@
 	position : absolute;
 	margin-top : 5%;
 	width: 230px;
-	height: 330px;
+	height: 350px;
 	border-radius: 20px;
 	text-align: center;
 	padding: 20px;
@@ -32,12 +32,30 @@
 	z-index: 150;
 }
 .quick-area{
-	display : grid;
-	justify-content : space-around;
+	 display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  grid-gap: 10px;
+}
+.quick_icon{
+	display: flex;
+	flex-direction: column;
+  	align-items: center;
+  	justify-content: space-around;
+  	border-radius: 15px;
 }
 .quick_icon img{
 	width: 50px;
 	height: 50px;
+	
+}
+.quick_icon:hover {
+  background-color: #ececec;
+}
+.quick_icon span {
+	font-size : 15px;
+  margin-top : 5px;
+  margin-left: 5px;
 }
 .quick_btn{
 	display: block;
@@ -46,9 +64,8 @@
 	text-decoration: none;
 	text-align: center;
 	line-height: 40px;
-	border: 1px solid grey;
 	color: white;
-	background: #166cea;
+	background:#166cea;
 	border-radius: 50px;
 	top: 0;
 	font-size: 15px;

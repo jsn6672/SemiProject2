@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="css/toolbar.css">
 <link rel="stylesheet" href="css/quick_menu.css">
 <script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript" src="js/Quick_menu.js"></script>
 
 <meta charset="utf-8">
 <title>Insert title here</title>
@@ -29,7 +30,7 @@
 	<div class="page1_main">
 		<section class='section' id='section2'></section>
 		<!-- 로그인창 -->
-		<div class="popup" id="signup" onclick="closePopup(event)">
+		<div class="popup" id="signup">
 			<div class="sign_up">
 				<h1 class="signup_header">안녕, 육지사람 :-)</h1>
 				<br>
@@ -59,25 +60,28 @@
 
 		<!-- 퀵메뉴 -->
 		<div class="quick_menu" id="quick">
-			<a href="#a">x</a>
-			<h2>quick menu</h2>
+			<h2>Quick Menu</h2>
 			<br>
-			<form action="">
-				<div class="quick-area">
-					<div class="quick_icon">
-						<img src="css/img/rentcar.png"> &nbsp;&nbsp; <img
-							src="css/img/hostel.png">
-					</div>
-					<div class="quick_icon">
-						<img src="css/img/gyul.png"> &nbsp;&nbsp; <img
-							src="css/img/beach.png">
-					</div>
-					<div class="quick_icon">
-						<img src="css/img/sul.png"> &nbsp;&nbsp; <img
-							src="css/img/grandfa.png">
-					</div>
+			<div class="quick-area" id="quick-popup">
+				<div class="quick_icon">
+					<img class="quick_icon_img" src="css/img/rentcar.png"> <span>렌트카</span>
 				</div>
-			</form>
+				<div class="quick_icon">
+					<img class="quick_icon_img" src="css/img/hostel.png"> <span>숙박</span>
+				</div>
+				<div class="quick_icon">
+					<img class="quick_icon_img" src="css/img/gyul.png"> <span>음식</span>
+				</div>
+				<div class="quick_icon">
+					<img class="quick_icon_img" src="css/img/beach.png"> <span>여행</span>
+				</div>
+				<div class="quick_icon">
+					<img class="quick_icon_img" src="css/img/sul.png"> <span>전통주</span>
+				</div>
+				<div class="quick_icon">
+					<img class="quick_icon_img" src="css/img/grandfa.png"> <span>돌하르방</span>
+				</div>
+			</div>
 		</div>
 
 
@@ -195,10 +199,16 @@
     });
 </script>
 
-  <!-- 로그인실패 알람 표시 --> 
-    <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
-    <% if (errorMessage != null) { %>
-        <script>
-            alert("<%= errorMessage %>");
+<!-- 로그인실패 알람 표시 -->
+<%
+String errorMessage = (String) request.getAttribute("errorMessage");
+%>
+<%
+if (errorMessage != null) {
+%>
+<script>
+            alert("<%=errorMessage%>");
         </script>
-    <% } %>
+<%
+}
+%>
