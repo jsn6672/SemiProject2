@@ -40,7 +40,15 @@
     max-width: 600px; /* 모달 창의 최대 너비 지정 */
   }
   
-  
+/* 리뷰 위치 잡기 */
+.review-div-wrap{
+	display:none;
+/*     position: absolute; */
+/*     top: 350px; */
+/*     left:500px; */
+/*     width: 50%; */
+}
+
 /* 모달 작성*/
 .sj-review-write {
     display: none; /* 기본적으로 모달은 숨겨진 상태 */

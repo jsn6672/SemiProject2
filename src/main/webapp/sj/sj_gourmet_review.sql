@@ -12,7 +12,7 @@ create table sj_gourmet_review (
 
 create sequence gm_no_seq;
 
-insert into sj_gourmet_review values (gm_no_seq.nextval, 'CONT_000000000500349', 1, 10, 0708, SYSDATE, 'testmenu', '���־��.', 'test_picture');
+insert into sj_gourmet_review values (gm_no_seq.nextval, 'CONT_000000000500349', 1, 0708, 10, SYSDATE, 'testmenu', '���־��.', 'test_picture');
 
 select * from sj_gourmet_review;
 

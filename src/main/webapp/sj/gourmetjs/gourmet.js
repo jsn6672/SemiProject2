@@ -2,7 +2,7 @@ function mapMake(place, name, img) {
 	var mapContainer = document.getElementById('map');
 	var mapOption = {
 		center: new kakao.maps.LatLng(33.450701, 126.570667),
-		level: 3
+		level: 9
 	};
 	var map = new kakao.maps.Map(mapContainer, mapOption);
 
@@ -32,38 +32,74 @@ function mapMake(place, name, img) {
 	});
 }
 
+window.onload = function() {
+	mapMake('${g.addr}', '${g.name}', '${g.img}');
+};
+
 
 
 
 /*리뷰 모달창*/
- function sjOpenReview() {
-    var modal = document.getElementById("sjReview");
-    modal.style.display = "block"; // 모달 창을 보이도록 설정
-  }
+function sjOpenReview(g_id) {
+	console.log(g_id)
+	var modal = document.getElementById("sjReview");
+	let ids = document.getElementById("g_id_s");
+	ids.value = g_id;
 
-  function sjCloseReview() {
-    var modal = document.getElementById("sjReview");
-    modal.style.display = "none"; // 모달 창을 숨김
-  }
+	modal.style.display = "block"; // 모달 창을 보이도록 설정
+}
+
+
+
+
+function sjCloseReview() {
+	var modal = document.getElementById("sjReview");
+	modal.style.display = "none"; // 모달 창을 숨김
+}
+
+
+
+let reviewBtns = document.querySelectorAll('.review-btn');
+reviewBtns.forEach((reviewBtn) => {
+	reviewBtn.addEventListener("click", function(e) {
+		let reviewWrap = e.target.parentNode.nextElementSibling;
+		console.log(reviewWrap.style.display);
+		if (reviewWrap.style.display == "none" || reviewWrap.style.display == "") {
+			reviewWrap.style.display = "block";
+		}else{
+			reviewWrap.style.display = "none";
+		}
+
+	});
+});
+
+
+
+
+
+
+
 
 /*리뷰 작성 모달창*/
- function sjOpenReviewWrite() {
-    var modal = document.getElementById("sjReviewWrite");
-    modal.style.display = "block"; // 모달 창을 보이도록 설정
-  }
+function sjOpenReviewWrite(g_id) {
 
-  function sjCloseReviewWrite() {
-    var modal = document.getElementById("sjReviewWrite");
-    modal.style.display = "none"; // 모달 창을 숨김
-  }
+	var modal = document.getElementById("sjReviewWrite");
+	let ids2 = document.querySelector("input[name='g_id_s']");
+	ids2.value = g_id;
+	modal.style.display = "block"; // 모달 창을 보이도록 설정
+}
 
-
-
-
-
+function sjCloseReviewWrite() {
+	var modal = document.getElementById("sjReviewWrite");
+	modal.style.display = "none"; // 모달 창을 숨김
+}
 
 
 
 
 
-f
+
+
+
+
+

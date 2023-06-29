@@ -23,11 +23,7 @@
 	</form>
 	<hr>
 	<div style="display: flex;">
-		<div>
-			<jsp:include page="${contentPage }"></jsp:include></div>
-		<div>
-			<jsp:include page="${mapPage }"></jsp:include></div>
-
+		<div><jsp:include page="${contentPage }"></jsp:include></div>
 	</div>
 
 
