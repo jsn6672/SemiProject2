@@ -14,34 +14,45 @@
 </head>
 
 <body>
-	<div>
-		<div class="container_hm">
-			<input type="hidden" name="page">
-			<div class="left-side">
-				<div class="hotel_search">
-					<form action="roomSearchC">
-						<input name="hotelsearch" type="text">
-						<button>검색</button>
-					</form>
-				</div>
-				<div class="hotel_list">
-					<br>
-					<c:choose>
-						<c:when test="${empty hotels }">
-							<span>검색결과가 없습니다.</span>
-						</c:when>
-						<c:otherwise>
+	<div class="container_hm">
+		<input type="hidden" name="page">
 
-							<c:forEach items="${hotels }" var="h">
-								<div class="hotel_content" data-roadaddress="${h.r_roadaddress}"
-									data-title="${h.r_title}"
-									data-introduction="${h.r_introduction}"
-									data-imgpath="${h.r_imgpath}" data-tag="${h.r_tag}"
-									onclick="moveToLocationByAddress(this.dataset.roadaddress, this.dataset.title, this.dataset.introduction, this.dataset.imgpath, this.dataset.tag)">
-									<div class="hotel_img">
-										<img src="${h.r_imgpath }" alt="…">
-									</div>
+		<div class="left-side">
+			<div class="hotel_search">
+				<form action="roomSearchC">
+					<input name="hotelsearch" type="text">
+					<button>검색</button>
+				</form>
+			</div>
+			<div class="hotel_list">
+				<!-- 
+	  	 <div>
+		<form action="ACDcontroller">
+			<button>데이터 전환</button>
+		</form>
+	</div>
+	 <div>
+		<form action="ACDcontroller2">
+			<button>데이터 전환</button>
+		</form>
+	</div>-->
+				<br>
+				<c:choose>
+					<c:when test="${empty hotels }">
+						<span>검색결과가 없습니다.</span>
+					</c:when>
+					<c:otherwise>
 
+<<<<<<< HEAD
+						<c:forEach items="${hotels }" var="h">
+							<div class="hotel_content" data-roadaddress="${h.r_roadaddress}"
+								data-title="${h.r_title}"
+								data-introduction="${h.r_introduction}"
+								data-imgpath="${h.r_imgpath}" data-tag="${h.r_tag}"
+								onclick="moveToLocationByAddress(this.dataset.roadaddress, this.dataset.title, this.dataset.introduction, this.dataset.imgpath, this.dataset.tag)">
+								<div class="hotel_img">
+									<img src="${h.r_imgpath }" alt="…">
+=======
 									<div class="hotel_info">
 										<div class="hotel_title">${h.r_title }</div>
 										<div class="hotel_information">
@@ -50,76 +61,134 @@
 										</div>
 										<input type="hidden" name="hm_r_cid" value="${h.r_cid }">
 										<input type="hidden" name="hm_r_title" value="${h.r_title }">
-									</div>
-									<div class="buttons">
 										<button
-											onclick="hmOpenReviewWrite('${h.r_cid }','${h.r_title }')">리뷰
+											onclick="hmOpenReviewWrite('${h.r_cid }', '${h.r_title }')">리뷰
 											작성</button>
-										<form action="reviewlistC">
-											<button name="titleSearch" value="${h.r_title }">리뷰
-												보러가기</button>
-										</form>
+
 									</div>
+>>>>>>> parent of 20fe961 (delete method complete)
 								</div>
-								<br>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-					${curPageNo }
-					<div class="paging">
-						<a href="roomPageC?p=1>">[◀◀]</a>
-						<c:forEach begin="1" end="${pageCount }" var="i">
-							<a href="roomPageC?p=${i }">[${i }]</a>
+
+								<div class="hotel_info">
+									<div class="hotel_title">${h.r_title }</div>
+									<div class="hotel_information">
+										<p>연락처 : ${h.r_phoneno }</p>
+										<p>주소 : ${h.r_address }</p>
+									</div>
+									<button
+										onclick="hmOpenReviewWrite('${h.r_cid }', '${h.r_title }')">리뷰
+										작성</button>
+									<input type="hidden" name="hm_pk" value="${h.r_cid }">
+
+								</div>
+							</div>
+							<br>
 						</c:forEach>
-						<a href="roomPageC?p=${pageCount }">[▶▶]</a>
-					</div>
+					</c:otherwise>
+				</c:choose>
+				${curPageNo }
+				<div class="paging">
+					<a href="roomPageC?p=1>">[◀◀]</a>
+					<c:forEach begin="1" end="${pageCount }" var="i">
+						<a href="roomPageC?p=${i }">[${i }]</a>
+					</c:forEach>
+					<a href="roomPageC?p=${pageCount }">[▶▶]</a>
 				</div>
+			</div>
+		</div>
+		<hr>
+
+		<div class="right_side">
+			<input type="hidden" id="place" value="${param.place }">
+			<div id="hm_map"></div>
+
+			<div class="review_list">
+				<table class="column">
+					<tr>
+						<td>번호</td>
+						<td>이름</td>
+						<td>제목</td>
+						<td>별점</td>
+					</tr>
+				
+				</table>
+			</div>
+		</div>
+		<!-- 리뷰 작성 모달 창 -->
+		<div id="hmReviewWrite" class="hm-review-write">
+			<div class="hm-review-content-write">
+				<span onclick="hmCloseReviewWrite()" class="hm-close">&times;</span>
+				<h2>리뷰를 작성해주세요!</h2>
+				<form action="reviewRegC" method="post"
+					enctype="multipart/form-data">
+					<div>
+						<div>
+							<input hidden="" name="hm_r_pk" value=""> <input
+								hidden="" name="hm_r_title">
+							<div>
+								평점 <select id="hm-reviewGrade" name="hm_reviewGrade">
+									<option value="1">★</option>
+									<option value="2">★★</option>
+									<option value="3">★★★</option>
+									<option value="4">★★★★</option>
+									<option value="5">★★★★★</option>
+								</select>
+							</div>
+						</div>
+						<div>
+							<div>내용</div>
+							<div>
+								<textarea name="hm_r_text" rows="10" cols="70"></textarea>
+							</div>
+						</div>
+
+						<div>
+							<div>
+								사진 <input name="hm_r_pic" type="file">
+							</div>
+						</div>
+						<div></div>
+						<button>리뷰 등록하기</button>
+					</div>
+				</form>
 
 			</div>
+<<<<<<< HEAD
+		</div>
+	</div>
+	
+=======
 			<hr>
 
 			<div class="right_side">
 				<input type="hidden" id="place" value="${param.place }">
 				<div id="hm_map"></div>
-				<div class="review_list">
-					<table class="column">
-						<c:forEach items="${reviews }" var="get">
-							<tbody>
-								<tr class="head">
-									<td class="imgfile"><img src="${get.r_img }" alt="…"></td>
-									<td>${get.r_reviewname }</td>
-								</tr>
-								<tr class="body">
-									<td>${get.r_text }</td>
-								</tr>
-								<tr class="footer">
-									<td>${get.r_title }</td>
-									<td>${get.r_date }</td>
-								</tr>
-							</tbody>
-							<tr>
-								<td>
-									<form action="reviewDeleteC" method="GET">
-										<input type="hidden" name="no" value="${get.r_cid }">
-										<input type="hidden" name="rno" value="${get.r_no }">
-										<button type="submit" name="deleteReview" value="${get.r_no }">삭제</button>
-									</form>
-								</td>
-							</tr>
 
+				<table class="column">
+					<thead>
+				</table>
 
-
-							<!-- 								<td> -->
-							<%-- 									<button onclick="reviewDeleteC?no=${get.r_cid }&rno=${get.r_no }" --%>
-							<%-- 									 name="deleteReview" value="${get.r_no }">삭제</button> --%>
-							<!-- 								</td> -->
-
-
+				<tr>
+					<th>글 번호</th>
+					<th>작성자</th>
+					<th>이름</th>
+					<th>제목</th>
+					<th>별점</th>
+					<th>작성 일</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<c:forEach items="${review" var="r">
+							<th>${r.r_cid }</th>
+							<th>${r.r_id }</th>
+							<th>${r.r_title }</th>
+							<th>${r.r_reviewname}</th>
+							<th>${r.r_grade }</th>
+							<th>${r.r_date }</th>
 						</c:forEach>
-					</table>
-				</div>
-
-
+					</tr>
+				</tbody>
 
 			</div>
 
@@ -166,12 +235,12 @@
 
 		</div>
 	</div>
-
+	</div>
+>>>>>>> parent of 20fe961 (delete method complete)
 
 
 	<script type="text/javascript" src="js/mark_map2.js"></script>
 	<script type="text/javascript" src="js/reviewfunction.js"></script>
-
 
 </body>
 </html>
