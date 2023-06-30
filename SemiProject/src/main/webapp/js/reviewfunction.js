@@ -4,8 +4,7 @@
     var modal = document.getElementById("hmReviewWrite");
    	let cid2 = document.querySelector("#modal_cid");
    	let title2 = document.querySelector("#modal_title");
-   	alert(cid2);
-   	alert(title2);
+
     cid2.value = cid;
     title2.value = title;
     

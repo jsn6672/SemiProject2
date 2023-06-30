@@ -2,12 +2,11 @@ create table hotelR_test(
 	r_no number(3) primary key,
 	r_cid varchar2(30 char) not null,
 	r_id varchar2(10 char) not null,
-	r_hotelname varchar2(20 char) not null,
 	r_title varchar2(20 char) not null,
+	r_reviewname varchar2(20 char) not null,
 	r_grade decimal(3, 1) not null,
 	r_text varchar2(400 char) not null,
 	r_img varchar2(300 char) 
-	
 );
 
 DROP TABLE hotelR_test cascade constraint purge;

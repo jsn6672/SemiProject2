@@ -22,7 +22,7 @@ public class DAOroom {
 	public static void getAllRoom(HttpServletRequest request) {
 
 	try {	
-			String url = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=x8uwubc8s4qzunfb&locale=kr&category=c3&page=";
+			String url = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=x8uwubc8s4qzunfb&locale=kr&category=c3";
 			URL u = new URL(url);
 			HttpsURLConnection huc = (HttpsURLConnection) u.openConnection();
 
@@ -56,12 +56,12 @@ public class DAOroom {
 				String imgpath = (String) b.get("imgpath");
 				String thumnailpath = (String) b.get("thumnailpath");
 				String tag = (String) roomObj.get("tag");
-				String pk = (String) roomObj.get("contentsid");
+				String cid = (String) roomObj.get("contentsid");
 
-				hotels.add(new Hotel(title, address, roadaddress, introduction, phoneno, imgpath, thumnailpath, tag, pk));
-
-			}
+				hotels.add(new Hotel(title, address, roadaddress, introduction, phoneno, imgpath, thumnailpath, tag, cid));
+			}	
 			request.setAttribute("hotels", hotels);
+			System.out.println("검색완료");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -229,7 +229,7 @@ public class DAOroom {
 	    request.setAttribute("hotels", items);
 	    request.setAttribute("startPage", startPage);
 	    request.setAttribute("endPage", endPage);
-		
+		System.out.println("테스트");
 		
 	} catch (Exception e) {
 

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -84,7 +85,6 @@ public class DAOreview {
 		ResultSet rs = null;
 		String sql = "select * from hotelR_test";
 
-	//	String cid = (String) request.getAttribute("r_cid");
 		try {
 			con = DBManager2.connect();
 			pstmt = con.prepareStatement(sql);
@@ -94,7 +94,6 @@ public class DAOreview {
 			reviews = new ArrayList<Review>();
 			while (rs.next()) {
 				int no = rs.getInt("r_no");
-				
 				String cid = rs.getString("r_cid");
 				String id = "hmin0701";
 				String title = rs.getString("r_title");
@@ -102,16 +101,21 @@ public class DAOreview {
 				double grade = rs.getDouble("r_grade");
 				String text = rs.getString("r_text");
 				String img = rs.getString("r_img");
-				String date = rs.getString("r_date");
-						
+				Date date = rs.getDate("r_date");
+
+				System.out.println(no);
 				System.out.println(cid);
+				System.out.println(id);
+				System.out.println(title);
+				System.out.println(reviewname);
+				System.out.println(text);
+				System.out.println(img);
 				System.out.println(date);
 				
-				r = new Review(no, cid, id, title, reviewname, grade, text, img, null);
+				r = new Review(no, cid, id, title, reviewname, grade, text, img, date);
 				reviews.add(r);
-				
 			}
-			request.setAttribute("review", reviews);
+			request.setAttribute("reviews", reviews);
 			System.out.println("조회완료");
 
 		} catch (Exception e) {
@@ -120,6 +124,85 @@ public class DAOreview {
 			DBManager2.close(con, pstmt, rs);
 		}
 
+	}
+
+	public static void getReview(HttpServletRequest request) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String search = request.getParameter("titleSearch");
+		System.out.println(search);
+		String sql = "select * from hotelR_test where r_title LIKE '%' || ? || '%'";
+
+		try {
+			
+			con = DBManager2.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + search + "%");
+			rs = pstmt.executeQuery();
+			Review r = null;
+
+			
+			 reviews = new ArrayList<Review>();
+		
+			while(rs.next()) {
+			int no = rs.getInt("r_no");
+			String cid = rs.getString("r_cid");
+			String id = "hmin0701";
+			String title = rs.getString("r_title");
+			String reviewname = rs.getString("r_reviewname");
+			double grade = rs.getDouble("r_grade");
+			String text = rs.getString("r_text");
+			String img = rs.getString("r_img");
+			Date date = rs.getDate("r_date");
+
+			System.out.println(no);
+			System.out.println(cid);
+			System.out.println(id);
+			System.out.println(title);
+			System.out.println(reviewname);
+			System.out.println(text);
+			System.out.println(img);
+			System.out.println(date);
+			
+			reviews.add(new Review(no, cid, id, title, reviewname, grade, text, img, date));
+			request.setAttribute("reviews", reviews);
+			}
+		} catch (Exception e) {
+
+		} finally {
+			DBManager2.close(con, pstmt, rs);
+		}
+		
+	}
+
+	public static void deleteReview(HttpServletRequest request) {
+
+		Connection con =null;
+		PreparedStatement pstmt = null;
+		String sql = "delete from hotelR_test where r_no = ?";
+		try {
+				con =DBManager2.connect();
+				pstmt = con.prepareStatement(sql);
+				
+				String no = request.getParameter("deleteReview");
+				pstmt.setString(1, no);
+				
+				if (pstmt.executeUpdate() == 1) {
+					System.out.println("삭제 성공!");
+				}
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			DBManager2.close(con, pstmt, null);
+		}
+		
+		
+		
 	}
 
 }

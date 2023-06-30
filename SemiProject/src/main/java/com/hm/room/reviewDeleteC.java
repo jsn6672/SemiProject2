@@ -6,23 +6,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-@WebServlet("/reviewRegC")
-public class reviewRegC extends HttpServlet {
-       
+@WebServlet("/reviewDeleteC")
+public class reviewDeleteC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	
-	}
-	
-	
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	DAOreview.regReview(request);
-	DAOreview.getReview(request);
+	DAOreview.deleteReview(request);
 	DAOroom.getAllRoom(request);
+	DAOreview.getReview(request);	
 	request.setAttribute("contentPage", "jsp/hotelmain.jsp");
 	request.getRequestDispatcher("index.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 
 }

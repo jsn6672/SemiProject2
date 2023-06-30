@@ -50,10 +50,15 @@
 										</div>
 										<input type="hidden" name="hm_r_cid" value="${h.r_cid }">
 										<input type="hidden" name="hm_r_title" value="${h.r_title }">
+									</div>
+									<div class="buttons">
 										<button
-											onclick="hmOpenReviewWrite('${h.r_cid }', '${h.r_title }')">리뷰
+											onclick="hmOpenReviewWrite('${h.r_cid }','${h.r_title }')">리뷰
 											작성</button>
-
+										<form action="reviewlistC">
+											<button name="titleSearch" value="${h.r_title }">리뷰
+												보러가기</button>
+										</form>
 									</div>
 								</div>
 								<br>
@@ -76,32 +81,45 @@
 			<div class="right_side">
 				<input type="hidden" id="place" value="${param.place }">
 				<div id="hm_map"></div>
+				<div class="review_list">
+					<table class="column">
+						<c:forEach items="${reviews }" var="get">
+							<tbody>
+								<tr class="head">
+									<td class="imgfile"><img src="${get.r_img }" alt="…"></td>
+									<td>${get.r_reviewname }</td>
+								</tr>
+								<tr class="body">
+									<td>${get.r_text }</td>
+								</tr>
+								<tr class="footer">
+									<td>${get.r_title }</td>
+									<td>${get.r_date }</td>
+								</tr>
+							</tbody>
+							<tr>
+								<td>
+									<form action="reviewDeleteC" method="GET">
+										<input type="hidden" name="no" value="${get.r_cid }">
+										<input type="hidden" name="rno" value="${get.r_no }">
+										<button type="submit" name="deleteReview" value="${get.r_no }">삭제</button>
+									</form>
+								</td>
+							</tr>
 
-				<table class="column">
-					<thead>
-				</table>
 
-				<tr>
-					<th>글 번호</th>
-					<th>작성자</th>
-					<th>이름</th>
-					<th>제목</th>
-					<th>별점</th>
-					<th>작성 일</th>
-				</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<c:forEach items="${review" var="r">
-							<th>${r.r_cid }</th>
-							<th>${r.r_id }</th>
-							<th>${r.r_title }</th>
-							<th>${r.r_reviewname}</th>
-							<th>${r.r_grade }</th>
-							<th>${r.r_date }</th>
+
+							<!-- 								<td> -->
+							<%-- 									<button onclick="reviewDeleteC?no=${get.r_cid }&rno=${get.r_no }" --%>
+							<%-- 									 name="deleteReview" value="${get.r_no }">삭제</button> --%>
+							<!-- 								</td> -->
+
+
 						</c:forEach>
-					</tr>
-				</tbody>
+					</table>
+				</div>
+
+
 
 			</div>
 
@@ -148,11 +166,12 @@
 
 		</div>
 	</div>
-	</div>
+
 
 
 	<script type="text/javascript" src="js/mark_map2.js"></script>
 	<script type="text/javascript" src="js/reviewfunction.js"></script>
+
 
 </body>
 </html>
