@@ -1,0 +1,88 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+	JSP
+	<!-- 리뷰 모달창 -->
+	<div id="sjReview" class="sj-review">
+		<div class="sj-review-content">
+			<span onclick="sjCloseReview()" class="sj-close">&times;</span>
+			<h2>Review</h2>
+			<button onclick="sjOpenReviewWrite()">Write</button>
+			<p>
+			<table>
+				<tr>
+					<td>이미지</td>
+				</tr>
+				<tr>
+					<td>제목</td>
+				</tr>
+				<tr>
+					<td>작성자</td>
+				</tr>
+				<tr>
+					<td>평점</td>
+				</tr>
+				<tr>
+					<td>내용</td>
+				</tr>
+				<tr>
+					<td><button onclick>Modify</button></td>
+					<td><button>Delete</button></td>
+				</tr>
+			</table>
+			</p>
+		</div>
+	</div>
+	<!-- 리뷰 모달창 끝 -->
+
+	<!-- 리뷰 작성 모달 창 -->
+	<div id="sjReviewWrite" class="sj-review-write">
+		<div class="sj-review-content-write">
+			<span onclick="sjCloseReviewWrite()" class="sj-close">&times;</span>
+			<h2>리뷰를 작성해주세요!</h2>
+			<p>
+			<table>
+				<tr>
+					<td>평점</td>
+					<td><select name=sj-reviewGrade>
+							<option>★</option>
+							<option>★★</option>
+							<option>★★★</option>
+							<option>★★★★</option>
+							<option>★★★★★</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>내용</td>
+					<td><textarea name="sj-r_text" rows="10" cols="70"></textarea></td>
+				</tr>
+				<tr>
+					<td>추천메뉴</td>
+					<td><textarea name="sj-r_text" rows="10" cols="70"></textarea></td>
+				</tr>
+				<tr>
+					<td>사진</td>
+					<td><input name="sj-r_pic" type="file"></td>
+				</tr>
+				<tr>
+					<td>비밀번호</td>
+					<td><input name="sj-r_pw"></td>
+				</tr>
+			</table>
+
+			</p>
+
+		</div>
+	</div>
+
+
+</body>
+<script type="text/javascript" src="js/reviewfunction.js"></script>
+</html>

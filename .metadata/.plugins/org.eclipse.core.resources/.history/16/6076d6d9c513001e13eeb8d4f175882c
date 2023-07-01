@@ -1,0 +1,16 @@
+package com.hm.jp;
+
+import javax.servlet.http.HttpServletRequest;
+
+public class DAOJroom {
+
+	public static void getAllroom(HttpServletRequest request) {
+		
+	}
+
+	public static void roomPaging(int i, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

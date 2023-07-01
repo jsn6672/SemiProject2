@@ -1,0 +1,27 @@
+@charset "UTF-8";
+/*리뷰 리스트 */
+.review_list {
+	margin-top: 15pt;
+	overflow-y: auto;
+}
+
+.column {
+	text-align: center;
+	width: 100%;
+	height: 100pt;
+	margin-top: 15pt;
+}
+.column tobdy{
+	display: flex;
+}
+
+.column tbody head{
+	display: inline-block;
+	}
+.column tbody body{
+}
+
+.column imgfile {
+	width: 500px;
+	height: 300px;
+}

@@ -1,0 +1,19 @@
+create table hotelR_test(
+	r_no number(3) primary key,
+	r_cid varchar2(30 char) not null,
+	r_username varchar2(10 char) not null,
+	r_pw varchar2(10 char) not null,
+	r_hotelname varchar2(20 char) not null,
+	r_grade decimal(3, 1) not null,
+	r_text varchar2(400 char) not null,
+	r_img varchar2(300 char) 
+);
+
+DROP TABLE hotelR_test cascade constraint purge;
+
+create sequence hotelR_test_seq;
+
+insert into hotelR_test values (hotelR_test_seq.nextval,'CNTS_000000000018706','phm','p0701','마빈','4.5','정말 죽여줘요','');	
+insert into hotelR_test values (hotelR_test_seq.nextval,'hm','숙박','베니키아','4','에흐흥','');	
+
+select * from hotelR_test;

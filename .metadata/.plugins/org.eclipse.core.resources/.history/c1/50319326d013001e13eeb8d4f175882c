@@ -1,0 +1,106 @@
+package com.hm.jp;
+
+public class Hotel_jp {
+	private String j_title;
+	private String j_address;
+	private String j_roadaddress;
+	private String j_introduction;
+	private String j_phoneno;
+	private String j_imgpath;
+	private String j_thumnailpath;
+	private String j_tag;
+	private String j_pk;
+	
+public Hotel_jp() {
+	// TODO Auto-generated constructor stub
+}
+
+public Hotel_jp(String j_title, String j_address, String j_roadaddress, String j_introduction, String j_phoneno,
+		String j_imgpath, String j_thumnailpath, String j_tag, String j_pk) {
+	super();
+	this.j_title = j_title;
+	this.j_address = j_address;
+	this.j_roadaddress = j_roadaddress;
+	this.j_introduction = j_introduction;
+	this.j_phoneno = j_phoneno;
+	this.j_imgpath = j_imgpath;
+	this.j_thumnailpath = j_thumnailpath;
+	this.j_tag = j_tag;
+	this.j_pk = j_pk;
+}
+
+public String getJ_title() {
+	return j_title;
+}
+
+public void setJ_title(String j_title) {
+	this.j_title = j_title;
+}
+
+public String getJ_address() {
+	return j_address;
+}
+
+public void setJ_address(String j_address) {
+	this.j_address = j_address;
+}
+
+public String getJ_roadaddress() {
+	return j_roadaddress;
+}
+
+public void setJ_roadaddress(String j_roadaddress) {
+	this.j_roadaddress = j_roadaddress;
+}
+
+public String getJ_introduction() {
+	return j_introduction;
+}
+
+public void setJ_introduction(String j_introduction) {
+	this.j_introduction = j_introduction;
+}
+
+public String getJ_phoneno() {
+	return j_phoneno;
+}
+
+public void setJ_phoneno(String j_phoneno) {
+	this.j_phoneno = j_phoneno;
+}
+
+public String getJ_imgpath() {
+	return j_imgpath;
+}
+
+public void setJ_imgpath(String j_imgpath) {
+	this.j_imgpath = j_imgpath;
+}
+
+public String getJ_thumnailpath() {
+	return j_thumnailpath;
+}
+
+public void setJ_thumnailpath(String j_thumnailpath) {
+	this.j_thumnailpath = j_thumnailpath;
+}
+
+public String getJ_tag() {
+	return j_tag;
+}
+
+public void setJ_tag(String j_tag) {
+	this.j_tag = j_tag;
+}
+
+public String getJ_pk() {
+	return j_pk;
+}
+
+public void setJ_pk(String j_pk) {
+	this.j_pk = j_pk;
+}
+
+
+
+}

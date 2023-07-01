@@ -1,0 +1,96 @@
+package com.hm.room;
+
+public class Review {
+	private int r_no;
+	private String r_cid;
+	private String l_username;
+	private String l_pw;
+	private String r_hotelname;
+	private double r_grade;
+	private String r_text;
+	private String r_img;
+	
+	public Review() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Review(int r_no, String r_cid, String l_username, String l_pw, String r_hotelname, double r_grade,
+			String r_text, String r_img) {
+		super();
+		this.r_no = r_no;
+		this.r_cid = r_cid;
+		this.l_username = l_username;
+		this.l_pw = l_pw;
+		this.r_hotelname = r_hotelname;
+		this.r_grade = r_grade;
+		this.r_text = r_text;
+		this.r_img = r_img;
+	}
+
+	public int getR_no() {
+		return r_no;
+	}
+
+	public void setR_no(int r_no) {
+		this.r_no = r_no;
+	}
+
+	public String getR_cid() {
+		return r_cid;
+	}
+
+	public void setR_cid(String r_cid) {
+		this.r_cid = r_cid;
+	}
+
+	public String getL_username() {
+		return l_username;
+	}
+
+	public void setL_username(String l_username) {
+		this.l_username = l_username;
+	}
+
+	public String getL_pw() {
+		return l_pw;
+	}
+
+	public void setL_pw(String l_pw) {
+		this.l_pw = l_pw;
+	}
+
+	public String getR_hotelname() {
+		return r_hotelname;
+	}
+
+	public void setR_hotelname(String r_hotelname) {
+		this.r_hotelname = r_hotelname;
+	}
+
+	public double getR_grade() {
+		return r_grade;
+	}
+
+	public void setR_grade(double r_grade) {
+		this.r_grade = r_grade;
+	}
+
+	public String getR_text() {
+		return r_text;
+	}
+
+	public void setR_text(String r_text) {
+		this.r_text = r_text;
+	}
+
+	public String getR_img() {
+		return r_img;
+	}
+
+	public void setR_img(String r_img) {
+		this.r_img = r_img;
+	}
+	
+	
+	
+}

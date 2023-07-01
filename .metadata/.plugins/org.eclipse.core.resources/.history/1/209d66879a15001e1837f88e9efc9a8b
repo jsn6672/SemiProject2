@@ -1,0 +1,14 @@
+package com.hm.room;
+
+public class Review {
+	private int r_no;
+	private String r_cid;
+	private String l_id;
+	private String r_hotelname;
+	private double r_grade;
+	private String r_text;
+	private String r_img;
+	
+	public Review() {
+		// TODO Auto-generated constructor stub
+	}

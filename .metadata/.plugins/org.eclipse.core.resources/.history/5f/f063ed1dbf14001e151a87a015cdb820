@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+
+
+/* 숙박 업소 검색 기능*/ 
+.hotel_search{
+ 	width: 600px;
+ 	height: 100px;
+}
+ 
+.hotel_search input{
+	width : 300pt;
+	height: 30px;
+}
+.hotel_search button{
+		height: 30px;
+		width: 60pt;
+}
+
+.container_hm{
+	display: flex;
+	margin: 50pt;
+	text-align: center;
+}
+
+.hotel_list{
+	display: content;
+	margin: 80pt;
+	margin-top: 0pt;
+	margin-bottom: 0pt;
+ 	overflow:auto;   
+	
+}
+
+.hotel_content {
+	display: flex;
+	border: 1px solid black;
+	width: 600px; 
+	height: 170px;
+}
+
+
+.hotel_img {
+	border: 1px solid black;
+	width: 250px;
+	height: 170px;
+	
+}
+
+.hotel_img img {
+	width: 100%;
+	height: 100%;
+}
+
+.hotel_info{
+	margin : 15pt;
+	width: 350px;
+	}
+
+.right_side{
+	margin: 50pt;
+	margin-top: 0;
+}
+
+#hm_map {
+	width: 1300px;
+	height: 900px;
+}
+
+
+/* 리뷰 페이지 */
+
+.reviewbox{
+	font-size: 15pt;
+	margin-top: 10pt;
+}
+
+.review_text{
+	width: 80%;
+	height: 100px;
+	font-size: 15pt;
+	margin-top: 20pt;
+}
+
+.reg{
+	margin-top: 10pt;
+}
+
+.reg button{
+	width: 200pt;
+	height: 30pt;
+}
+
+.review_list{
+	border: 1px solid black;
+	display: flex;
+}
+
+.review_list span{
+	border: 1px solid black;
+}
+
+

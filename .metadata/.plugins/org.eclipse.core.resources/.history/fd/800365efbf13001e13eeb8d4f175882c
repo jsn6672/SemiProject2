@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+
+.wrap{
+	background-color: white;
+	border: 1px solid black;
+	width: 400px;
+	height: 600px;
+}
+.title{
+	font-size: 25pt;
+	margin: 5pt;
+}
+
+.body img{
+	 width: 380px;
+	 height: 300px;
+}
+
+.desc{
+	margin:5pt;
+	margin-left: 20pt;
+	text-align: left;
+	white-space: pre-line;
+}
+
+.desc span {
+	margin-top:5px;
+	font-size: 13pt; 
+}

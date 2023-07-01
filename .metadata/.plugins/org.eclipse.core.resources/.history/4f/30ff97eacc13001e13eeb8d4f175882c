@@ -1,0 +1,55 @@
+package com.hm.jp;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ArrayList;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.servlet.http.HttpServletRequest;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import com.hm.room.Hotel;
+
+public class DAOJroom {
+
+	public static void getAllroom(HttpServletRequest request) {
+		
+		
+		String url= "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=x8uwubc8s4qzunfb&locale=kr&category=c3&page=";
+		
+		URL u = new URL(url);
+		HttpsURLConnection huc = (HttpsURLConnection) u.openConnection();
+		
+
+		InputStream is = huc.getInputStream();
+		InputStreamReader isr = new InputStreamReader(is, "utf-8");
+		
+		// jSON 데이터 받은거 파싱하게 jSONparser 객체가 필요
+		JSONParser jp = new JSONParser();
+				
+		JSONObject room = (JSONObject) jp.parse(isr);
+		
+		JSONArray items = (JSONObject) jp.parse(isr);
+
+		
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+		
+	}
+
+	public static void roomPaging(int i, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

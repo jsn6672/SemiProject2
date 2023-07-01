@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/*리뷰 리스트 */
+.review_list {
+	margin-top: 15pt;
+}
+
+.column tr {
+	text-align: center;
+	border: 1px solid #dddddd;
+	width: 100%;
+	margin-top: 15pt;
+}
+
+.column thead {
+	text-align: center;
+	height: 40pt;
+	background-color: #fafafa;
+}
+
+column tr td{
+	background-color: yellow;
+}
+
+.column td {
+	background-color: #fafafa;
+}
+
+.column tbody {
+	text-align: center;
+	height: 300pt;
+}

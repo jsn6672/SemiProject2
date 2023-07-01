@@ -1,0 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/hm.css">
+
+
+</head>
+<body>
+
+	<table>
+		<tr>
+			<td><a href="roomAllsearchC">숙박</a></td>
+		</tr>
+		<button
+		onclick="location.href='DrinkDetailC?no=${drink_detail.t_no}&language=1&listp=${curListPageNo }'">번역</button>
+	<button onclick="location.href='JsnHC'">뒤돌</button>
+		
+	</table>
+
+	<table id="site">
+		<tr>
+			<td><jsp:include page="${contentPage }"></jsp:include></td>
+		</tr>
+	</table>
+
+</body>
+</html>

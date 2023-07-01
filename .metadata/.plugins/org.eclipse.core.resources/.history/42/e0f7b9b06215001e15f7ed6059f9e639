@@ -1,0 +1,7 @@
+package com.hm.room;
+
+public class HotelReviewInfo {
+	private String cid;
+	private String hotelname;
+
+}

@@ -1,0 +1,23 @@
+package com.hm.jp;
+
+public class Hotel3 {
+private String d_title;
+
+public Hotel3() {
+}
+
+public Hotel3(String d_title) {
+	super();
+	this.d_title = d_title;
+}
+
+public String getD_title() {
+	return d_title;
+}
+
+public void setD_title(String d_title) {
+	this.d_title = d_title;
+}
+
+
+}

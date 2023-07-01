@@ -1,0 +1,15 @@
+package com.hm.jp;
+
+public class Hotel_jp {
+	private String j_title;
+	private String j_address;
+	private String j_roadaddress;
+	private String j_introduction;
+	private String j_phoneno;
+	private String j_imgpath;
+	private String j_thumnailpath;
+	private String j_tag;
+	private String j_pk;
+	
+
+}

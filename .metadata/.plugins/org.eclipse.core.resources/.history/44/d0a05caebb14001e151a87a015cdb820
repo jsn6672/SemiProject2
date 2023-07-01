@@ -1,0 +1,21 @@
+/*리뷰 모달창*/
+ function sjOpenReview() {
+    var modal = document.getElementById("sjReview");
+    modal.style.display = "block"; // 모달 창을 보이도록 설정
+  }
+
+  function sjCloseReview() {
+    var modal = document.getElementById("sjReview");
+    modal.style.display = "none"; // 모달 창을 숨김
+  }
+
+/*리뷰 작성 모달창*/
+ function sjOpenReviewWrite() {
+    var modal = document.getElementById("sjReviewWrite");
+    modal.style.display = "block"; // 모달 창을 보이도록 설정
+  }
+
+  function sjCloseReviewWrite() {
+    var modal = document.getElementById("sjReviewWrite");
+    modal.style.display = "none"; // 모달 창을 숨김
+  }

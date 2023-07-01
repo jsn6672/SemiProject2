@@ -1,0 +1,36 @@
+package com.hm.room;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+@WebServlet("/translatejpC")
+public class translateC extends HttpServlet {
+	
+	// DAOroom 클래스 내에 정적 변수로 locale 선언
+			private static String locale;
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		
+
+		// servlet에서 locale 값을 설정
+		String SL = request.getParameter("langauage");
+		if ("kr".equals(SL)) {
+		    DAOroom.locale = "kr";
+		} else if ("jp".equals(SL)) {
+		    DAOroom.locale = "jp";
+		}
+
+		// 다른 모델에서 정적 변수로 locale 값을 액세스
+		String locale = DAOroom.locale;
+	
+	}
+
+}

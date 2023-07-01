@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+C:\PHM_java\semi\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3009587711.index
+2502696897.index
+4292065276.index
+2758657384.index
+3283651577.index
+1199270125.index
