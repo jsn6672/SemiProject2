@@ -1,0 +1,100 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+.pwd_Changer_Popup{
+	top : 10%;
+	position : absolute;
+	left : 39%;
+	width: 600px;
+	height: 700px;
+	border-radius: 20px;
+	text-align: center;
+	padding: 20px;
+	box-sizing: border-box;
+	transition : all 0.5s;
+	background: rgba( 255, 255, 255, 0.25 );
+	box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+	backdrop-filter: blur( 4px );
+	-webkit-backdrop-filter: blur( 4px );
+	border: 1px solid rgba( 255, 255, 255, 0.18 );
+	z-index: -101;
+	opacity: 0;
+	color: white;
+}
+#dim2{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 2900px;
+	background: rgba(0,0,0,0.6);
+	opacity: 1;
+	z-index: -10;
+}
+.pwd_Changer_Popup:target {
+	opacity : 1;
+	position:fixed;
+	z-index: 60;
+}	
+.pwd_Changer_Popup:target + #dim2{
+	opacity: 1;
+	z-index: 20;
+	position:fixed;
+	 }
+.item1-change{
+	position : relative;
+	font-size: 20px;
+	font-weight: bold;
+	padding-top : 10px;
+	margin-bottom : 20px;
+}
+.item1-change-question{
+	font-size: 20px;
+	font-weight: bold;
+	padding-top: 10px;
+}
+.item2-change input {
+	font-family: 'Noto Sans KR', sans-serif;
+	width: 70%;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid #999;
+	font-size: 18px;
+	outline: none;
+	font-weight: bold;
+	top: 20px;
+	padding: 0px 0px 10px 0px;
+}
+.item2-change input::placeholder{
+	font-size: 15px;
+	text-align: center;
+	color: #b8b8b8;
+}
+.item2-change select{
+	width: 40%;
+	height: 20px;
+	font-size: 15px;
+	margin-bottom: 50px;
+	border: none;
+	border-radius: 15px;
+	background-color: rgba( 255, 255, 255, 0.5 );
+}
+
+.items-change-question{
+	height:200px;
+	position: relative;
+}
+.btn-area {
+	margin-top: 30px;
+}
+.changeConfirm_btn{
+	width: 30%; height: 50px;
+	background:#166cea;
+	color: #fff;
+	font-size: 20px;
+	border: none;
+	border-radius: 20px;
+}
+.error{
+	color: red;
+}

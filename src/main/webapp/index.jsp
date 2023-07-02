@@ -9,7 +9,9 @@
 <link rel="stylesheet" href="css/infobox.css">
 <link rel="stylesheet" href="css/toolbar.css">
 <link rel="stylesheet" href="css/quick_menu.css">
+<link rel="stylesheet" href="css/pwd_changer.css">
 <script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript" src="js/FindPwd.js"></script>
 <script type="text/javascript" src="js/Quick_menu.js"></script>
 
 <meta charset="utf-8">
@@ -19,7 +21,7 @@
 
 	<div class="toolbar">
 		<div class="toolbar-info">
-			<ul class="toolbar_nav">
+			<!-- <ul class="toolbar_nav">
 				<li><a href="#">메인</a></li>
 				<li><a href="#">여행</a></li>
 				<li><a href="#">숙소</a></li>
@@ -27,7 +29,7 @@
 				<li><a href="#">렌트카</a></li>
 				<li><a href="#">전통술</a></li>
 				<li><a href="#">돌하르방</a></li>
-			</ul>
+			</ul> -->
 			<div class="time"></div>
 			<div class="icon"></div>
 			<div class="temp"></div>
@@ -57,14 +59,14 @@
 					</div>
 				</form>
 				<div class="caption">
-					<a href="SignUpC">Forgot Password?</a><br> <a
+					<a id="findPwd_btn" href="#pwd_Changer_Popup">Forgot Password?</a><br> <a
 						href="SignUp.jsp">Join to us</a>
 				</div>
 			</div>
 		</div>
 		<!-- 로그인창 끝 -->
 
-		<div id="dim"></div>
+		<div class="dim" id="dim"></div>
 
 
 		<!-- 퀵메뉴 -->
@@ -92,7 +94,60 @@
 				</div>
 			</div>
 		</div>
-
+		<!-- 퀵메뉴 끝 -->
+		
+		<!-- 비밀번호 변경창 시작 -->
+		<div class="pwd_Changer_Popup" id="pwd_Changer_Popup">
+		<form action="FindPwdC" method="post" onsubmit="return FindPwdCheck()">
+		<h1>Pwd Change</h1>
+		<div class="item1-change">ID</div>
+		<div class="item2-change">
+						<input id="find_pwd_id" name="find_pwd_id"
+							placeholder="아이디를 입력하세요" class=""
+							autocomplete="off">
+							<div id="idError" class="error"></div>
+					</div>
+					<div class="items-change-question">
+					<div class="item1-change-question">Question</div>
+					<br>
+					<div class="item2-change" id="question">
+						<select id="question_selectbox" name="question">
+							<option value="1">당신이 가장 좋아하는 색깔은?</option>
+							<option value="2">당신의 보물 1호는?</option>
+						</select>
+						<div class="answer">
+							<input class="textInput-reg" type="text" name="userAnswer"
+								id="userAnswer" autocomplete="off" placeholder="질문에 대한 답변">
+								<div id="answerError" class="error"></div>
+						</div>
+					</div>
+				</div>
+				<div class="items-reg">
+					<div class="item1-change">New PW</div>
+					<div class="item2-change">
+						<input id="newPwd" type="password" name="newPwd"
+							placeholder="영,숫자,특문 포함 8글자 이상" class="textInput-reg"
+							autocomplete="off">
+						<div id="pwError" class="error"></div>
+					</div>
+				</div>
+				<div class="items-reg">
+					<div class="item1-change">PW Confirm</div>
+					<div class="item2-change">
+						<input id="newPwdCheck" type="password" name="newPwdCheck"
+							placeholder="비밀번호 재확인" class="textInput-reg" autocomplete="off">
+						<div id="pwCheckError" class="error"></div>
+					</div>
+				</div>
+				<br>
+				<br>
+				<div class="btns-area">
+				 <button class="changeConfirm_btn" id="Confirm_btn" type="submit">Confirm</button>
+					</div>
+		</form>
+	</div>
+	<!-- 비밀번호 변경창 종료 -->
+		<div class="dim2" id="dim2"></div>
 
 		<div class="logo">
 			<div class="logo1">
@@ -118,12 +173,12 @@
 					<h1>CarRent</h1>
 				</div>
 				<div class="infobox2 infobox_hover">
-					<h2>Accommodation</h2>
+					<h2>Stay</h2>
 				</div>
 			</div>
 			<div class="box_setup2">
 				<div class="infobox3 infobox_hover">
-					<h2>Must to go</h2>
+					<h2>Travel</h2>
 				</div>
 				<div class="infobox4 infobox_hover">
 					<h1>Food</h1>
@@ -217,6 +272,32 @@ if (errorMessage != null) {
 %>
 <script>
             alert("<%=errorMessage%>");
+        </script>
+<%
+}
+%>
+<!-- 비밀번호 변경 실패시 알람 -->
+<%
+String errorMessage2 = (String) request.getAttribute("errorMessage2");
+%>
+<%
+if (errorMessage2 != null) {
+%>
+<script>
+            alert("<%=errorMessage2%>");
+        </script>
+<%
+}
+%>
+<!-- 비밀번호 변경 성공시 알람 -->
+<%
+String errorMessage3 = (String) request.getAttribute("errorMessage3");
+%>
+<%
+if (errorMessage3 != null) {
+%>
+<script>
+            alert("<%=errorMessage3%>");
         </script>
 <%
 }
