@@ -12,6 +12,7 @@
 	height: 936px;
 	margin-left: auto;
 	margin-right: auto;
+	top : 40%;
 }
 .infobox_hover:hover {
 	transform: scale(1.05);
@@ -70,59 +71,53 @@
 } 
 
 .infobox1{
-	 border: 1px solid black;
 	 width : 252px;
 	 height: 252px;
 	 position:relative;
 	 background-image: url("img/carbg.jpg");
 	 background-size : 252px 252px;
 	 border-radius: 25px;
-	 box-shadow: 5px 10px 8px grey;
+	 box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 .infobox2{
-	 border: 1px solid black;
 	 width: 528px;
 	 height: 252px;
 	 background-image : url("img/Accommodation.jpg");
 	 background-size : 528px 252px;
 	 border-radius: 25px;
-	 box-shadow: 5px 10px 8px grey;
+	 box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 .infobox3{
-	 border: 1px solid black;
 	 width: 528px;
 	 height: 252px;
 	 background-image : url("img/Attraction.jpg");
 	 background-size : 528px 252px;
 	 border-radius: 25px;
-	 box-shadow: 5px 10px 8px grey;
+	 box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 .infobox4{
-	 border: 1px solid black;
 	 width: 252px;
 	 height: 252px;
 	 background-image : url("img/Food.jpg");
 	 background-size : 252px 252px;
 	 border-radius: 25px;
-	 box-shadow: 5px 10px 8px grey;
+	 box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 .infobox5{
-	 border: 1px solid black;
 	 width: 252px;
 	 height: 252px;
 	 background-image : url("img/Liquor.jpg");
 	 background-size : 252px 252px;
 	 border-radius: 25px;
-	 box-shadow: 5px 10px 8px grey;
+	 box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 .infobox6{
-	 border: 1px solid black;
 	 width: 528px;
 	 height: 252px;
 	 background-image : url("img/idk.jpg");
 	 background-size : 528px 252px;
 	 border-radius: 25px;
-	 box-shadow: 5px 10px 8px grey;
+	 box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 .infobox_header{
 	background-color: rgb(243, 240, 216);

@@ -17,6 +17,8 @@ public class Main_HC extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		AccountDAO.loginCheck(request);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 
 	} 
 
