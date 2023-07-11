@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.jh.login.AccountDAO;
 //	전통주/양조장 홈컨
 @WebServlet("/JsnHC")
 public class JsnHC extends HttpServlet {
@@ -15,6 +17,7 @@ public class JsnHC extends HttpServlet {
 			throws ServletException, IOException {
 		drinkSession.KoreanPage(request);
 //		BrewerDAO.brewer(request);
+		AccountDAO.logincontentCheck(request);
 
 		String country = (String) request.getSession().getAttribute("country");
 		if (country.equals("korean")) {

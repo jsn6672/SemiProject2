@@ -1,24 +1,58 @@
 @charset "UTF-8";
 
-.drink-detail-all{
+.drink-detail-all {
 	display: flex;
+	margin-left: 4%;
 }
 
-.drink-detail-info{
+.drink-detail-info {
 	font-size: 15pt;
-	width: 60%;
+	width: 800px;
+	height: 400px;
+	background: rgba(255, 255, 255, 0.4);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	border-radius: 30px;
+	font-size: 15px;
+	font-weight: bold;
+	margin-right: 50px;
 }
 
-.drink-detail-detail{
+.drink-detail-img {
+	width: 220px;
+	height: 280px;
+	margin-top: 30px;
+	position: absolute;
+	margin-left: 175px;
+	border-radius: 30px;
+	background: rgba(255, 255, 255, 0.4);
+}
+
+.drink-detail-detail {
 	display: flex;
+	background: rgba(125, 125, 125, 0.4);
+	width: 70%;
+	height: 40px;
+	margin: 10px;
+	border-radius: 10px;
+	padding-top: 10px;
 }
 
-.drink-map{
-	width: 20%; 
-	height: 350px;
+.drink-map {
+	width: 400px;
+	height: 400px;
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	border-radius: 30px;
 }
 
-.drink-starpoint{
+.drink_map_body {
+	width: 600px;
+	height: 600px;
+	background: rgba(255, 255, 255, 0.4);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	border-radius: 30px;
+}
+
+.drink-starpoint {
 	color: orange;
 }
 
@@ -29,4 +63,90 @@
 .drinkreview-button {
 	width: 5%;
 	font-size: 5pt;
+}
+
+.drink-detail-body {
+	padding-top: 20px;
+	padding-left: 0px;
+}
+
+.review_details {
+	width: 1250px;
+	height: 450px;
+	background: rgba(255, 255, 255, 0.4);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	border-radius: 30px;
+	margin-left: 50px;
+	margin-top: 10px;
+	padding-top: 5px;
+	padding-left: 15px;
+	font-size: 15pt;
+}
+
+.review_content {
+	display: flex;
+	height: 100px;
+	background: rgba(255, 255, 255, 0.4);
+	width: 80%;
+	margin: 5px;
+	margin-left : 100px;
+	border-radius : 10px;
+	border-radius: 10px;
+}
+
+.drink-review-page a {
+	text-decoration: none;
+	color: black;
+}
+
+.jsn-user-name {
+	width: 10%;
+}
+
+.jsn-review-content {
+	padding-top : 0px;
+	overflow: auto;
+	width: 80%;
+	height: 100px;
+}
+
+.review_items {
+	margin-top: -10px;
+}
+
+.jsn-review-starpoint {
+	margin-top: 20px;
+}
+
+.review_txtbox {
+	width: 100%;
+	height: 70px;
+	font-size: 15pt;
+	margin-top: 20pt;
+	background-color: transparent;
+	font-size: 18px;
+	outline: none;
+	color: black;
+	font-weight: bold;
+	border: 5px solid white;
+}
+
+.drinkreview-button {
+	margin-top: 30px;
+}
+
+.drinkreview-button button {
+	display: block;
+	width: 75px;
+	height: 40px;
+	text-decoration: none;
+	text-align: center;
+	line-height: 40px;
+	border: 1px solid grey;
+	color: white;
+	background: #166cea;
+	border-radius: 50px;
+	top: 0;
+	font-size: 15px;
+	margin-top: 5px;
 }

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jh.login.AccountDAO;
+
 @WebServlet("/GourmetSearchC")
 public class GourmetSearchC extends HttpServlet {
 
@@ -15,6 +17,7 @@ public class GourmetSearchC extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		AccountDAO.logincontentCheck(request);
 		GourmetM.searchGourmet(request, response);
 //		GourmetM.getAllReview(request);
 		request.getRequestDispatcher("sj/gourmetjsp/gourmetResult.jsp").forward(request, response);

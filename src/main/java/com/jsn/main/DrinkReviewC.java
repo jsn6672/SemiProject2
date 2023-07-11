@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jh.login.AccountDAO;
+
 @WebServlet("/DrinkReviewC")
 public class DrinkReviewC extends HttpServlet {
 //	리뷰 페이징 컨트롤러
@@ -17,6 +19,7 @@ public class DrinkReviewC extends HttpServlet {
 		if (country == null) {
 			drinkSession.KoreanPage(request);
 		}
+		AccountDAO.logincontentCheck(request);
 		if (country.equals("korean")) {
 			BrewerDAO.brewer(request);
 			BrewerDAO.seedrink(request);
@@ -26,6 +29,8 @@ public class DrinkReviewC extends HttpServlet {
 				BrewerDAO.reviewPaging(Integer.parseInt(request.getParameter("p")), request);
 			}
 			BrewerDAO.listPaging(Integer.parseInt(request.getParameter("listp")), request);
+			request.setAttribute("detailPage", "drinkdetail_review.jsp");
+			request.getRequestDispatcher("jsn/jsp/drinkdetail.jsp").forward(request, response);
 		} else {
 			BrewerDAO.brewerJp(request);
 			BrewerDAO.seedrinkJp(request);
@@ -35,9 +40,10 @@ public class DrinkReviewC extends HttpServlet {
 				BrewerDAO.reviewPaging(Integer.parseInt(request.getParameter("p")), request);
 			}
 			BrewerDAO.listPaging(Integer.parseInt(request.getParameter("listp")), request);
+
+			request.setAttribute("detailPage", "drinkdetail_review_jp.jsp");
+			request.getRequestDispatcher("jsn/jsp/drinkdetail_jp.jsp").forward(request, response);
 		}
-		request.setAttribute("detailPage", "drinkdetail_review.jsp");
-		request.getRequestDispatcher("jsn/jsp/drinkdetail.jsp").forward(request, response);
 		
 	}
 //	리뷰 create 컨트롤러
@@ -49,6 +55,7 @@ public class DrinkReviewC extends HttpServlet {
 		if (country == null) {
 			drinkSession.KoreanPage(request);
 		}
+		AccountDAO.logincontentCheck(request);
 		if (country.equals("korean")) {
 			BrewerDAO.brewer(request);
 			BrewerDAO.seedrink(request);
@@ -59,6 +66,8 @@ public class DrinkReviewC extends HttpServlet {
 			if (jsnr != null && !jsnr.isEmpty()) {
 				BrewerDAO.reviewPaging(1, request);				 
 			}
+			request.setAttribute("detailPage", "drinkdetail_review.jsp");
+			request.getRequestDispatcher("jsn/jsp/drinkdetail.jsp").forward(request, response);
 		} else {
 			BrewerDAO.brewerJp(request);
 			BrewerDAO.seedrinkJp(request);
@@ -68,10 +77,9 @@ public class DrinkReviewC extends HttpServlet {
 			if (jsnr != null && !jsnr.isEmpty()) {
 				BrewerDAO.reviewPaging(1, request);				 
 			}
+			request.setAttribute("detailPage", "drinkdetail_review_jp.jsp");
+			request.getRequestDispatcher("jsn/jsp/drinkdetail_jp.jsp").forward(request, response);
 		}
-		
-		request.setAttribute("detailPage", "drinkdetail_review.jsp");
-		request.getRequestDispatcher("jsn/jsp/drinkdetail.jsp").forward(request, response);
 		
 	}
 

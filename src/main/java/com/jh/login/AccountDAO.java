@@ -21,7 +21,26 @@ public class AccountDAO {
 			request.setAttribute("loginPage", "loginOk.jsp");
 		}
 	}
+	public static void logincontentCheck(HttpServletRequest request) {
+		Account account = (Account) request.getSession().getAttribute("account");
+		System.out.println(account);
+		if (account == null) {
+			request.setAttribute("loginPage", "../../login.jsp");
+		} else {
+			request.setAttribute("loginPage", "../../loginOk.jsp");
+		}
+	}
 
+	public static void logintourCheck(HttpServletRequest request) {
+		Account account = (Account) request.getSession().getAttribute("account");
+		System.out.println(account);
+		if (account == null) {
+			request.setAttribute("loginPage", "../login.jsp");
+		} else {
+			request.setAttribute("loginPage", "../loginOk.jsp");
+		}
+		
+	}
 	public static void login(HttpServletRequest request) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -31,24 +50,24 @@ public class AccountDAO {
 		String db_id = null;
 		String result = "";
 		
-		String sql = "select * from jh_account where a_id =?";
+		String sql = "select * from account_tbl where id =?";
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs =  pstmt.executeQuery();
 			if (rs.next()) {
-				String db_pw = rs.getString("a_pw");
+				String db_pw = rs.getString("pw");
 				if (pw.equals(db_pw)) {
 					Account a = new Account();
 					
-					a.setName(rs.getString("a_name"));
+					a.setName(rs.getString("name"));
 					a.setId(id);
 					a.setPw(db_pw);
-					a.setBirth(rs.getString("a_birth"));
-					a.setGender(rs.getString("a_gender"));
-					a.setQuestion(rs.getString("a_question"));
-					a.setQuestion_answer(rs.getString("a_question_anwser"));
+					a.setBirth(rs.getString("birth"));
+					a.setGender(rs.getString("gender"));
+					a.setQuestion(rs.getString("question"));
+					a.setQuestion_answer(rs.getString("question_answer"));
 					
 					HttpSession hs = request.getSession();
 					hs.setAttribute("account", a);
@@ -85,7 +104,7 @@ public class AccountDAO {
 		String db_id = null;
 		boolean isValid = false;
 		
-		String sql = "select * from jh_account where a_id =?";
+		String sql = "select * from account_tbl where id =?";
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -93,7 +112,7 @@ public class AccountDAO {
 			rs =  pstmt.executeQuery();
 			
 			if (rs.next()) {
-				String db_pw = rs.getString("a_pw");
+				String db_pw = rs.getString("pw");
 				if (pw.equals(db_pw)) {
 					isValid = true;
 				}

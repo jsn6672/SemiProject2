@@ -16,8 +16,11 @@ public class DBManager {
 	// db�۾��ÿ� ��¶�� ���� �ؾߵ�
 	public static Connection connect() throws SQLException {
 		// ����
-		String url = "jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/SBT/Wallet_DB202204301707";
-		System.out.println("연결성공!");
+//		String url = "jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/SBT/Wallet_DB202204301707";
+//		System.out.println("연결성공!");
+//		return DriverManager.getConnection(url, "MACUSER", "Soldesk802!!!");
+		
+		String url = "jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/Wallet_DB202204301707";
 		return DriverManager.getConnection(url, "MACUSER", "Soldesk802!!!");
 	}
 

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.jh.login.Account;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -17,7 +18,6 @@ public class BrewerDAO {
 	public static void brewer(HttpServletRequest request) {
 
 		Connection con = null;
-		Connection con2 = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
@@ -40,8 +40,7 @@ public class BrewerDAO {
 				Double avgscore = rs.getDouble("t_avgscore");
 				String img = rs.getString("t_img");
 
-				con2 = DBManeger.connect();
-				pstmt2 = con2.prepareStatement(brwsql);
+				pstmt2 = con.prepareStatement(brwsql);
 				pstmt2.setString(1, marketnum);
 				rs2 = pstmt2.executeQuery();
 
@@ -56,7 +55,7 @@ public class BrewerDAO {
 			// TODO: handle exception
 		} finally {
 			DBManeger.close(con, pstmt, rs);
-			DBManeger.close(con2, pstmt2, rs2);
+			DBManeger.close(null, pstmt2, rs2);
 		}
 
 	}
@@ -119,17 +118,18 @@ public class BrewerDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		Account account = (Account) request.getSession().getAttribute("account");
 		String path = request.getServletContext().getRealPath("jsn/imgfile");
 
 		String sql = "insert into jsn_drink_review values (jsn_review_seq.nextval, ?, ?, ?, sysdate, ?, ?)";
 		try {
-
+			
 			MultipartRequest mr = new MultipartRequest(request, path, 30 * 1024 * 1024, "utf-8",
 					new DefaultFileRenamePolicy());
 			System.out.println(path);
 			String no = mr.getParameter("no");
-			String user = "1";
+//			String user = "1";
+			String user = account.getId();
 			String review = mr.getParameter("review");
 			String starpoint = mr.getParameter("starpoint");
 			String img = mr.getFilesystemName("review_img");
@@ -149,7 +149,7 @@ public class BrewerDAO {
 			pstmt.setString(5, img);
 
 			if (pstmt.executeUpdate() == 1) {
-				System.out.println("등록 완료");
+				System.out.println("�벑濡� �셿猷�");
 
 				String avgsql = "select * from jsn_traditional_drink where t_no = ?";
 
@@ -166,6 +166,7 @@ public class BrewerDAO {
 				avg = ((avg * (cnt - 1)) + point) / cnt;
 
 				String updateavgsql = "update jsn_traditional_drink set t_avgscore = ?, t_cntreview = ? where t_no = ?";
+				String updateavgsqljp = "update jsn_traditional_drink_jp set t_avgscore = ?, t_cntreview = ? where t_no = ?";
 
 				pstmt = con.prepareStatement(updateavgsql);
 				pstmt.setDouble(1, avg);
@@ -173,7 +174,15 @@ public class BrewerDAO {
 				pstmt.setString(3, no);
 
 				if (pstmt.executeUpdate() == 1) {
-					System.out.println("평균값 수정완료");
+					System.out.println("한국어 평점 업뎃완료");
+				}
+				
+				pstmt = con.prepareStatement(updateavgsqljp);
+				pstmt.setDouble(1, avg);
+				pstmt.setInt(2, cnt);
+				pstmt.setString(3, no);
+				if (pstmt.executeUpdate() == 1) {
+					System.out.println("일본어 평점 업뎃완료");
 					request.setAttribute("no", no);
 					request.setAttribute("listp", mr.getParameter("listp"));
 				}
@@ -193,16 +202,19 @@ public class BrewerDAO {
 	public static void ReadReview(HttpServletRequest request) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
 
 		String sql = "select * from jsn_drink_review where r_drink = ? order by r_date";
-
+		String usersql = "select * from account_tbl where id = ?";
 		try {
 			String num = request.getParameter("no");
 			if (num == null) {
 				num = (String) request.getAttribute("no");
 			}
 			con = DBManeger.connect();
+//			con2 = DBManeger.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, num);
 			rs = pstmt.executeQuery();
@@ -213,9 +225,16 @@ public class BrewerDAO {
 				String drink = rs.getString("r_drink");
 				String user = rs.getString("r_user");
 				String starpoint = rs.getString("r_starpoint");
-				String review = JsnPapago.translationkr(rs.getString("r_review"));
+//				String review = JsnPapago.translationkr(rs.getString("r_review"));
+				String review = rs.getString("r_review");
 				String img = rs.getString("r_img");
-
+				pstmt2 = con.prepareStatement(usersql);
+				pstmt2.setString(1, user);
+				rs2 = pstmt2.executeQuery();
+				
+				rs2.next();
+				user = rs2.getString("name");
+				
 				r.add(new JsnReview(no, drink, user, starpoint, review, img));
 			}
 
@@ -225,13 +244,13 @@ public class BrewerDAO {
 			// TODO: handle exception
 		} finally {
 			DBManeger.close(con, pstmt, rs);
+			DBManeger.close(null, pstmt2, rs2);
 		}
 
 	}
 
 	public static void brewerJp(HttpServletRequest request) {
 		Connection con = null;
-		Connection con2 = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
@@ -254,8 +273,7 @@ public class BrewerDAO {
 				Double avgscore = rs.getDouble("t_avgscore");
 				String img = rs.getString("t_img");
 
-				con2 = DBManeger.connect();
-				pstmt2 = con2.prepareStatement(brwsql);
+				pstmt2 = con.prepareStatement(brwsql);
 				pstmt2.setString(1, marketnum);
 				rs2 = pstmt2.executeQuery();
 
@@ -270,7 +288,7 @@ public class BrewerDAO {
 			// TODO: handle exception
 		} finally {
 			DBManeger.close(con, pstmt, rs);
-			DBManeger.close(con2, pstmt2, rs2);
+			DBManeger.close(null, pstmt2, rs2);
 		}
 
 	}
@@ -336,9 +354,13 @@ public class BrewerDAO {
 	public static void ReadReviewJp(HttpServletRequest request) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
 
 		String sql = "select * from jsn_drink_review where r_drink = ? order by r_date";
+		String usersql = "select * from jh_account where a_id = ?";
+
 		try {
 //			String path = request.getServletContext().getRealPath("jsn/imgfile");
 //			MultipartRequest mr = new MultipartRequest(request, path, 30 * 1024 * 1024, "utf-8",
@@ -349,6 +371,7 @@ public class BrewerDAO {
 				num = (String) request.getAttribute("no");
 			}
 			con = DBManeger.connect();
+//			con2 = DBManeger.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, num);
 			rs = pstmt.executeQuery();
@@ -361,6 +384,12 @@ public class BrewerDAO {
 				String starpoint = rs.getString("r_starpoint");
 				String review = JsnPapago.translation(rs.getString("r_review"));
 				String img = rs.getString("r_img");
+//				pstmt2 = con.prepareStatement(usersql);
+//				pstmt2.setString(1, user);
+//				rs2 = pstmt2.executeQuery();
+				
+//				rs2.next();
+//				user = rs2.getString("a_name");
 
 				r.add(new JsnReview(no, drink, user, starpoint, review, img));
 			}
@@ -377,9 +406,9 @@ public class BrewerDAO {
 
 	public static void reviewPaging(int page, HttpServletRequest req) {
 
-		int cnt = 3; // 한페이지당 보여줄 개수
-		int total = r.size(); // 총 데이터 개수
-		int pageCount = (int) Math.ceil((double) total / cnt); // 총 페이지수
+		int cnt = 3; // �븳�럹�씠吏��떦 蹂댁뿬以� 媛쒖닔
+		int total = r.size(); // 珥� �뜲�씠�꽣 媛쒖닔
+		int pageCount = (int) Math.ceil((double) total / cnt); // 珥� �럹�씠吏��닔
 
 		System.out.println(cnt);
 		System.out.println(total);
@@ -407,9 +436,9 @@ public class BrewerDAO {
 
 	public static void listPaging(int page, HttpServletRequest req) {
 
-		int cnt = 2; // 한페이지당 보여줄 개수
-		int total = d.size(); // 총 데이터 개수
-		int pageCount = (int) Math.ceil((double) total / cnt); // 총 페이지수
+		int cnt = 5; // �븳�럹�씠吏��떦 蹂댁뿬以� 媛쒖닔
+		int total = d.size(); // 珥� �뜲�씠�꽣 媛쒖닔
+		int pageCount = (int) Math.ceil((double) total / cnt); // 珥� �럹�씠吏��닔
 
 		System.out.println(cnt);
 		System.out.println(total);
@@ -437,7 +466,6 @@ public class BrewerDAO {
 	public static void brewerHC(HttpServletRequest request) {
 
 		Connection con = null;
-		Connection con2 = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
@@ -466,8 +494,7 @@ public class BrewerDAO {
 				if (cnt == 1) {
 					no1 = no;
 				}
-				con2 = DBManeger.connect();
-				pstmt2 = con2.prepareStatement(brwsql);
+				pstmt2 = con.prepareStatement(brwsql);
 				pstmt2.setString(1, marketnum);
 				rs2 = pstmt2.executeQuery();
 
@@ -475,6 +502,7 @@ public class BrewerDAO {
 				String market = rs2.getString("b_name");
 
 				d.add(new Drink(no, name, level, volume, material, market, avgscore, img));
+				System.out.println(d.size());
 			}
 			request.setAttribute("drink", d);
 			request.setAttribute("no", no1);
@@ -483,20 +511,18 @@ public class BrewerDAO {
 			// TODO: handle exception
 		} finally {
 			DBManeger.close(con, pstmt, rs);
-			DBManeger.close(con2, pstmt2, rs2);
 		}
 
 	}
 
 	public static void brewerSearch(HttpServletRequest request) {
 		Connection con = null;
-		Connection con2 = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
 		String drinksql = "select * from jsn_traditional_drink where t_name like '%'||?||'%' order by t_avgscore desc";
-		String brewersql = "select * from jsn_traditional_drink where t_market = (select b_no from jsn_brewer where b_name like '%'||?||'%') order by t_avgscore DESC";
+		String brewersql = "select * from jsn_traditional_drink where t_market in (select b_no from jsn_brewer where b_name like '%'||?||'%') order by t_avgscore DESC";
 		String brwsql = "select * from jsn_brewer where b_no = ?";
 		try {
 			con = DBManeger.connect();
@@ -511,14 +537,14 @@ public class BrewerDAO {
 				System.out.println(3);
 			}
 			pstmt.setString(1, search);
+			String no1 = "";
+			int cnt = 0;
 
 			System.out.println("--------");
 			System.out.println(search);
 			System.out.println("--------");
 			rs = pstmt.executeQuery();
 
-			String no1 = "";
-			int cnt = 0;
 			d = new ArrayList<Drink>();
 			while (rs.next()) {
 				cnt++;
@@ -536,8 +562,7 @@ public class BrewerDAO {
 				if (cnt == 1) {
 					no1 = no;
 				}
-				con2 = DBManeger.connect();
-				pstmt2 = con2.prepareStatement(brwsql);
+				pstmt2 = con.prepareStatement(brwsql);
 				pstmt2.setString(1, marketnum);
 				rs2 = pstmt2.executeQuery();
 
@@ -548,14 +573,15 @@ public class BrewerDAO {
 			}
 			request.setAttribute("drink", d);
 			request.setAttribute("no", no1);
+			System.out.println(cnt);
 			if (cnt == 0) {
-				request.setAttribute("notfound", "검색 결과가 없습니다");
+				request.setAttribute("notfound", "결과가 없습니다");
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 			DBManeger.close(con, pstmt, rs);
-			DBManeger.close(con2, pstmt2, rs2);
+			DBManeger.close(null, pstmt2, rs2);
 		}
 
 	}
@@ -563,7 +589,6 @@ public class BrewerDAO {
 	public static void brewerHCJp(HttpServletRequest request) {
 
 		Connection con = null;
-		Connection con2 = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
@@ -592,8 +617,7 @@ public class BrewerDAO {
 				if (cnt == 1) {
 					no1 = no;
 				}
-				con2 = DBManeger.connect();
-				pstmt2 = con2.prepareStatement(brwsql);
+				pstmt2 = con.prepareStatement(brwsql);
 				pstmt2.setString(1, marketnum);
 				rs2 = pstmt2.executeQuery();
 
@@ -609,14 +633,13 @@ public class BrewerDAO {
 			// TODO: handle exception
 		} finally {
 			DBManeger.close(con, pstmt, rs);
-			DBManeger.close(con2, pstmt2, rs2);
+			DBManeger.close(null, pstmt2, rs2);
 		}
 
 	}
 
 	public static void brewerSearchJp(HttpServletRequest request) {
 		Connection con = null;
-		Connection con2 = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
@@ -662,8 +685,7 @@ public class BrewerDAO {
 				if (cnt == 1) {
 					no1 = no;
 				}
-				con2 = DBManeger.connect();
-				pstmt2 = con2.prepareStatement(brwsql);
+				pstmt2 = con.prepareStatement(brwsql);
 				pstmt2.setString(1, marketnum);
 				rs2 = pstmt2.executeQuery();
 
@@ -676,21 +698,20 @@ public class BrewerDAO {
 			request.setAttribute("no", no1);
 
 			if (cnt == 0) {
-				System.out.println("없음");
-				request.setAttribute("notfound", "검색 결과가 없습니다");
+				System.out.println("�뾾�쓬");
+				request.setAttribute("notfound", "寃��깋 寃곌낵媛� �뾾�뒿�땲�떎");
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 			DBManeger.close(con, pstmt, rs);
-			DBManeger.close(con2, pstmt2, rs2);
+			DBManeger.close(null, pstmt2, rs2);
 		}
 
 	}
 
 	public static void SearchbrewerResult(HttpServletRequest request) {
 		Connection con = null;
-		Connection con2 = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
@@ -737,8 +758,7 @@ public class BrewerDAO {
 				if (cnt == 1) {
 					no1 = no;
 				}
-				con2 = DBManeger.connect();
-				pstmt2 = con2.prepareStatement(brwsql);
+				pstmt2 = con.prepareStatement(brwsql);
 				pstmt2.setString(1, marketnum);
 				rs2 = pstmt2.executeQuery();
 
@@ -750,19 +770,18 @@ public class BrewerDAO {
 			request.setAttribute("drink", d);
 			request.setAttribute("no", no1);
 			if (cnt == 0) {
-				request.setAttribute("notfound", "검색 결과가 없습니다");
+				request.setAttribute("notfound", "寃��깋 寃곌낵媛� �뾾�뒿�땲�떎");
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 			DBManeger.close(con, pstmt, rs);
-			DBManeger.close(con2, pstmt2, rs2);
+			DBManeger.close(null, pstmt2, rs2);
 		}
 	}
 
 	public static void SearchbrewerResultJp(HttpServletRequest request) {
 		Connection con = null;
-		Connection con2 = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
@@ -809,8 +828,7 @@ public class BrewerDAO {
 				if (cnt == 1) {
 					no1 = no;
 				}
-				con2 = DBManeger.connect();
-				pstmt2 = con2.prepareStatement(brwsql);
+				pstmt2 = con.prepareStatement(brwsql);
 				pstmt2.setString(1, marketnum);
 				rs2 = pstmt2.executeQuery();
 
@@ -822,18 +840,18 @@ public class BrewerDAO {
 			request.setAttribute("drink", d);
 			request.setAttribute("no", no1);
 			if (cnt == 0) {
-				request.setAttribute("notfound", "검색 결과가 없습니다");
+				request.setAttribute("notfound", "寃��깋 寃곌낵媛� �뾾�뒿�땲�떎");
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 			DBManeger.close(con, pstmt, rs);
-			DBManeger.close(con2, pstmt2, rs2);
+			DBManeger.close(null, pstmt2, rs2);
 		}
 
 	}
 
-//	db 번역데이터 삽입
+//	db 踰덉뿭�뜲�씠�꽣 �궫�엯
 	public static void setDB(HttpServletRequest request) {
 
 		Connection con = null;
@@ -849,8 +867,9 @@ public class BrewerDAO {
 			con = DBManeger.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-
+			int drinkcnt = 0;
 			while (rs.next()) {
+				drinkcnt++;
 				String no = rs.getString("t_no");
 				String name = JsnPapago.translation(rs.getString("t_name"));
 				String level = rs.getString("t_level");
@@ -861,34 +880,33 @@ public class BrewerDAO {
 				String cntreview = rs.getString("t_cntreview");
 				String img = rs.getString("t_img");
 
-				con2 = DBManeger.connect();
-				pstmt2 = con2.prepareStatement(dbsql);
+				pstmt = con.prepareStatement(dbsql);
 
-				pstmt2.setString(1, no);
-				pstmt2.setString(2, name);
-				pstmt2.setString(3, level);
-				pstmt2.setString(4, volume);
-				pstmt2.setString(5, material);
-				pstmt2.setString(6, marketnum);
-				pstmt2.setDouble(7, avgscore);
-				pstmt2.setString(8, cntreview);
-				pstmt2.setString(9, img);
+				pstmt.setString(1, no);
+				pstmt.setString(2, name);
+				pstmt.setString(3, level);
+				pstmt.setString(4, volume);
+				pstmt.setString(5, material);
+				pstmt.setString(6, marketnum);
+				pstmt.setDouble(7, avgscore);
+				pstmt.setString(8, cntreview);
+				pstmt.setString(9, img);
 
-				if (pstmt2.executeUpdate() == 1) {
-					System.out.println("등록 완료");
+				if (pstmt.executeUpdate() == 1) {
+					System.out.println(drinkcnt+"전통주번역완료");
 				}
 			}
-			DBManeger.close(con, pstmt, rs);
-			DBManeger.close(con2, pstmt2, null);
-			con = DBManeger.connect();
+			pstmt.close();
+			rs.close();
+			con2 = DBManeger.connect();
 			pstmt = con.prepareStatement(brwsql);
 			rs = pstmt.executeQuery();
-
+			int brewercnt = 0;
 			while (rs.next()) {
+				brewercnt++;
 				String no = rs.getString("b_no");
 				String name = JsnPapago.translation(rs.getString("b_name"));
 				String addr = JsnPapago.translation(rs.getString("b_addr"));
-				con2 = DBManeger.connect();
 				pstmt2 = con2.prepareStatement(dbbrwsql);
 
 				pstmt2.setString(1, no);
@@ -896,7 +914,7 @@ public class BrewerDAO {
 				pstmt2.setString(3, addr);
 
 				if (pstmt2.executeUpdate() == 1) {
-					System.out.println("등록 완료");
+					System.out.println(brewercnt+"양조장번역완료");
 				}
 			}
 
@@ -904,7 +922,6 @@ public class BrewerDAO {
 			// TODO: handle exception
 		} finally {
 			DBManeger.close(con, pstmt, rs);
-			DBManeger.close(con2, pstmt2, null);
 		}
 
 	}

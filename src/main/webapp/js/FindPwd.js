@@ -16,7 +16,6 @@ function FindPwdCheck() {
     pwError.innerHTML = "";
     pwCheckError.innerHTML = "";
 
-    let isValid = true;
 
     // ID 확인
     if (containKR(id) || id === "") {
@@ -25,18 +24,18 @@ function FindPwdCheck() {
         } else {
             idError.innerHTML = "영어(대/소문자)와 숫자만 입력해주세요.";
         }
-        isValid = false;
+        return false;
     }
 
     if (lessThan(id, 5)) {
         idError.innerHTML = "5글자 이상 입력해주세요.";
-        isValid = false;
+         return false;
     }
 
     // 질문에 대한 답변
     if (answer === "") {
         answerError.innerHTML = "질문에 답해주세요.";
-        isValid = false;
+         return false;
     }
     if (answer !== "")
 
@@ -47,17 +46,17 @@ function FindPwdCheck() {
         } else {
             pwError.innerHTML = "영/숫자/특문 포함 8글자 이상";
         }
-        isValid = false;
+          return false;
     }
 
     if (newPwd !== pwCheck) {
         pwCheckError.innerHTML = "비밀번호가 일치하지 않습니다.";
-        isValid = false;
+        return false;
     }
 
     if (pwCheck === "") {
         pwCheckError.innerHTML = "비밀번호를 다시 입력해주세요.";
-        isValid = false;
+        return false;
     }
 
     // 모든 유효성 검사 통과
@@ -67,8 +66,6 @@ function FindPwdCheck() {
         pwError.innerHTML = "";
         pwCheckError.innerHTML = "";
     }
-	Confirm_btn.addEventListener("click", msgbox);
-    return isValid;
 }
 
 function containKR(input) {
@@ -100,30 +97,30 @@ function lessThan(input, length) {
 */
 // 팝업 열기
 function openChangePopup() {
-	let Changepopup = document.getElementById("pwd_Changer_Popup");
-	let dim2 = document.getElementById("dim2");
-	Changepopup.style.display = "block";
-	dim2.style.display = "block";
+   let Changepopup = document.getElementById("pwd_Changer_Popup");
+   let dim2 = document.getElementById("dim2");
+   Changepopup.style.display = "block";
+   dim2.style.display = "block";
 }
 
 // 팝업 닫기
 function closeChangePopup() {
-	let ChangePopup = document.getElementById("pwd_Changer_Popup");
-	let dim2 = document.getElementById("dim2");
-	ChangePopup.style.display = "none";
-	dim2.style.display = "none";
+   let ChangePopup = document.getElementById("pwd_Changer_Popup");
+   let dim2 = document.getElementById("dim2");
+   ChangePopup.style.display = "none";
+   dim2.style.display = "none";
 }
 
 function ChangePopup() {
-	let findPwdBtn = document.getElementById("findPwd_btn");
-	let dim2 = document.getElementById("dim2");
+   let findPwdBtn = document.getElementById("findPwd_btn");
+   let dim2 = document.getElementById("dim2");
 
-	// 로그인 버튼 클릭 시 팝업 열기
-	findPwdBtn.addEventListener("click", openChangePopup);
-
-	// dim 클릭 시 팝업 닫기
-	dim2.addEventListener("click", closeChangePopup);
+   findPwdBtn.addEventListener("click", openChangePopup);
+   dim2.addEventListener("click", closeChangePopup);
+   // dim 클릭 시 팝업 닫기
+   // 로그인 버튼 클릭 시 팝업 열기
+   
 }
-
+window.addEventListener("load", ChangePopup);
 
 

@@ -1,6 +1,7 @@
 package com.jsn.main;
-//	db관련 작업을 할때 연결코드를 쓴 이후에 작업 해줌
-//	다쓰면 닫음
+//	db愿��젴 �옉�뾽�쓣 �븷�븣 �뿰寃곗퐫�뱶瑜� �벖 �씠�썑�뿉 �옉�뾽 �빐以�
+
+//	�떎�벐硫� �떕�쓬
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,49 +9,63 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//	그걸 aop하자
+//	洹멸구 aop�븯�옄
 
 public class DBManeger {
-	
-//	db작업시엔 어쨌던 연결해야 함
-		   public static Connection connect() throws SQLException {
-			   // 재순
-//		        String url = "jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/Wallet_DB202204301707";
-		       // 인후
+
+//	db�옉�뾽�떆�뿏 �뼱夷뚮뜕 �뿰寃고빐�빞 �븿
+	public static Connection connect() throws SQLException {
+
+//		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+//		String id = "c##jh";
+//		String pw = "jh";  
+//		return DriverManager.getConnection(url, id, pw);
+
+		// public static Connection connect() throws SQLException {
+		// �옱�닚
+		String url = "jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/Wallet_DB202204301707";
+		// �씤�썑
 //		        String url = "jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=/usr/asdasd/Wallet_DB202204301707";
-		        
-		        // 재환
-		        
-		        // 수진
-		        
-		        // 가현
-		        
-		        // 하민
-		        
+
+		// �옱�솚
+		// String url =
+		// "jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=D:/JJH/cloud/Wallet_DB202204301707";
+		// �닔吏�
+
+		// 媛��쁽
+
+		// �븯誘�
+//		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 //		        test
-		        String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		        
-		        
-		        System.out.println("연결 성공!");
-//		        return DriverManager.getConnection(url,"MACUSER", "Soldesk802!!!");
-		        
+		/*
+		 * 
+		 */
+		/*
+		 * System.out.println("�뿰寃� �꽦怨�!"); return
+		 * 
+		 */
+//		String url = "jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:\\develop program\\Wallet_DB202204301707";
+		return DriverManager.getConnection(url, "MACUSER", "Soldesk802!!!");
 //				test
-				return DriverManager.getConnection(url, "c##yjs", "yjs");
+//		return DriverManager.getConnection(url, "c##yjs", "yjs");
+
 	}
-	
-	
-	
+
 	public static void close(Connection con, PreparedStatement pstmt, ResultSet rs) {
 		try {
 			if (rs != null) {
 				rs.close();
 			}
-			pstmt.close();
-			con.close();			
+			if (pstmt !=null) {
+				pstmt.close();				
+			}
+			if (con !=null) {
+				con.close();				
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 }

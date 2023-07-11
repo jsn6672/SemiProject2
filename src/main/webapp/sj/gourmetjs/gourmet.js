@@ -1,3 +1,6 @@
+
+
+
 function mapMake(place, name, img) {
 	var mapContainer = document.getElementById('map');
 	var mapOption = {
@@ -39,24 +42,6 @@ window.onload = function() {
 
 
 
-/*리뷰 모달창*/
-function sjOpenReview(g_id) {
-	console.log(g_id)
-	var modal = document.getElementById("sjReview");
-	let ids = document.getElementById("g_id_s");
-	ids.value = g_id;
-
-	modal.style.display = "block"; // 모달 창을 보이도록 설정
-}
-
-
-
-
-function sjCloseReview() {
-	var modal = document.getElementById("sjReview");
-	modal.style.display = "none"; // 모달 창을 숨김
-}
-
 
 
 let reviewBtns = document.querySelectorAll('.review-btn');
@@ -76,17 +61,37 @@ reviewBtns.forEach((reviewBtn) => {
 
 
 
-
-
-
-
 /*리뷰 작성 모달창*/
-function sjOpenReviewWrite(g_id) {
-
+function sjOpenReviewWrite(id) {
+	
 	var modal = document.getElementById("sjReviewWrite");
-	let ids2 = document.querySelector("input[name='g_id_s']");
-	ids2.value = g_id;
+	let id_input = document.querySelector('input[name="g_id_s"]');
+	id_input.value = id;
 	modal.style.display = "block"; // 모달 창을 보이도록 설정
+
+	document.getElementById("review-modal-form").addEventListener("submit", function(event) {
+  	event.preventDefault(); // 폼 제출 이벤트의 기본 동작(페이지 새로고침)을 막습니다.
+	console.log(document.getElementById("review-modal-form"))
+  // Ajax 요청을 처리하는 코드를 작성합니다.
+  var form = document.getElementById("review-modal-form");
+  var formData = new FormData(form);
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "GourmetReviewC", true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      // 요청이 성공적으로 완료되었을 때의 처리 코드
+		window.reload();
+    }
+  };
+  xhr.send(formData);
+ 	
+});	
+	
+	
+	
+	
+	
 }
 
 function sjCloseReviewWrite() {
@@ -95,7 +100,16 @@ function sjCloseReviewWrite() {
 }
 
 
+function deleteReview(no, pw) {
 
+	var inputPassword = prompt("비밀번호를 입력하세요:");
+
+	if (inputPassword === pw) {
+		location.href = 'GourmetReviewDelC?no=' + no;
+	} else {
+		alert("비밀번호가 틀렸습니다.");
+	}
+}
 
 
 

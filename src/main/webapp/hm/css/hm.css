@@ -1,0 +1,241 @@
+@charset "UTF-8";
+
+.body {
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.container_hm {
+	background-image: url("../img/hanrasan.png");
+	background-color: rgba(255, 255, 255, 0.2);
+	position: fixed;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	margin-top: 25pt;
+	flex-direction: column;
+	align-items: center;
+	overflow-x: auto;
+}
+
+.subcontainer_hm {
+	background-color: rgba(255, 255, 255, 0.8);
+	width: 85%;
+	border-radius: 40px;
+	margin: 20pt;
+	display: flex;
+	max-width: 1500px;
+}
+
+.left-side {
+	display: content;
+	margin: 40pt;
+	width: 40%;
+}
+/* 숙박 업소 검색 기능*/
+.hotel_search {
+	width: 100%;
+	height: 100px;
+	text-align: center;
+}
+
+.hotel_search input {
+	width: 70%;
+	height: 40px;
+	padding: 30px 0px 10px 50px;
+	background-color: white;
+	font-size: 18px;
+	outline: none;
+	font-weight: bold;
+	border-radius: 40px;
+	border: 5px solid white;
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	text-align: left;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	background-image: url("img/search.png");
+	background-size: 23px 23px;
+	background-repeat: no-repeat;
+	background-position: 360px center;
+	height: 40px;
+}
+
+.hotel_search button {
+	border-radius: 40px;
+	border: none;
+	height: 30px;
+	width: 60pt;
+	background-color: #169fe9;
+}
+
+.hotel_list {
+	display: content;
+	padding-right: 20pt;
+	margin-top: 0pt;
+	height: 600px;
+	width: 111%;
+	overflow-y: auto;
+}
+
+.hotel_content {
+	background-color: white;
+	display: flex;
+	border: 1px solid black;
+	width: 100%;
+	height: 170px;
+	justify-content: center;
+}
+
+.hotel_img {
+	border: 1px solid black;
+	width: 250px;
+	height: 170px;
+}
+
+.hotel_img img {
+	width: 100%;
+	height: 100%;
+}
+
+.hotel_info {
+	margin: 8pt;
+	width: 380px;
+}
+/* 리뷰 버튼 */
+.button_list {
+	width: 50pt;
+	height: 100%;
+}
+
+.button_list button {
+	display: flex;
+	height: 50%;
+	width: 80%;
+	align-items: center;
+	justify-content: center;
+}
+
+.rv {
+	height: 100%;
+	width: 100%;
+}
+
+.right_side {
+	width: 80%;
+	margin: 20pt;
+	margin-top: 50pt;
+}
+
+#hm_map {
+	border: 1px solid green;
+	width: 100%;
+	max-width: 1000px;
+	height: 60%;
+}
+
+/*리뷰 리스트 */
+.review_list {
+	background-color: white;
+	margin-top: 15pt;
+	overflow: auto;
+	max-height: 470px;
+	border: 1px solid black;
+	height: 200pt;
+	width: 100%;
+	max-width: 1000px;
+	border-radius: 15px;
+}
+
+.center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 80%;
+}
+
+.delete_review {
+	width: 100%;
+	height: 80pt;
+}
+
+.review_text {
+	width: 80%;
+	height: 100px;
+	font-size: 15pt;
+	margin-top: 20pt;
+}
+
+.review_container {
+	border: 1px solid darkgray;
+	display: flex;
+	width: 100%;
+	height: 105pt;
+	text-align: center;
+}
+
+.review_item {
+	width: 25pt;
+	height: 100%;
+	/* 	border: 1px solid black; */
+}
+
+#review_grade {
+	font-size: 20px; /* 폰트 크기 조정 */
+	color:orange; /* 폰트 색상 조정 */
+}
+
+#review_list_text {
+	/* 	border: 1px solid black; */
+	width: 70%;
+	background-color: rgba(255, 165, 0, 0.8); /* 밝은 오렌지색(알파 값 0.8) */
+}
+
+#review_list_item {
+	width: 25%;
+}
+
+#text {
+	width: 50%;
+	border: 1px solid black;
+	height: 20%;
+}
+
+#title {
+	height: 50%;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	border: 1px solid darkgray;
+}
+
+#date {
+	height: 50%;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	border: 1px solid darkgray;
+}
+
+#writer {
+	border: 1px solid black;
+	height: 100%;
+}
+
+.review-delete {
+	width: 40pt;
+}
+
+#buttonD {
+	width: 100%;
+	height: 50%;
+}
+
+#buttonD button {
+	border: 1px solid red;
+	background-color: red;
+	color: white;
+	width: 99%;
+	height: 70%;
+}

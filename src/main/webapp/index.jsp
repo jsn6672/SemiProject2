@@ -59,8 +59,8 @@
 					</div>
 				</form>
 				<div class="caption">
-					<a id="findPwd_btn" href="#pwd_Changer_Popup">Forgot Password?</a><br> <a
-						href="SignUp.jsp">Join to us</a>
+					<a id="findPwd_btn" href="#pwd_Changer_Popup">Forgot Password?</a><br>
+					<a href="SignUp.jsp">Join to us</a>
 				</div>
 			</div>
 		</div>
@@ -74,40 +74,40 @@
 			<h2>Quick Menu</h2>
 			<br>
 			<div class="quick-area" id="quick-popup">
-				<div class="quick_icon">
+				<div class="quick_icon" onclick="location.href='RentShopC'">
 					<img class="quick_icon_img" src="css/img/rentcar.png"> <span>렌트카</span>
 				</div>
-				<div class="quick_icon">
+				<div class="quick_icon" onclick="location.href='roomAllsearchC'">
 					<img class="quick_icon_img" src="css/img/hostel.png"> <span>숙박</span>
 				</div>
-				<div class="quick_icon">
+				<div class="quick_icon" onclick="location.href='GourmetC'">
 					<img class="quick_icon_img" src="css/img/gyul.png"> <span>음식</span>
 				</div>
-				<div class="quick_icon">
+				<div class="quick_icon" onclick="location.href='tourC'">
 					<img class="quick_icon_img" src="css/img/beach.png"> <span>여행</span>
 				</div>
-				<div class="quick_icon">
+				<div class="quick_icon" onclick="location.href='JsnHC'">
 					<img class="quick_icon_img" src="css/img/sul.png"> <span>전통주</span>
 				</div>
-				<div class="quick_icon">
+				<div class="quick_icon" onclick="location.href='ProposalHC'">
 					<img class="quick_icon_img" src="css/img/grandfa.png"> <span>돌하르방</span>
 				</div>
 			</div>
 		</div>
 		<!-- 퀵메뉴 끝 -->
-		
+
 		<!-- 비밀번호 변경창 시작 -->
 		<div class="pwd_Changer_Popup" id="pwd_Changer_Popup">
-		<form action="FindPwdC" method="post" onsubmit="return FindPwdCheck()">
-		<h1>Pwd Change</h1>
-		<div class="item1-change">ID</div>
-		<div class="item2-change">
-						<input id="find_pwd_id" name="find_pwd_id"
-							placeholder="아이디를 입력하세요" class=""
-							autocomplete="off">
-							<div id="idError" class="error"></div>
-					</div>
-					<div class="items-change-question">
+			<form action="FindPwdC" method="post"
+				onsubmit="return FindPwdCheck()">
+				<h1>Pwd Change</h1>
+				<div class="item1-change">ID</div>
+				<div class="item2-change">
+					<input id="find_pwd_id" name="find_pwd_id" placeholder="아이디를 입력하세요"
+						class="" autocomplete="off">
+					<div id="idError" class="error"></div>
+				</div>
+				<div class="items-change-question">
 					<div class="item1-change-question">Question</div>
 					<br>
 					<div class="item2-change" id="question">
@@ -118,7 +118,7 @@
 						<div class="answer">
 							<input class="textInput-reg" type="text" name="userAnswer"
 								id="userAnswer" autocomplete="off" placeholder="질문에 대한 답변">
-								<div id="answerError" class="error"></div>
+							<div id="answerError" class="error"></div>
 						</div>
 					</div>
 				</div>
@@ -139,15 +139,15 @@
 						<div id="pwCheckError" class="error"></div>
 					</div>
 				</div>
-				<br>
-				<br>
+				<br> <br>
 				<div class="btns-area">
-				 <button class="changeConfirm_btn" id="Confirm_btn" type="submit">Confirm</button>
-					</div>
-		</form>
-	</div>
-	<!-- 비밀번호 변경창 종료 -->
+					<button class="changeConfirm_btn" id="Confirm_btn" type="submit">Confirm</button>
+				</div>
+			</form>
+		</div>
+		<!-- 비밀번호 변경창 종료 -->
 		<div class="dim2" id="dim2"></div>
+
 
 		<div class="logo">
 			<div class="logo1">
@@ -169,26 +169,26 @@
 		<section class='section' id='section1'></section>
 		<div class="infobox_main">
 			<div class="box_setup1">
-				<div class="infobox1 infobox_hover">
+				<div class="infobox1 infobox_hover" onclick="location.href='RentShopC'">
 					<h1>CarRent</h1>
 				</div>
-				<div class="infobox2 infobox_hover">
+				<div class="infobox2 infobox_hover" onclick="location.href='roomAllsearchC'">
 					<h2>Stay</h2>
 				</div>
 			</div>
 			<div class="box_setup2">
-				<div class="infobox3 infobox_hover">
+				<div class="infobox3 infobox_hover" onclick="location.href='tourC'">
 					<h2>Travel</h2>
 				</div>
-				<div class="infobox4 infobox_hover">
+				<div class="infobox4 infobox_hover" onclick="location.href='GourmetC'">
 					<h1>Food</h1>
 				</div>
 			</div>
 			<div class="box_setup3">
-				<div class="infobox5 infobox_hover">
+				<div class="infobox5 infobox_hover" onclick="location.href='JsnHC'">
 					<h1>Liquor</h1>
 				</div>
-				<div class="infobox6 infobox_hover">
+				<div class="infobox6 infobox_hover"onclick="location.href='ProposalHC'">
 					<h2>idk yet</h2>
 				</div>
 			</div>
@@ -302,3 +302,5 @@ if (errorMessage3 != null) {
 <%
 }
 %>
+
+</html>

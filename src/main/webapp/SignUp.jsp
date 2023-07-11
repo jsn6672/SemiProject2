@@ -83,7 +83,7 @@
 				<br>
 				<div class="signUp_btns">
 					<button class="signup_btn" id="signup_btn">Sign Up</button>
-				<button onclick="window.location.href='index.jsp'"class="signupCancel_btn" type="button">Cancel</button>
+				<button onclick="location.href='Main_HC'"class="signupCancel_btn" type="button">Cancel</button>
 				</div>
 			</form>
 		</div>

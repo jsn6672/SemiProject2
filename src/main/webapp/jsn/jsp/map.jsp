@@ -21,8 +21,9 @@
 	</script>
 	
 	
-	
+	<div class="drink_map_body">
 	<div id="map" style="width: 100%; height: 350px;"></div>
+	</div>
 
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=50fa30c5003d50ab611f3775819b8a8b&libraries=services"></script>

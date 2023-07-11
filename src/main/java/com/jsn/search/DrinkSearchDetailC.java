@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jh.login.AccountDAO;
 import com.jsn.main.BrewerDAO;
 import com.jsn.main.drinkSession;
 
@@ -27,6 +28,7 @@ public class DrinkSearchDetailC extends HttpServlet {
 		if (country == null) {
 			drinkSession.KoreanPage(request);
 		}
+		AccountDAO.logincontentCheck(request);
 		if (country.equals("korean")) {
 			BrewerDAO.SearchbrewerResult(request);
 			BrewerDAO.seedrink(request);
@@ -36,6 +38,8 @@ public class DrinkSearchDetailC extends HttpServlet {
 				BrewerDAO.reviewPaging(1, request);
 			}
 			BrewerDAO.listPaging(Integer.parseInt(request.getParameter("listp")), request);
+			request.setAttribute("detailPage", "drinksearch_review.jsp");
+			request.getRequestDispatcher("jsn/jsp/drinksearch.jsp").forward(request, response);
 		} else {
 			BrewerDAO.SearchbrewerResultJp(request);
 			BrewerDAO.seedrinkJp(request);
@@ -45,9 +49,10 @@ public class DrinkSearchDetailC extends HttpServlet {
 				BrewerDAO.reviewPaging(1, request);
 			}
 			BrewerDAO.listPaging(Integer.parseInt(request.getParameter("listp")), request);
+
+			request.setAttribute("detailPage", "drinkdetail_review_jp.jsp");
+			request.getRequestDispatcher("jsn/jsp/drinkdetail_jp.jsp").forward(request, response);
 		}
-		request.setAttribute("detailPage", "drinksearch_review.jsp");
-		request.getRequestDispatcher("jsn/jsp/drinksearch.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

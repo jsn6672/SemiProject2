@@ -16,7 +16,7 @@ public class SignUpDAO {
     public static void signup(HttpServletRequest request) {
         Connection con = null;
         PreparedStatement pstmt = null;
-        String sql = "insert into jh_account values(?,?,?,?,?,?,?)";
+        String sql = "insert into account_tbl values(?,?,?,?,?,?,?)";
 
         try {
             con = DBManager.connect();
@@ -63,7 +63,7 @@ public class SignUpDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String id = request.getParameter("id");
-		String sql = "select * from jh_account where a_id =?";
+		String sql = "select * from account_tbl where id =?";
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
