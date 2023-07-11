@@ -7,6 +7,7 @@ public class GourmetInfo {
 	private String menu; // 硫붾돱
 	private String addr; // 二쇱냼
 	private String img;
+
 		
 	public GourmetInfo() {
 		// TODO Auto-generated constructor stub

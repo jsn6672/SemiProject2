@@ -11,13 +11,16 @@ import com.jh.login.AccountDAO;
 
 @WebServlet("/Main_HC")
 public class Main_HC extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		AccountDAO.loginCheck(request);
+		request.setAttribute("contentPage", "main.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	} 
+	}
 
 }

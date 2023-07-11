@@ -1,0 +1,55 @@
+.overlay-wrap {
+  border-radius: 15px;
+  background-color: #FF7F00;
+  color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+   width: 300px; /* 원하는 크기로 지정 */
+  height: 300px; /* 원하는 크기로 지정 */
+} 
+
+.overlay-info {
+  flex-direction: row;
+}  
+
+.overlay-img {
+  width: 80%;
+  margin-right: 10px;
+}
+
+.overlay-img-src {
+  width: 100%;
+  height: auto;
+}
+
+.overlay-body {
+  flex-grow: 1;
+}
+
+.overlay-title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.overlay-desc {
+  font-size: 14px;
+}
+
+.link {
+  color: white;
+  text-decoration: underline;
+}
+
+.close {
+  background-color: white;
+  color: #FF7F00;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  align-self: flex-end;
+}
+ 

@@ -20,7 +20,7 @@
 						<input id="id" name="userId" placeholder="영,숫자 포함 5글자 이상"
 							class="textInput-reg" autocomplete="off">
 							<div id="idError" class="error"></div>
-						<br><a onclick="idCheck()" class="idck" id="idck" >중복확인</a>
+						<br><button onclick="idCheck()" class="idck" id="idck" >중복확인</button>
 						<div id="idCheckResult"></div>
 					</div>
 				</div>
@@ -83,7 +83,7 @@
 				<br>
 				<div class="signUp_btns">
 					<button class="signup_btn" id="signup_btn">Sign Up</button>
-				<button onclick="window.location.href='index.jsp'"class="signupCancel_btn" type="button">Cancel</button>
+				<button onclick="location.href='Main_HC'"class="signupCancel_btn" type="button">Cancel</button>
 				</div>
 			</form>
 		</div>

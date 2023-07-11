@@ -1,6 +1,6 @@
 package com.jh.main;
-// DB°ü·Ã ÀÛ¾÷À» ÇÒ¶§ ¿¬°áÄÚµå¸¦ ¾´ ÀÌÈÄ¿¡ ÀÛ¾÷ ÇØ¿È
-// ´Ù ¾²¸é ´ÝÀ½
+// DBï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµå¸¦ ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½Û¾ï¿½ ï¿½Ø¿ï¿½
+// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,19 +8,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// ±×°É AOP ÇÏÀÚ
+// ï¿½×°ï¿½ AOP ï¿½ï¿½ï¿½ï¿½
 public class DBManager {
 	
-	// DBÀÛ¾÷½Ã¿£ ¾îÂ·µç ¿¬°á ÇØ¾ßµÊ
+	// DBï¿½Û¾ï¿½ï¿½Ã¿ï¿½ ï¿½ï¿½Â·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ßµï¿½
 	public static Connection connect() throws SQLException {
 	
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String id = "c##jh";
-		String pw = "jh";  
-		return DriverManager.getConnection(url, id, pw);
+//		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+//		String id = "c##jh";
+//		String pw = "jh";  
+//		return DriverManager.getConnection(url, id, pw);
+		String url = "jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/Wallet_DB202204301707";
+		return DriverManager.getConnection(url, "MACUSER", "Soldesk802!!!");
+
+		
+		
 	}
 		
-	// ´ÝÀ»°Ô ¸¹Àºµ¥ ÇÑ¹ø¿¡ ´Ý±â
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ý±ï¿½
 		public static void close(Connection con,PreparedStatement pstmt,ResultSet rs)
 		{
 			try {

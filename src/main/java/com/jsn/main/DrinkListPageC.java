@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jh.login.AccountDAO;
+
 @WebServlet("/DrinkListPageC")
 public class DrinkListPageC extends HttpServlet {
 //	왼쪽 리스트 페이징 컨트롤러
@@ -18,6 +20,7 @@ public class DrinkListPageC extends HttpServlet {
 		if (country == null) {
 			drinkSession.KoreanPage(request);
 		}
+		AccountDAO.logincontentCheck(request);
 		if (country.equals("korean")) {
 			BrewerDAO.brewer(request);
 			BrewerDAO.seedrink(request);
@@ -27,6 +30,8 @@ public class DrinkListPageC extends HttpServlet {
 				BrewerDAO.reviewPaging(1, request);
 			}
 			BrewerDAO.listPaging(Integer.parseInt(request.getParameter("listp")), request);
+			request.setAttribute("detailPage", "drinkdetail_review.jsp");
+			request.getRequestDispatcher("jsn/jsp/drinkdetail.jsp").forward(request, response);
 		} else {
 			BrewerDAO.brewerJp(request);
 			BrewerDAO.seedrinkJp(request);
@@ -36,9 +41,9 @@ public class DrinkListPageC extends HttpServlet {
 				BrewerDAO.reviewPaging(1, request);
 			}
 			BrewerDAO.listPaging(Integer.parseInt(request.getParameter("listp")), request);
+			request.setAttribute("detailPage", "drinkdetail_review_jp.jsp");
+			request.getRequestDispatcher("jsn/jsp/drinkdetail_jp.jsp").forward(request, response);
 		}
-		request.setAttribute("detailPage", "drinkdetail_review.jsp");
-		request.getRequestDispatcher("jsn/jsp/drinkdetail.jsp").forward(request, response);
 
 	}
 

@@ -23,9 +23,22 @@ import org.json.simple.parser.ParseException;
 public class JsnPapago {
 
     public static String translation(String krtext) throws ParseException {
-        String clientId = "2ZM6zw8ADc7NhqkurUhL";//애플리케이션 클라이언트 아이디값";
-        String clientSecret = "727gvGn5_g";//애플리케이션 클라이언트 시크릿값";
+        
+//    	semi1 papago
+//    	String clientId = "2ZM6zw8ADc7NhqkurUhL";//애플리케이션 클라이언트 아이디값";
+//        String clientSecret = "727gvGn5_g";//애플리케이션 클라이언트 시크릿값";
+        
+//      semi2 papago
+//        String clientId = "TR4KYoGPH8ONzKYxHAtd";//애플리케이션 클라이언트 아이디값";
+//        String clientSecret = "UCVMxifcOC";//애플리케이션 클라이언트 시크릿값";
 
+//      semi3 papago
+//        String clientId = "fQa1x3miwaRPHYgABSs2";//애플리케이션 클라이언트 아이디값";
+//        String clientSecret = "Ixe2Kud5wv";//애플리케이션 클라이언트 시크릿값";
+        
+//      semi4 papago
+        String clientId = "EYpeyal6GAlsNRmPyFAo";//애플리케이션 클라이언트 아이디값";
+        String clientSecret = "hHYIIOtGgU";//애플리케이션 클라이언트 시크릿값";
                    
         String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
         String text;
@@ -59,9 +72,21 @@ public class JsnPapago {
     }
 
     public static String translationkr(String jptext) throws ParseException {
-        String clientId = "2ZM6zw8ADc7NhqkurUhL";//애플리케이션 클라이언트 아이디값";
-        String clientSecret = "727gvGn5_g";//애플리케이션 클라이언트 시크릿값";
+//    	semi1 papago
+//    	String clientId = "2ZM6zw8ADc7NhqkurUhL";//애플리케이션 클라이언트 아이디값";
+//        String clientSecret = "727gvGn5_g";//애플리케이션 클라이언트 시크릿값";
+        
+//      semi2 papago
+//        String clientId = "TR4KYoGPH8ONzKYxHAtd";//애플리케이션 클라이언트 아이디값";
+//        String clientSecret = "UCVMxifcOC";//애플리케이션 클라이언트 시크릿값";
+        
+//      semi3 papago
+//        String clientId = "fQa1x3miwaRPHYgABSs2";//애플리케이션 클라이언트 아이디값";
+//        String clientSecret = "Ixe2Kud5wv";//애플리케이션 클라이언트 시크릿값";
 
+//      semi4 papago
+        String clientId = "EYpeyal6GAlsNRmPyFAo";//애플리케이션 클라이언트 아이디값";
+        String clientSecret = "hHYIIOtGgU";//애플리케이션 클라이언트 시크릿값";
                    
         String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
         String text;

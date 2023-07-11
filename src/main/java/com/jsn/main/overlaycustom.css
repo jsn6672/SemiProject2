@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+
+.wrap{
+	background-color:rgba(255, 255, 255, 0.4);
+	border-radius:10px;
+	width: 280px;
+	height: 305px;
+}
+.title{
+	position : absolute;
+	font-size: 15pt;
+	margin-top: 20px;
+	font-weight: bold;
+	margin-left: 15px;
+	color: black;
+}
+
+.body img{
+	position:absolute;
+	border-radius : 20px;
+	margin-top : 50px;
+	margin-left : 15px;
+	 width: 250px;
+	 height: 160px;
+}
+
+.desc{
+	margin:5pt;
+	margin-left: 20pt;
+	text-align: left;
+	white-space: pre-line;
+}
+
+.roadaddress {
+	background-color: rgba(125,125,125,0.6);
+	margin-top : 220px;
+	color: white;
+	padding-bottom:5pt;
+	font-size: 15pt; 
+}
+
+.introduction{
+	background-color: rgba(125,125,125,0.6);
+	color: white;
+	padding-bottom:5pt;
+	font-size: 15pt; 
+}
+.tag{
+	color: blue;
+	padding-bottom:5pt;
+	font-size: 13pt; 
+}

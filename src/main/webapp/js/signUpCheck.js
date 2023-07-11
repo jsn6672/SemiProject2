@@ -112,28 +112,6 @@ function signUpCheck() {
 		return input.value.length < length;
 	}
 }
-function idCheck() {
-	let id = document.getElementById("id").value;
-	$.ajax({
-		type: "GET",
-		url: "SignUpC",
-		data: { id: id },
-		success: function(response) {
-			if (response == 0) {
-				document.getElementById("idCheckResult").innerHTML = "사용 가능한 아이디입니다.";
-				idCheckResult.style.color = "green";
-			} else if (response == 1) {
-				document.getElementById("idCheckResult").innerHTML = "이미 사용 중인 아이디입니다.";
-				idCheckResult.style.color = "red";
-			} else {
-				document.getElementById("idCheckResult").innerHTML = "서버 요청 실패";
-			}
-		},
-		error: function() {
-			document.getElementById("idCheckResult").innerHTML = "서버 요청 실패";
-		}
-	});
-}
 function msgbox() {
 		let msg = '회원가입이 완료 되었습니다.';
 		if (msg) {

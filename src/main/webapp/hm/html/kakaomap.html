@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link>
+</head>
+<body>
+
+
+	<div id="map"
+	style="width: 1400px; height: 800px;"></div>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f6d7d797f4c680fd25e3195c23d98ca"></script>
+	<script>
+		var container = document.getElementById('map'); //지도에 표기할 dv
+		var options = {
+			center : new kakao.maps.LatLng(33.3617, 126.5292), //지도 중심 좌표
+			level : 9
+		};
+
+		var map = new kakao.maps.Map(container, options); //객체 생성
+
+		map.setMinLevel(1);
+		map.setMaxLevel(9);
+		
+	  
+		
+	</script>
+
+</body>
+</html>

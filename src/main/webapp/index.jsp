@@ -9,19 +9,31 @@
 <link rel="stylesheet" href="css/infobox.css">
 <link rel="stylesheet" href="css/toolbar.css">
 <link rel="stylesheet" href="css/quick_menu.css">
+<link rel="stylesheet" href="css/pwd_changer.css">
 <script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript" src="js/FindPwd.js"></script>
+<script type="text/javascript" src="js/Quick_menu.js"></script>
 
 <meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
+
 	<div class="toolbar">
 		<div class="toolbar-info">
+			<!-- <ul class="toolbar_nav">
+				<li><a href="#">메인</a></li>
+				<li><a href="#">여행</a></li>
+				<li><a href="#">숙소</a></li>
+				<li><a href="#">음식</a></li>
+				<li><a href="#">렌트카</a></li>
+				<li><a href="#">전통술</a></li>
+				<li><a href="#">돌하르방</a></li>
+			</ul> -->
 			<div class="time"></div>
 			<div class="icon"></div>
 			<div class="temp"></div>
 			<!-- 퀵버튼 -->
-			<br>
 			<jsp:include page="${loginPage }"></jsp:include>
 			<!-- 로그인버튼 -->
 		</div>
@@ -29,7 +41,7 @@
 	<div class="page1_main">
 		<section class='section' id='section2'></section>
 		<!-- 로그인창 -->
-		<div class="popup" id="signup" onclick="closePopup(event)">
+		<div class="popup" id="signup">
 			<div class="sign_up">
 				<h1 class="signup_header">안녕, 육지사람 :-)</h1>
 				<br>
@@ -47,38 +59,94 @@
 					</div>
 				</form>
 				<div class="caption">
-					<a href="SignUpC">Forgot Password?</a><br> <a
-						href="SignUp.jsp">Join to us</a>
+					<a id="findPwd_btn" href="#pwd_Changer_Popup">Forgot Password?</a><br>
+					<a href="SignUp.jsp">Join to us</a>
 				</div>
 			</div>
 		</div>
 		<!-- 로그인창 끝 -->
 
-		<div id="dim"></div>
+		<div class="dim" id="dim"></div>
 
 
 		<!-- 퀵메뉴 -->
 		<div class="quick_menu" id="quick">
-			<a href="#a">x</a>
-			<h2>quick menu</h2>
+			<h2>Quick Menu</h2>
 			<br>
-			<form action="">
-				<div class="quick-area">
-					<div class="quick_icon">
-						<img src="css/img/rentcar.png"> &nbsp;&nbsp; <img
-							src="css/img/hostel.png">
+			<div class="quick-area" id="quick-popup">
+				<div class="quick_icon" onclick="location.href='RentShopC'">
+					<img class="quick_icon_img" src="css/img/rentcar.png"> <span>렌트카</span>
+				</div>
+				<div class="quick_icon" onclick="location.href='roomAllsearchC'">
+					<img class="quick_icon_img" src="css/img/hostel.png"> <span>숙박</span>
+				</div>
+				<div class="quick_icon" onclick="location.href='GourmetC'">
+					<img class="quick_icon_img" src="css/img/gyul.png"> <span>음식</span>
+				</div>
+				<div class="quick_icon" onclick="location.href='tourC'">
+					<img class="quick_icon_img" src="css/img/beach.png"> <span>여행</span>
+				</div>
+				<div class="quick_icon" onclick="location.href='JsnHC'">
+					<img class="quick_icon_img" src="css/img/sul.png"> <span>전통주</span>
+				</div>
+				<div class="quick_icon" onclick="location.href='ProposalHC'">
+					<img class="quick_icon_img" src="css/img/grandfa.png"> <span>돌하르방</span>
+				</div>
+			</div>
+		</div>
+		<!-- 퀵메뉴 끝 -->
+
+		<!-- 비밀번호 변경창 시작 -->
+		<div class="pwd_Changer_Popup" id="pwd_Changer_Popup">
+			<form action="FindPwdC" method="post"
+				onsubmit="return FindPwdCheck()">
+				<h1>Pwd Change</h1>
+				<div class="item1-change">ID</div>
+				<div class="item2-change">
+					<input id="find_pwd_id" name="find_pwd_id" placeholder="아이디를 입력하세요"
+						class="" autocomplete="off">
+					<div id="idError" class="error"></div>
+				</div>
+				<div class="items-change-question">
+					<div class="item1-change-question">Question</div>
+					<br>
+					<div class="item2-change" id="question">
+						<select id="question_selectbox" name="question">
+							<option value="1">당신이 가장 좋아하는 색깔은?</option>
+							<option value="2">당신의 보물 1호는?</option>
+						</select>
+						<div class="answer">
+							<input class="textInput-reg" type="text" name="userAnswer"
+								id="userAnswer" autocomplete="off" placeholder="질문에 대한 답변">
+							<div id="answerError" class="error"></div>
+						</div>
 					</div>
-					<div class="quick_icon">
-						<img src="css/img/gyul.png"> &nbsp;&nbsp; <img
-							src="css/img/beach.png">
+				</div>
+				<div class="items-reg">
+					<div class="item1-change">New PW</div>
+					<div class="item2-change">
+						<input id="newPwd" type="password" name="newPwd"
+							placeholder="영,숫자,특문 포함 8글자 이상" class="textInput-reg"
+							autocomplete="off">
+						<div id="pwError" class="error"></div>
 					</div>
-					<div class="quick_icon">
-						<img src="css/img/sul.png"> &nbsp;&nbsp; <img
-							src="css/img/grandfa.png">
+				</div>
+				<div class="items-reg">
+					<div class="item1-change">PW Confirm</div>
+					<div class="item2-change">
+						<input id="newPwdCheck" type="password" name="newPwdCheck"
+							placeholder="비밀번호 재확인" class="textInput-reg" autocomplete="off">
+						<div id="pwCheckError" class="error"></div>
 					</div>
+				</div>
+				<br> <br>
+				<div class="btns-area">
+					<button class="changeConfirm_btn" id="Confirm_btn" type="submit">Confirm</button>
 				</div>
 			</form>
 		</div>
+		<!-- 비밀번호 변경창 종료 -->
+		<div class="dim2" id="dim2"></div>
 
 
 		<div class="logo">
@@ -101,26 +169,26 @@
 		<section class='section' id='section1'></section>
 		<div class="infobox_main">
 			<div class="box_setup1">
-				<div class="infobox1 infobox_hover">
+				<div class="infobox1 infobox_hover" onclick="location.href='RentShopC'">
 					<h1>CarRent</h1>
 				</div>
-				<div class="infobox2 infobox_hover">
-					<h2>Accommodation</h2>
+				<div class="infobox2 infobox_hover" onclick="location.href='roomAllsearchC'">
+					<h2>Stay</h2>
 				</div>
 			</div>
 			<div class="box_setup2">
-				<div class="infobox3 infobox_hover">
-					<h2>Must to go</h2>
+				<div class="infobox3 infobox_hover" onclick="location.href='tourC'">
+					<h2>Travel</h2>
 				</div>
-				<div class="infobox4 infobox_hover">
+				<div class="infobox4 infobox_hover" onclick="location.href='GourmetC'">
 					<h1>Food</h1>
 				</div>
 			</div>
 			<div class="box_setup3">
-				<div class="infobox5 infobox_hover">
+				<div class="infobox5 infobox_hover" onclick="location.href='JsnHC'">
 					<h1>Liquor</h1>
 				</div>
-				<div class="infobox6 infobox_hover">
+				<div class="infobox6 infobox_hover"onclick="location.href='ProposalHC'">
 					<h2>idk yet</h2>
 				</div>
 			</div>
@@ -195,10 +263,44 @@
     });
 </script>
 
-  <!-- 로그인실패 알람 표시 --> 
-    <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
-    <% if (errorMessage != null) { %>
-        <script>
-            alert("<%= errorMessage %>");
+<!-- 로그인실패 알람 표시 -->
+<%
+String errorMessage = (String) request.getAttribute("errorMessage");
+%>
+<%
+if (errorMessage != null) {
+%>
+<script>
+            alert("<%=errorMessage%>");
         </script>
-    <% } %>
+<%
+}
+%>
+<!-- 비밀번호 변경 실패시 알람 -->
+<%
+String errorMessage2 = (String) request.getAttribute("errorMessage2");
+%>
+<%
+if (errorMessage2 != null) {
+%>
+<script>
+            alert("<%=errorMessage2%>");
+        </script>
+<%
+}
+%>
+<!-- 비밀번호 변경 성공시 알람 -->
+<%
+String errorMessage3 = (String) request.getAttribute("errorMessage3");
+%>
+<%
+if (errorMessage3 != null) {
+%>
+<script>
+            alert("<%=errorMessage3%>");
+        </script>
+<%
+}
+%>
+
+</html>

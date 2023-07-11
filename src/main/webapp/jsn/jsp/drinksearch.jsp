@@ -8,31 +8,96 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="jsn/css/drinkdetail.css">
 <link rel="stylesheet" href="jsn/css/drinkreview.css">
-<script type="text/javascript" src="jsn/js/starpoint.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/toolbar.css">
+<link rel="stylesheet" type="text/css" href="css/widget.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
+<link rel="stylesheet" type="text/css" href="css/quick_menu.css">
+<script type="text/javascript" src="js/login.js"></script>
+
+</head>
 </head>
 <body>
-	<button
-		onclick="location.href='DrinkDetailC?no=${drink_detail.t_no}&language=1&listp=${curListPageNo }'">번역</button>
-	<button onclick="location.href='JsnHC'">뒤돌</button>
-	<button onclick="location.href='JPC'">JPC</button>
-	<div class="drink-content">
-		<div class="drink-list">
-			<form action="DrinkSearchC">
+
+	<div class="toolbar">
+		<div class="toolbar-info">
+			<div
+				style="display: flex; width: 60%; justify-content: space-evenly; font-size: 15pt; align-items: center;">
 				<div>
-					<input name="listp" value="${curListPageNo }" hidden=""> <select
-						name="type">
-						<option value="drinkname">전통주</option>
-						<option value="brewername">양조장</option>
-					</select> <input name="name">
-					<button>검색</button>
+					<a style="text-decoration: none; color: white;" href="tourC">観光地</a>
+				</div>
+				<div>
+					<a style="text-decoration: none; color: white;"
+						href="roomAllsearchC">宿所</a>
+				</div>
+				<div>
+					<a style="text-decoration: none; color: white;" href="GourmetC">食堂</a>
+				</div>
+				<div>
+					<a style="text-decoration: none; color: white;" href="RentShopC">レンタカー</a>
+				</div>
+				<div>
+					<a style="text-decoration: none; color: white;" href="JsnHC">伝統酒</a>
+				</div>
+			</div>
+			<div class="time"></div>
+			<div class="icon"></div>
+			<div class="temp"></div>
+			<!--  <a href="JPC">DB번역</a> --><a class="translate_btn"
+				onclick="location.href='DrinkDetailC?no=${drink_detail.t_no}&language=1&listp=${curListPageNo }&reviewp=${curReviewPageNo }'">번역</a>
+			<a href="Main_HC" class="quick_btn">홈</a> <br>
+			<!-- 퀵버튼 -->
+			<jsp:include page="${loginPage }"></jsp:include>
+			<!-- 로그인버튼 -->
+		</div>
+	</div>
+	<div class="popup" id="signup">
+		<div class="sign_up">
+			<h1 class="signup_header">안녕, 육지사람 :-)</h1>
+			<br>
+			<form action="loginC" method="post">
+				<div class="int-area">
+					<label for="id">USER ID</label> <input type="text" name="id"
+						id="login_id" autocomplete="off">
+				</div>
+				<div class="int-area">
+					<label for="id">USER PW</label> <input type="password" name="pw"
+						id="login_pw" autocomplete="off">
+				</div>
+				<div class="btn-area">
+					<button class="loginConfirm_btn" id="btn" type="submit">LOGIN</button>
 				</div>
 			</form>
+			<div class="caption">
+				<a id="findPwd_btn" href="#pwd_Changer_Popup">Forgot Password?</a><br>
+				<a href="SignUp.jsp">Join to us</a>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<form action="DrinkSearchC">
+		<div class="drink_header">
+			<div class="drink_seach_header">
+				<input class="drink_search" name="name" autocomplete="off">
+				<button class="drink_search_btn"></button>
+			</div>
+			<input name="listp" value="${curListPageNo }" hidden=""> <select
+				name="type" class="search_select">
+				<!--  <option disabled selected>🍊🍊🍊</option>-->
+				<option value="drinkname">전통주</option>
+				<option value="brewername">양조장</option>
+			</select> ${notfound}
+		</div>
+	</form>
+	<div class="drink-content">
+		<div class="drink-list">
 			<c:forEach items="${drink }" var="d">
 				<c:choose>
 					<c:when test="${d.t_no == drink_detail.t_no }">
 						<div class="drink-list-attention">
-							<a
+							<a class="drink_list_a"
 								href="DrinkSearchDetailC?no=${d.t_no }&language=2&listp=${curListPageNo}">${d.t_name }
 								<br>${d.t_market } <br>★ : ${d.t_avgscore/2 }
 							</a>
@@ -40,27 +105,27 @@
 					</c:when>
 					<c:otherwise>
 						<div class="drink-list-notattention">
-							<a
-								href="DrinkSearchDetailC?no=${d.t_no }&language=2&listp=${curListPageNo}">${d.t_name }<br>${d.t_market }<br>평점
+							<a class="drink_list_a"
+								href="DrinkSearchDetailC?no=${d.t_no }&language=2&listp=${curListPageNo}">${d.t_name }<br>${d.t_market }<br>★
 								: ${d.t_avgscore/2 }
 							</a>
 						</div>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
-			<div>
-				<a href="DrinkSearchListPageC?listp=1&no=${drink_detail.t_no }">[맨처음]</a>
+			<div class="drink-list-page">
+				<a href="DrinkSearchListPageC?listp=1&no=${drink_detail.t_no }">[처음]</a>
 				<c:forEach begin="1" end="${listPageCount }" var="i">
 					<a href="DrinkSearchListPageC?listp=${i }&no=${drink_detail.t_no }">
 						[${i }] </a>
 				</c:forEach>
 				<a
-					href="DrinkSearchListPageC?listp=${listPageCount }&no=${drink_detail.t_no }">[맨
-					끝]</a>
+					href="DrinkSearchListPageC?listp=${listPageCount }&no=${drink_detail.t_no }">[끝]</a>
 			</div>
 		</div>
-		<div class="drink-detail-content"><jsp:include
-				page="${detailPage }"></jsp:include></div>
+		<div class="drink_include">
+			<jsp:include page="${detailPage }"></jsp:include>
+		</div>
 	</div>
 </body>
 
@@ -108,6 +173,55 @@
 							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 							map.setCenter(coords);
 						}
+					});
+</script>
+<!-- Jquery 받아오기 -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+	integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+	crossorigin="anonymous">
+	
+</script>
+<script>
+	/* 날씨를 받아오자 재환아 */
+	$
+			.getJSON(
+					'https://api.openweathermap.org/data/2.5/weather?q=Jeju City&appid=e4ef05580f862e66fd424cf8275dc13f&units=metric',
+					function(result) {
+						var temp = Math.round(result.main.temp);
+						var wind = result.wind.speed;
+						var ct = result.dt;
+
+						function convertTime(t) {
+							var week = new Array('일요일', '월요일', '화요일', '수요일',
+									'목요일', '금요일', '토요일');
+							var days = new Date().getDay();
+							var today = week[days];
+							var ot = new Date(t * 1000);
+							var hr = ot.getHours();
+							var m = ot.getMinutes();
+
+							if (hr >= 12 && hr <= 24) {
+								return today + ' /' + ' 오후 ' + hr + ' : ' + m
+							} else {
+								return today + ' /' + ' 오전 ' + hr + ' : ' + m
+							}
+						}
+						function temps(temp) {
+							return temp + '℃'
+						}
+
+						function winds(wind) {
+							return '풍속 ' + wind + ' m/s'
+						}
+
+						var wiconUrl = '<img src="https://openweathermap.org/img/wn/'+result.weather[0].icon+'@2x.png" alt="'+result.weather[0].description+'">'
+						$('.icon').html(wiconUrl);
+						var currentTime = convertTime(ct);
+						$('.time').html(currentTime);
+						var currentTemp = temps(temp);
+						$('.temp').html(currentTemp);
+						var windSpeed = winds(wind);
+						$('.wind').html(windSpeed);
 					});
 </script>
 </html>
