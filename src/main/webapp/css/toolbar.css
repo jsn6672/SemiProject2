@@ -13,7 +13,8 @@
 .toolbar_nav {
 	display: inline-block;
 	position: relative;
-	margin-right: 5%;
+	margin-right: 17%;
+	font-weight: bold;
 	
 }
 .toolbar_nav hr {
@@ -40,14 +41,15 @@
 	background-color: rgba(255, 255, 255, 0.5);
 }
 .toolbar_nav li a{
-	color: white;
+	color: black;
 	text-decoration: none;
 }
 
 .toolbar-info {
 	display: flex;
-	justify-content: flex-end;
-	padding-right: 20px;
+    justify-content: flex-end;
+    padding-right: 20px;
+    height: 100px;
 }
 
 .quick_btn {

@@ -20,7 +20,7 @@
 						<input id="id" name="userId" placeholder="영,숫자 포함 5글자 이상"
 							class="textInput-reg" autocomplete="off">
 							<div id="idError" class="error"></div>
-						<br><button onclick="idCheck()" class="idck" id="idck" >중복확인</button>
+						<br><button type="button" onclick="idCheck()" class="idck" id="idck">중복확인</button>
 						<div id="idCheckResult"></div>
 					</div>
 				</div>

@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jh.login.AccountDAO;
 
-@WebServlet("/Main_HC")
-public class Main_HC extends HttpServlet {
+@WebServlet("/SeeProposalC")
+public class SeeProposalC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountDAO.loginCheck(request);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.setAttribute("contentPage", "seedetail.jsp");
+		request.getRequestDispatcher("freeboard.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AccountDAO.loginCheck(request);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+	
+	}
 
-	} 
 }

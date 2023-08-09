@@ -48,7 +48,7 @@
 				<form action="loginC" method="post">
 					<div class="int-area">
 						<label for="id">USER ID</label> <input type="text" name="id"
-							id="login_id" autocomplete="off">
+							id="login_id" autocomplete="off" required>
 					</div>
 					<div class="int-area">
 						<label for="id">USER PW</label> <input type="password" name="pw"
@@ -147,7 +147,8 @@
 		</form>
 	</div>
 	<!-- 비밀번호 변경창 종료 -->
-		<div class="dim2" id="dim2"></div>
+	
+		<div class="dim2" id="dim2"></div>aaQ    
 
 		<div class="logo">
 			<div class="logo1">
